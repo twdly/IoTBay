@@ -1,4 +1,4 @@
-package com.example.iotbay;
+package isdwrk04.group5.iotbay;
 
 import java.io.*;
 import javax.servlet.http.*;
