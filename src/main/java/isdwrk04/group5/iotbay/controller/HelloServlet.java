@@ -1,4 +1,4 @@
-package isdwrk04.group5.iotbay;
+package isdwrk04.group5.iotbay.controller;
 
 import java.io.*;
 import javax.servlet.http.*;
