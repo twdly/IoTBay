@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="IoTBay" default="deploy" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+    <!-- Define properties -->
+    <property name="src.dir" value="src/main/java"/>
+    <property name="web.dir" value="src/main/webapp"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="war.dir" value="dist"/>
+    <property name="war.name" value="iotbay.war"/>
+    <property name="tomcat.home" value="/usr/share/tomcat9"/>
+    <property name="catalina.base" value="/var/lib/tomcat9"/>
+
+    <!-- Define classpath -->
+    <path id="classpath">
+        <fileset dir="${tomcat.home}/lib" includes="*.jar"/>
+        <!-- Add any other libraries your project depends on -->
+    </path>
+
+    <!-- Target to compile Java source code -->
+    <target name="compile" depends="init">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <!-- Target to package the application into a WAR file -->
+    <target name="war" depends="compile">
+        <mkdir dir="${war.dir}"/>
+        <war destfile="${war.dir}/${war.name}" webxml="${web.dir}/WEB-INF/web.xml">
+            <fileset dir="${web.dir}" excludes="WEB-INF/web.xml"/>
+            <classes dir="${classes.dir}"/>
+        </war>
+    </target>
+
+    <!-- Target to deploy the WAR file to Tomcat -->
+    <target name="deploy" depends="war">
+        <copy file="${war.dir}/${war.name}" todir="${catalina.base}/webapps"/>
+    </target>
+
+    <!-- Target to undeploy the application from Tomcat -->
+    <target name="undeploy">
+        <delete file="${catalina.base}/webapps/${war.name}"/>
+        <delete dir="${catalina.base}/webapps/${war.name.substring(0, war.name.lastIndexOf('.'))}"/>
+    </target>
+
+    <!-- Target to clean the build -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${war.dir}"/>
+    </target>
+
+    <!-- Target to initialize the build -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+</project>
+
