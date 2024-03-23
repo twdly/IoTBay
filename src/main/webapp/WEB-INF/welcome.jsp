@@ -10,6 +10,6 @@
 
     <body>
         <h1>Welcome, <%= customer.getUsername() %></h1>
-        <p>You logged in with the password <%= customer.getPassword() %></p>
+        <p>You logged in with the password <%= customer.getHashedPassword() %></p>
     </body>
 </html>

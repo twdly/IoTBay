@@ -1,6 +1,7 @@
 package isdwrk04.group5.iotbay.controller;
 
 import isdwrk04.group5.iotbay.model.Customer;
+import isdwrk04.group5.iotbay.service.HashingService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,14 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "registerController", value = "/register")
 public class RegisterController extends BaseServlet {
 
+    private HashingService hashingService;
     @Override
     public void init() {
+        try {
+            hashingService = new HashingService();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -26,14 +35,25 @@ public class RegisterController extends BaseServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+
         String email = request.getParameter("email");
         String name = request.getParameter("firstname") + " " + request.getParameter("lastname");
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
 
         if (validateRegistration(request, email, password, passwordCheck)) {
-            Customer customer = new Customer(name, password);
+            byte[] salt = hashingService.createSalt();
+            byte[] hashedPassword;
+
+            try {
+                hashedPassword = hashingService.hashPassword(salt, password);
+            } catch (InvalidKeySpecException e) {
+                throw new RuntimeException(e);
+            }
+
+            Customer customer = new Customer(name, salt, hashedPassword);
             session.setAttribute("user", customer);
+
             serveJSP(request, response, "welcome.jsp");
         }
     }
