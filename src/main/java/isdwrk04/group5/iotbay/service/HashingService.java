@@ -1,6 +1,6 @@
 package isdwrk04.group5.iotbay.service;
 
-import isdwrk04.group5.iotbay.model.Customer;
+import isdwrk04.group5.iotbay.model.User;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -34,9 +34,9 @@ public class HashingService {
         return salt;
     }
 
-    public boolean checkPassword(Customer customer, String password) throws InvalidKeySpecException {
-        byte[] salt = customer.getSalt();
+    public boolean checkPassword(User user, String password) throws InvalidKeySpecException {
+        byte[] salt = user.getSalt();
         byte[] hashedPassword = hashPassword(salt, password);
-        return Arrays.equals(hashedPassword, customer.getHashedPassword());
+        return Arrays.equals(hashedPassword, user.getHashedPassword());
     }
 }
