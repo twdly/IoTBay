@@ -1,5 +1,6 @@
 package isdwrk04.group5.iotbay.controller;
 
+import isdwrk04.group5.iotbay.dao.UserDao;
 import isdwrk04.group5.iotbay.model.Customer;
 import isdwrk04.group5.iotbay.service.HashingService;
 
@@ -18,8 +19,11 @@ import java.util.List;
 public class RegisterController extends BaseServlet {
 
     private HashingService hashingService;
+    private UserDao userDao;
+
     @Override
     public void init() {
+        this.userDao = new UserDao();
         try {
             hashingService = new HashingService();
         } catch (NoSuchAlgorithmException e) {
@@ -51,7 +55,8 @@ public class RegisterController extends BaseServlet {
                 throw new RuntimeException(e);
             }
 
-            Customer customer = new Customer(name, salt, hashedPassword);
+            Customer customer = new Customer(name, email, salt, hashedPassword);
+            userDao.addUser(customer);
             session.setAttribute("user", customer);
 
             serveJSP(request, response, "welcome.jsp");
