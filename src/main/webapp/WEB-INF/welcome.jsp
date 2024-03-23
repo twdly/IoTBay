@@ -10,6 +10,7 @@
 
     <body>
         <h1>Welcome, <%= customer.getUsername() %></h1>
-        <p>You logged in with the password <%= customer.getHashedPassword() %></p>
+        <p>You logged in with the password <%= customer.getHashedPassword() %> (If this doesn't look like gibberish, I've done something wrong)</p>
+        <a href="${pageContext.request.contextPath}/">Home</a>
     </body>
 </html>
