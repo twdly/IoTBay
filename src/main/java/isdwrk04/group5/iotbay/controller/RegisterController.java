@@ -45,7 +45,7 @@ public class RegisterController extends BaseServlet {
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
 
-        if (validateRegistration(request, email, password, passwordCheck)) {
+        if (validateRegistration(session, email, password, passwordCheck)) {
             byte[] salt = hashingService.createSalt();
             byte[] hashedPassword;
 
@@ -60,6 +60,8 @@ public class RegisterController extends BaseServlet {
             session.setAttribute("user", customer);
 
             serveJSP(request, response, "welcome.jsp");
+        } else {
+            serveJSP(request, response, "register.jsp");
         }
     }
 
@@ -67,11 +69,15 @@ public class RegisterController extends BaseServlet {
     public void destroy() {
     }
 
-    private boolean validateRegistration(HttpServletRequest request, String email, String password, String passwordCheck) {
+    private boolean validateRegistration(HttpSession session, String email, String password, String passwordCheck) {
         boolean isValid = true;
         List<String> errors = new ArrayList<>();
         if (!email.contains("@")) {
             errors.add("Email is not valid");
+            isValid = false;
+        }
+        if (userDao.getUserByEmail(email) != null) {
+            errors.add("This email has already been used");
             isValid = false;
         }
         if (!password.equals(passwordCheck)) {
@@ -84,7 +90,7 @@ public class RegisterController extends BaseServlet {
         }
 
         if (!isValid) {
-            request.setAttribute("errors", errors);
+            session.setAttribute("errors", errors);
         }
         return isValid;
     }
