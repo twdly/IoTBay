@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "homeController", value = "/")
+@WebServlet(name = "homeController", value = "")
 public class HomeController extends BaseServlet {
 
     public void init() {
