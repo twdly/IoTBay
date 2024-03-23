@@ -10,5 +10,7 @@
         <h2>The store for all your IoT needs!</h2>
         <br/>
         <a href="login">Login</a>
+        <br/>
+        <a href="register">Register</a>
     </body>
 </html>
