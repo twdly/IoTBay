@@ -12,8 +12,9 @@
 
     <distributionManagement>
         <repository>
-            <id>IoTBay GitHub</id>
-            <url>https://github.com/twdly/IoTBay/</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/twdly/IoTBay</url>
         </repository>
     </distributionManagement>
 
