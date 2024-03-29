@@ -154,7 +154,7 @@ input#search-bar{
     top: 100%;
     right: 5%;
     width: 220px;
-    max-height: 0px;
+    max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s;
 }
