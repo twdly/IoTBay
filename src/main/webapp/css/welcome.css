@@ -2,8 +2,7 @@
     --text-01: #000000;
     --light-01: #F9F9F9;
     --light-02: #FFFFFF;
-    --brand-01: #F9F9F9;
-    --brand-02: #f7cd40;
+    --brand-01: #4C2B36;
     --hover-timing: all 0.2s ease;
     -webkit-font-smoothing: antialiased;
     --pg-margin: 80px;
@@ -12,6 +11,7 @@
 }
 
 * {
+    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -20,12 +20,12 @@
 svg {
     width: 1.2em;
     height: 1.2em;
-    stroke: var(--text-01);
+    stroke: var(--light-01);
 }
 
 svg.bad {
     stroke: none;
-    color: var(--text-01);
+    color: var(--light-01);
 }
 
 svg #icon-profile.bad {
@@ -39,7 +39,6 @@ a {
 }
 
 body {
-    font-family: 'Helvetica Neue', sans-serif;
     font-weight: 500;
     transition: var(--hover-timing);
     background: var(--light-01);
@@ -51,21 +50,22 @@ header {
     height: auto;
     position: sticky;
     top: 0;
-    border: 1px solid var(--brand-01);
+    /*border: 1px solid var(--light-01);*/
     z-index: 100;
+    background: var(--brand-01);
 }
 
 nav {
-    color: var(--text-01);
+    color: var(--light-01);
     font-weight: 600;
     height: 64px;
-    background: var(--light-01);
+    background: var(--brand-01);
     display: flex;
     flex-direction: row;
     /*align-items: center;*/
     /*justify-content: space-between;*/
     padding: 0 var(--pg-margin);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--brand-01);
     z-index: 100;
 }
 
@@ -80,7 +80,7 @@ nav ul.navigation-menu {
     background: none;
     width: auto;
     align-items: center;
-    padding-left: 12.3em;
+    padding-left: 10.3em;
 }
 
 nav .navigation-menu a {
@@ -103,11 +103,12 @@ nav .navigation-menu > li > a {
     align-items: center;
     justify-items: center;
     font-weight: 500;
+    color: var(--light-01);
 }
 
 nav .navigation-menu > li > a:hover {
-    font-weight: 700;
-    background: linear-gradient(var(--light-01) 95%, var(--brand-02) 5%);
+    font-weight: 625;
+    background: linear-gradient(var(--brand-01) 95%, var(--light-01) 5%);
 }
 
 nav > #logo {
@@ -116,6 +117,7 @@ nav > #logo {
     align-items: center;
     grid-gap: 8px;
     line-height: 100%;
+    font-size: 2em;
 }
 
 nav > #utilities {
@@ -134,19 +136,23 @@ nav > .search-container{
 
 input#search-bar{
     height: 1.2em;
-    /*border: 1px solid #D0CFCE;*/
     outline: none;
     border:none;
-    border-bottom: 1px solid var(--text-01);
+    border-bottom: 1px solid var(--light-01);
     padding: 5px 10px;
     background: none;
-    /*visibility: hidden;*/
-    /*outline: none;*/
+    color: var(--light-01);
+}
+
+::placeholder {
+    color: var(--light-01);
 }
 
 .search-icon{
     position: relative;
     float: right;
+    margin-left: 10px;
+    color: var(--light-01);
 }
 
 .profile-menu-wrap {
@@ -169,13 +175,14 @@ input#search-bar{
     margin: 10px;
 }
 
-user-info {
+.user-info {
     display: flex;
     align-items: center;
 }
 
-user-info h4 {
+.user-info h4 {
     font-weight: 400;
+    color: var(--text-01);
 }
 
 .profile-menu hr {
@@ -200,7 +207,7 @@ user-info h4 {
 }
 
 .profile-menu-link p:hover {
-    font-weight: 500;
+    font-weight: 550;
 }
 
 section,
@@ -215,20 +222,19 @@ section.welcome {
     background-size: 30%;
     background-position: 90% 60%;
     height: 700px;
-    background: var(--brand-01);
+    background: var(--light-01);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     grid-gap: 48px;
-    /*display: inline-flex;*/
+    display: inline-flex;
 }
 
 section.welcome h1 {
     font-size: 56px;
     font-weight: 600;
     line-height: 1.2;
-    width: 40%;
     color: var(--text-01);
 }
 
@@ -280,21 +286,21 @@ button {
 }
 
 .btn-outline-dark:hover {
-    background: var(--brand-02);
-    border: 2px solid var(--text-01);
-    color: var(--text-01);
+    background: var(--brand-01);
+    border: 2px solid var(--brand-01);
+    /*color: var(--text-01);*/
 }
 
-.btn-outline-dark svg:hover {
-    stroke: var(--text-01);
-}
+/*.btn-outline-dark svg:hover {*/
+/*    stroke: var(--text-01);*/
+/*}*/
 
 .btn-outline-light:hover {
-    background: var(--brand-02);
-    border: 2px solid var(--text-01);
-    color: var(--text-01);
+    background: var(--brand-01);
+    border: 2px solid var(--brand-01);
+    color: var(--light-01);
 }
 
 .btn-outline-light svg:hover {
-    stroke: var(--text-01);
+    stroke: var(--light-01);
 }

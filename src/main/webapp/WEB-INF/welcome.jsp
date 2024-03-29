@@ -28,7 +28,7 @@
         <div id="utilities">
             <div class="search-container">
                 <form action="search">
-                    <input id=search-bar type="text" placeholder="Search.." name="search">
+                    <input id=search-bar type="text" placeholder="Search..." name="search">
                     <a href="#">
                         <svg class="search-icon" viewBox="0 0 800 800" fill="none">
                             <path d="M498.453 498.193L700 700M566.667 333.333C566.667 462.2 462.2 566.667 333.333 566.667C204.467 566.667 100 462.2 100 333.333C100 204.467 204.467 100 333.333 100C462.2 100 566.667 204.467 566.667 333.333Z" stroke="currentColor" stroke-width="66.6667" stroke-linecap="round"></path>
