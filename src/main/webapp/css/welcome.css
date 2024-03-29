@@ -7,7 +7,7 @@
     --hover-timing: all 0.2s ease;
     -webkit-font-smoothing: antialiased;
     --pg-margin: 80px;
-    font-smoothing: antialiased;
+    font-smooth: always;
     scroll-behavior: smooth;
 }
 
