@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="isdwrk04.group5.iotbay.model.Product" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Iterator" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,113 +31,30 @@
                 </div>
             </div>
             <div class="container">
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="unit-price">$99.99</p>
-                    <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
-                </div>
+
+		<%
+		List<Product> products = (List<Product>) request.getAttribute("products");
+		if (products != null && !products.isEmpty()) {
+			Iterator<Product> iterator = products.iterator();
+			while (iterator.hasNext()) {
+				Product product = iterator.next();
+		%>
+				<div class="product-card">
+					<img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor"</img>
+					<h3 class="product-name"><%=product.getName() %></h3>
+					<p class="unit-price"><%=product.getPrice() %></p>
+					<button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
+				</div>
+		<%
+			}
+			} else {
+		%>
+		<div class="product-card">
+			<h3 class=product-name>No products available.</h3>
+		</div>
+		<% } %>
+
             </div>
         </main>
-
-
-
-
     </body>
 </html>

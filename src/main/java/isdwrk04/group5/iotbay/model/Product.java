@@ -4,17 +4,32 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
-    private String name;
-    private double price;
+	private String name;
+	private double price;
+	private String description;
 
-    public String getName() {
-        return name;
-    }
+	// Getters
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public Product() {
-    }
+	public String getPrice() {
+		return String.format("%.2f", price);
+	}
+
+	// Setters
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	// Constructor
+	public Product(String name, String description, double price) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+	}
 }
