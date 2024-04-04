@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% Customer customer = (Customer)session.getAttribute("user"); %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +17,13 @@
         </div>
         <ul class="navigation-menu">
             <li>
-                <a href="${pageContext.request.contextPath}/">Home</a>
+                <a href="${pageContext.request.contextPath}">Home</a>
             </li>
             <li>
                 <a href="#">Locations &amp; Hours</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/store">Store</a>
+                <a href="store">Store</a>
             </li>
         </ul>
         <div id="utilities">
@@ -55,7 +56,6 @@
                 <a href="#" class="profile-menu-link">
                     <p>Sign Out</p>
                 </a>
-
             </div>
         </div>
     </nav>
@@ -80,28 +80,44 @@
         <path d="M16 5V4.5V4.5C16 3.67157 15.3284 3 14.5 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H14.5C15.3284 21 16 20.3284 16 19.5V19.5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
     </symbol>
 </svg>
+<%--<%--%>
+<%--    if (request.getParameter("logout") != null && request.getParameter("logout").equals("true")) {--%>
+<%--        session.invalidate();--%>
+<%--    }--%>
+<%--    if (request.getSession(false) == null) {--%>
+<%--    //    response.sendRedirect(request.getContextPath());--%>
+<%--} else {--%>
+<%--%>--%>
 <section class="welcome">
     <h1>Welcome <%= customer.getUsername() %></h1>
     <h2>Your email is <%= customer.getEmail() %></h2>
     <%--            <p>You logged in with the password <%= customer.getHashedPassword() %> (If this doesn't look like gibberish, I've done something wrong)</p>--%>
     <div class="btn-group">
         <a href="${pageContext.request.contextPath}/store">
-            <button class="btn-outline-dark">
+            <button type="button" class="btn-outline-dark">
                 Shop All Products
                 <svg id="welcome-icon-product" viewBox="0 0 24 24" fill="none">
                     <path d="M4.5 5H18.2768C19.0446 5 19.526 5.82948 19.1451 6.49614L16.5758 10.9923C16.2198 11.6154 15.5571 12 14.8394 12H8M8 12L6.45625 14.47C6.03997 15.136 6.51881 16 7.30425 16H18M8 12L4.05279 4.10557C3.714 3.428 3.02148 3 2.26393 3H2M8 20C8 20.5523 7.55228 21 7 21C6.44772 21 6 20.5523 6 20C6 19.4477 6.44772 19 7 19C7.55228 19 8 19.4477 8 20ZM18 20C18 20.5523 17.5523 21 17 21C16.4477 21 16 20.5523 16 20C16 19.4477 16.4477 19 17 19C17.5523 19 18 19.4477 18 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                 </svg>
             </button>
         </a>
-        <button class="btn-outline-light">
-            Not Your Account?
-            <svg id="welcome-icon-logout" viewBox="0 0 24 24" fill="none">
-                <path d="M21 12L13 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M18 15L20.913 12.087V12.087C20.961 12.039 20.961 11.961 20.913 11.913V11.913L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M16 5V4.5V4.5C16 3.67157 15.3284 3 14.5 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H14.5C15.3284 21 16 20.3284 16 19.5V19.5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-        </button>
+<%--        trying to add the logout button but confused how i can get the button to invalidate the session and redirect the user--%>
+        <form action="" method="post">
+            <input type="hidden" name="logout" value="true">
+                <button type="submit" class="btn-outline-light">
+                    Not Your Account?
+                    <svg id="welcome-icon-logout" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12L13 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M18 15L20.913 12.087V12.087C20.961 12.039 20.961 11.961 20.913 11.913V11.913L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M16 5V4.5V4.5C16 3.67157 15.3284 3 14.5 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H14.5C15.3284 21 16 20.3284 16 19.5V19.5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+        </form>
     </div>
 </section>
+<%--<%--%>
+<%--    }--%>
+<%--%>--%>
 </body>
 </html>
+
