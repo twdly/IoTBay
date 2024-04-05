@@ -32,7 +32,11 @@ public class LoginController extends BaseServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        serveJSP(request, response, "login.jsp");
+        if (request.getSession().getAttribute("user") != null) {
+            serveJSP(request, response, "welcome.jsp");
+        } else {
+            serveJSP(request, response, "login.jsp");
+        }
     }
 
     @Override
