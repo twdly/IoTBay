@@ -33,7 +33,11 @@ public class RegisterController extends BaseServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        serveJSP(request, response, "register.jsp");
+        if (request.getSession().getAttribute("user") != null) {
+            serveJSP(request, response, "welcome.jsp");
+        } else {
+            serveJSP(request, response, "register.jsp");
+        }
     }
 
     @Override
