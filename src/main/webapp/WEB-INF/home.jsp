@@ -2,25 +2,31 @@
 <%@ page import="isdwrk04.group5.iotbay.model.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="isdwrk04.group5.iotbay.model.User" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Home - IoTBay</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
-    </head>
+<head>
+    <title>Home - IoTBay</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+</head>
 
-    <body>
-        <header>
-            <div class="logo">
-                <a href="<%=request.getRequestURI()%>"><h1>IoTBay</h1></a>
-            </div>
-            <div class="search-box">
-                <label><input name="search" type="search" placeholder="Search IoT Products"></label>
-            </div>
-            <div class="register-or-login">
-                <a href="register">Register</a> | <a href="login">Login</a>
-            </div>
-            <button class ="shopping-cart-button">$9999.99</button>
+<body>
+<header>
+    <div class="logo">
+        <a href="<%=request.getRequestURI()%>"><h1>IoTBay</h1></a>
+    </div>
+    <div class="search-box">
+        <label><input name="search" type="search" placeholder="Search IoT Products"></label>
+    </div>
+    <div class="register-or-login">
+        <% User user = (User) session.getAttribute("user");
+            if (user != null) { %>
+        Hello, <%= user.getUsername() %> | <a href="logout">Logout</a>
+        <% } else { %>
+        <a href="register">Register</a> | <a href="login">Login</a>
+        <% } %>
+    </div>
+    <button class ="shopping-cart-button">$9999.99</button>
         </header>
         <main>
             <div class="hero">
@@ -40,7 +46,7 @@
 				Product product = iterator.next();
 		%>
 				<div class="product-card">
-					<img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor"</img>
+					<img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
 					<h3 class="product-name"><%=product.getName() %></h3>
 					<p class="unit-price"><%=product.getPrice() %></p>
 					<button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
