@@ -3,5 +3,9 @@ function toggleMenu() {
     profileMenu.classList.toggle("open-menu");
 }
 
+function logout() {
+    document.getElementById("logoutForm").submit();
+}
+
 
 

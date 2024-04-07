@@ -91,7 +91,6 @@
 <section class="welcome">
     <h1>Welcome <%= customer.getUsername() %></h1>
     <h2>Your email is <%= customer.getEmail() %></h2>
-    <%--            <p>You logged in with the password <%= customer.getHashedPassword() %> (If this doesn't look like gibberish, I've done something wrong)</p>--%>
     <div class="btn-group">
         <a href="${pageContext.request.contextPath}/store">
             <button type="button" class="btn-outline-dark">
@@ -101,10 +100,9 @@
                 </svg>
             </button>
         </a>
-<%--        trying to add the logout button but confused how i can get the button to invalidate the session and redirect the user--%>
-        <form action="" method="post">
-            <input type="hidden" name="logout" value="true">
-                <button type="submit" class="btn-outline-light">
+        <form id="logoutForm" action="logout" method="get">
+            <input input type="hidden" name="logout" value="true">
+                <button onclick="logout()" class="btn-outline-light">
                     Not Your Account?
                     <svg id="welcome-icon-logout" viewBox="0 0 24 24" fill="none">
                         <path d="M21 12L13 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
