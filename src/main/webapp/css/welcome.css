@@ -15,6 +15,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    color: var(--light-01);
 }
 
 svg {
@@ -35,7 +36,7 @@ svg #icon-profile.bad {
 
 a {
     text-decoration: none;
-    color: var(--text-01);
+    color: var(--light-01);
 }
 
 body {
@@ -47,7 +48,7 @@ body {
 }
 
 header {
-    height: auto;
+    height: 5.5rem;
     position: sticky;
     top: 0;
     /*border: 1px solid var(--light-01);*/
@@ -58,7 +59,7 @@ header {
 nav {
     color: var(--light-01);
     font-weight: 600;
-    height: 64px;
+    height: 5.5em;
     background: var(--brand-01);
     display: flex;
     flex-direction: row;
@@ -67,6 +68,10 @@ nav {
     padding: 0 var(--pg-margin);
     border-bottom: 1px solid var(--brand-01);
     z-index: 100;
+}
+
+nav > a > .logout-link {
+    color: var(--light-01);
 }
 
 nav ul.navigation-menu {
@@ -86,7 +91,6 @@ nav ul.navigation-menu {
 nav .navigation-menu a {
     font-size: 16px;
     text-decoration: none;
-    color: var(--text-01);
 }
 
 nav .navigation-menu > li {
@@ -98,7 +102,7 @@ nav .navigation-menu > li {
 nav .navigation-menu > li > a {
     position: relative;
     padding: 0 20px;
-    height: 64px;
+    height: 5.5em;
     display: flex;
     align-items: center;
     justify-items: center;
@@ -126,6 +130,16 @@ nav > #utilities {
     align-items: center;
     grid-gap: 20px;
     cursor: pointer;
+    color: var(--light-01);
+}
+
+nav > #utilities {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    color: var(--light-01);
 }
 
 nav > .search-container{
@@ -153,61 +167,6 @@ input#search-bar{
     float: right;
     margin-left: 10px;
     color: var(--light-01);
-}
-
-.profile-menu-wrap {
-    position:absolute;
-    top: 100%;
-    right: 5%;
-    width: 220px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s;
-}
-
-.profile-menu-wrap.open-menu {
-    max-height: 200px;
-}
-
-.profile-menu {
-    background: var(--light-02);
-    padding: 20px 20px 10px 20px;
-    margin: 10px;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-}
-
-.user-info h4 {
-    font-weight: 400;
-    color: var(--text-01);
-}
-
-.profile-menu hr {
-    border: 0;
-    height: 1px;
-    width: 100%;
-    background: #ccc;
-    margin: 15px 0 10px;
-}
-
-.profile-menu-link {
-    display: flex;
-    align-items: center;
-    color: var(--text-01);
-    margin: 12px 0;
-}
-
-.profile-menu-link p {
-    width: 100%;
-    font-size: 14px;
-    font-weight: 400;
-}
-
-.profile-menu-link p:hover {
-    font-weight: 550;
 }
 
 section,

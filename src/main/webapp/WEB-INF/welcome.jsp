@@ -40,23 +40,10 @@
             <svg>
                 <use xlink:href="#icon-cart"></use>
             </svg>
-            <svg>
-                <use xlink:href="#icon-profile" onclick="toggleMenu()"></use>
-            </svg>
-        </div>
-        <div class="profile-menu-wrap" id="profileMenu">
-            <div class="profile-menu">
-                <div class="user-info">
-                    <h4><%= customer.getUsername() %></h4>
-                </div>
-                <hr>
-                <a href="#" class="profile-menu-link">
-                    <p>My Account</p>
-                </a>
-                <a href="#" class="profile-menu-link">
-                    <p>Sign Out</p>
-                </a>
-            </div>
+<%--            <svg>--%>
+<%--                <use xlink:href="#icon-profile" onclick="toggleMenu()"></use>--%>
+<%--            </svg>--%>
+            <a href="logout" class="logout-link">Logout</a>
         </div>
     </nav>
 </header>
@@ -80,14 +67,6 @@
         <path d="M16 5V4.5V4.5C16 3.67157 15.3284 3 14.5 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H14.5C15.3284 21 16 20.3284 16 19.5V19.5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
     </symbol>
 </svg>
-<%--<%--%>
-<%--    if (request.getParameter("logout") != null && request.getParameter("logout").equals("true")) {--%>
-<%--        session.invalidate();--%>
-<%--    }--%>
-<%--    if (request.getSession(false) == null) {--%>
-<%--    //    response.sendRedirect(request.getContextPath());--%>
-<%--} else {--%>
-<%--%>--%>
 <section class="welcome">
     <h1>Welcome <%= customer.getUsername() %></h1>
     <h2>Your email is <%= customer.getEmail() %></h2>
@@ -113,9 +92,6 @@
         </form>
     </div>
 </section>
-<%--<%--%>
-<%--    }--%>
-<%--%>--%>
 </body>
 </html>
 
