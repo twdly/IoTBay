@@ -17,15 +17,14 @@ public class HomeController extends BaseServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-	// Initalize example products
-	List<Product> products = new ArrayList<>();
-	for (int i = 0; i < 60; i++) {
-		products.add(new Product("Product " + i, "Description of Product " + i, (i * 10 + 9.99)));
-	}
+        // Initalize example products
+        List<Product> products = new ArrayList<>();
+        for (int i = 0; i < 60; i++) {
+            products.add(new Product("Product " + i, "Description of Product " + i, (i * 10 + 9.99)));
+        }
 
-	// Set list of products as an attribute
-	request.setAttribute("products", products);
-
+        // Set list of products as an attribute
+        request.setAttribute("products", products);
 
         serveJSP(request, response, "home.jsp");
     }
