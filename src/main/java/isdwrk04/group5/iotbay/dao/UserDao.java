@@ -24,6 +24,10 @@ public class UserDao {
         return users;
     }
 
+    public void deleteUser(String email) {
+        users.remove(getUserByEmail(email));
+    }
+
     public User getUserByEmail(String email) {
         Optional<User> foundUser = users.stream().filter(x -> x.getEmail().equals(email)).findFirst();
         return foundUser.orElse(null);

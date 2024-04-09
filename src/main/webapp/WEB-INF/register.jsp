@@ -41,6 +41,6 @@
                 <input type="password" id="passwordCheck" name="passwordCheck">
             </div>
         </form>
-        <button onclick="register()">Register</button>
+        <button id="register" onclick="register()">Register</button>
     </body>
 </html>
