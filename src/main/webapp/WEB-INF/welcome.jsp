@@ -1,7 +1,6 @@
-<%@ page import="isdwrk04.group5.iotbay.model.Customer" %>
+<%@ page import="isdwrk04.group5.iotbay.model.User" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<% Customer customer = (Customer)session.getAttribute("user"); %>
-
+<% User customer = (User) session.getAttribute("user"); %>
 
 <!DOCTYPE html>
 <html>
