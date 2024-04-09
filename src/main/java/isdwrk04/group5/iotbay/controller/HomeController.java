@@ -20,7 +20,7 @@ public class HomeController extends BaseServlet {
         // Initalize example products
         List<Product> products = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
-            products.add(new Product("Product " + i, "Description of Product " + i, (i * 10 + 9.99)));
+            products.add(new Product(i, "Product " + i, "Description of Product " + i, (i * 10 + 9.99), i));
         }
 
         // Set list of products as an attribute
