@@ -23,7 +23,6 @@ public class AccountController extends BaseServlet {
         } else {
             serveJSP(request, response, "account.jsp");
         }
-
     }
 
     public void destroy() {

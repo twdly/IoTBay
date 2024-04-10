@@ -8,7 +8,8 @@
     </head>
     <body>
         <h1>Your account</h1>
-        <form id="registerForm" action="register" method="post">
+        <h2>Account details:</h2>
+        <form id="accountForm" action="register" method="post">
             <div class="form-element">
                 <label class="form-element" for="email">Email:</label>
                 <input type="email" id="email" name="email" value=<%=user.getEmail()%>>
@@ -21,7 +22,9 @@
                 <label class="form-element" for="lastname">Last name:</label>
                 <input type="text" id="lastname" name="lastname" value=<%=user.getUsername().split(" ")[1]%>>
             </div>
-
+        </form>
+        <button>Update details</button>
+        <form id="passwordForm">
             <h2>Change password:</h2>
             <div class="form-element">
                 <label class="form-element" for="password">Password:</label>
@@ -32,5 +35,8 @@
                 <input type="password" id="passwordCheck" name="passwordCheck">
             </div>
         </form>
+        <button>Change password</button>
+        <h2>Your orders:</h2>
+        <p>Past orders will be shown here</p>
     </body>
 </html>
