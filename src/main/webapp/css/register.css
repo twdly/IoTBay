@@ -42,8 +42,19 @@ body {
     position: absolute;
     top: 20px;
     left: 20px;
-    font-size: 1.3rem;
-    color: #ccc;
+}
+
+.back-to-home a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #4CAF50; /* Button color */
+    padding: 10px 20px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.back-to-home a:hover {
+    background-color: #295d2a;
 }
 
 .container h1 {

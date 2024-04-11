@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginpage.css">
 </head>
 <body>
-<div class="login-container">
+    <header>
+        <div class="back-to-home">
+            <a href="${pageContext.request.contextPath}">Back to Home</a>
+        </div>
+    </header>
+    <div class="login-container">
     <h1>Log in to your account</h1>
     <div class="login-form">
         <form method="post" action="login">
