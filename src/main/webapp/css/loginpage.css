@@ -1,0 +1,80 @@
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.form-element {
+    margin-top: 5px;
+}
+
+:root {
+    --colour-main: #2B6B6A;
+    --font-body: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #EF88BB, #291850);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 1.2em;
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+.input-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.input-container input {
+    width: calc(100% - 20px); /* Adjust width */
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    outline: none;
+}
+
+.button-container {
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8a5aff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff5acd;
+}
