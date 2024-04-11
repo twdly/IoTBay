@@ -25,7 +25,7 @@
                 <input type="password" id="password" name="password">
             </div>
             <div class="button-container">
-                <button type="Log in">Login</button>
+                <button>Login</button>
             </div>
         </form>
     </div>
