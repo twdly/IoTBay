@@ -10,6 +10,11 @@
     </head>
 
     <body>
+        <header>
+            <div class="back-to-home">
+                <a href="</=request.getRequestURI()/>">Back to Home</a>
+            </div>
+        </header>
         <div class="container">
             <h1>Register</h1>
             <p id="errors" class="error"></p>

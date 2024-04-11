@@ -1,11 +1,11 @@
 .error {
     color: red;
     font-weight: bold;
-    margin-bottom: 10px; /* Add margin bottom for spacing */
+    margin-bottom: 10px;
 }
 
 .form-element + .form-element {
-    margin-top: 10px; /* Increase spacing between form elements */
+    margin-top: 10px;
 }
 
 :root {
@@ -20,67 +20,76 @@
 }
 
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
     background: linear-gradient(to bottom right, #EF88BB, #291850);
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .container {
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 40px;
-    width: 400px;
+    width: 500px;
 }
 
-h2 {
-    color: #333;
+.back-to-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.3rem;
+    color: #ccc;
 }
 
-p {
-    color: #666;
+.container h1 {
+    text-align: center;
+    margin-bottom: 1.2rem;
+    color: #000000;
+}
+
+.form-element {
     margin-bottom: 20px;
 }
 
-.form-group {
-    margin-bottom: 20px;
+.form-element label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000000;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-button,
-label {
+.form-element input[type="email"],
+.form-element input[type="text"],
+.form-element input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    transition: border-bottom-color 0.3s;
+}
+
+.form-element input[type="email"]:focus,
+.form-element input[type="text"]:focus,
+.form-element input[type="password"]:focus {
+    border-bottom-color: #6a5acd;
+    outline: none;
 }
 
 button {
-    background-color: #4CAF50;
-    color: white;
+    width: 100%;
+    padding: 10px;
     border: none;
+    border-radius: 5px;
+    background-color: #8a5aff;
+    color: white;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
-}
-
-label {
-    display: block;
-}
-
-a {
-    color: #4CAF50;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+    background-color: #ff5acd;
 }
