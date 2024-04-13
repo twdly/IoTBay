@@ -1,8 +1,8 @@
 # IoTBay
-### A Jakarta EE web app for 41025 Introduction to Software Development, Autumn 2023
+### A Jakarta EE web app for 41025 Introduction to Software Development, Autumn 2024
 
 # Source code
-The source code for this project can be found in our team's [Github repository](https://github.com/twdly/IoTBay).
+The source code for this project can be found in our team's [GitHub repository](https://github.com/twdly/IoTBay).
 
 # How to run
 1. If you don't already have the WAR file to deploy, download the newest WAR file from our [repository's package page](https://github.com/twdly/IoTBay/packages/2106668) or build it yourself using Maven with `mvn package`.
