@@ -5,7 +5,7 @@
 The source code for this project can be found in our team's [Github repository](https://github.com/twdly/IoTBay).
 
 # How to run
-1. If you don't already have the WAR file to deploy, download the newest WAR file from our [repository's package page](https://github.com/twdly/IoTBay/packages/2106668) or build it yourself using Maven.
+1. If you don't already have the WAR file to deploy, download the newest WAR file from our [repository's package page](https://github.com/twdly/IoTBay/packages/2106668) or build it yourself using Maven with `mvn package`.
 2. Download the newest version of Apache Tomcat from [here](https://tomcat.apache.org/download-90.cgi) (this project has been tested with 9.0.86 and 9.0.87).
 3. Extract the downloaded copy of Apache Tomcat to your desired install location.
 4. Open the extracted Tomcat directory and open conf/tomcat-users.xml.
