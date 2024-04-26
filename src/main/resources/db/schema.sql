@@ -80,19 +80,19 @@ create table "ORDER"
 create table SAVEDPAYMENTDETAILS
 (
     User_ID INTEGER,
-    Delivery_ID INTEGER,
-    PRIMARY KEY (User_ID, Delivery_ID),
+    Payment_ID INTEGER,
+    PRIMARY KEY (User_ID, Payment_ID),
     CONSTRAINT SAVEDPAYMENTDETAILS_CUSTOMERID foreign key (User_ID) references "USER"(User_ID),
-    CONSTRAINT SAVEDPAYMENTDETAILS_DELIVERYID foreign key (Delivery_ID) references "DELIVERYADDRESS"(Delivery_ID)
+    CONSTRAINT SAVEDPAYMENTDETAILS_PAYMENTID foreign key (Payment_ID) references "PAYMENTDETAILS"(Payment_ID)
 );
 
 create table SAVEDDELIVERYADDRESS
 (
     User_ID INTEGER,
-    Payment_ID INTEGER,
-    PRIMARY KEY (User_ID, Payment_ID),
+    Delivery_ID INTEGER,
+    PRIMARY KEY (User_ID, Delivery_ID),
     CONSTRAINT SAVEDDELIVERYADDRESS_USERID foreign key (User_ID) references "USER"(User_ID),
-    CONSTRAINT SAVEDDELIVERYADDRESS_PAYMENTID foreign key (Payment_ID) references "PAYMENTDETAILS"(Payment_ID)
+    CONSTRAINT SAVEDDELIVERYADDRESS_DELIVERYID foreign key (Delivery_ID) references "DELIVERYADDRESS"(Delivery_ID)
 );
 
 create table ORDERLINE
