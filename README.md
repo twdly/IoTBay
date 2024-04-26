@@ -24,7 +24,9 @@ The source code for this project can be found in our team's [GitHub repository](
 5. Tick the "Create database" checkbox.
 6. If IntelliJ prompts you to download missing drivers, click the download button and wait for the drivers to install.
 7. Click OK to create the database.
-8. Navigate to IoTBay/src/main/resources/db.
-9. Execute schema.sql to create the database tables.
-10. Run sampleData.sql to create the sample data entries.
-11. If you ever need to clear the database, running dropSchema.sql will drop all the tables for you.
+8. Right-click the newly created database then navigate to New -> Schema.
+9. Replace "schema_name" with "IoTBayDB" then click OK.
+10. Navigate to IoTBay/src/main/resources/db.
+11. Execute schema.sql to create the database tables. Make sure that you run this script (and all others) on the IoTBayDB schema. If this fails on the first run, click ignore all because you have already initialised the IoTBayDB schema.
+12. Run sampleData.sql to create the sample data entries.
+13. If you ever need to clear the database, running dropSchema.sql will drop all the tables for you.
