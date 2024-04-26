@@ -1,3 +1,5 @@
+set schema IOTBAYDB;
+
 drop table ORDERLINE;
 drop table SAVEDDELIVERYADDRESS;
 drop table SAVEDPAYMENTDETAILS;
