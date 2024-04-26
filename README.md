@@ -15,3 +15,16 @@ The source code for this project can be found in our team's [GitHub repository](
 8. Click on "manager app" then enter the username and password you configured earlier.
 9. Scroll down to the "WAR file to deploy" subheading, click on "Choose file" and then locate and open the IoTBay WAR file.
 10. Click deploy and the IoTBay website should be ready to use.
+
+# How to create the database with IntelliJ
+1. Click on the Database icon in the right sidebar
+2. Click New -> Data Source -> Apache Derby -> Apache Derby (Embedded).
+3. Set the path to be your directory to the IoTBay project folder plus "/db". Do not create the db folder yourself or the database creation process will fail.
+4. Change authentication to "No auth."
+5. Tick the "Create database" checkbox.
+6. If IntelliJ prompts you to download missing drivers, click the download button and wait for the drivers to install.
+7. Click OK to create the database.
+8. Navigate to IoTBay/src/main/resources/db.
+9. Execute schema.sql to create the database tables.
+10. Run sampleData.sql to create the sample data entries.
+11. If you ever need to clear the database, running dropSchema.sql will drop all the tables for you.
