@@ -28,7 +28,7 @@ create table PAYMENTDETAILS
     Payment_Date DATE not null,
     Payment_Method VARCHAR(255) not null,
     Cardholder_Name varchar(255),
-    Card_Number INTEGER,
+    Card_Number varchar(16),
     Expiration_Date date,
     Billing_Address varchar(255),
     Transaction_Status char
@@ -65,7 +65,8 @@ create table "ORDER"
     Name VARCHAR(255),
     Phone VARCHAR(10),
     Order_Status VARCHAR(20),
-    Order_Method VARCHAR(9),
+    Order_Date date,
+    Order_Method VARCHAR(10),
     User_ID INTEGER,
     Payment_ID INTEGER,
     Collection_ID INTEGER,
