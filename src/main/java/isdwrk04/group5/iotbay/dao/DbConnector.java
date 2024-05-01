@@ -6,9 +6,13 @@ import java.sql.SQLException;
 
 public class DbConnector extends Db {
 
-    public DbConnector() throws ClassNotFoundException, SQLException {
-        Class.forName(driver);
-        connection = DriverManager.getConnection(url);
+    public DbConnector() {
+        try {
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Connection getConnection() {
