@@ -1,4 +1,4 @@
-set schema IOTBAYDB;
+set schema APP;
 
 -- records of Users --
 INSERT INTO "USER" VALUES (1000, 'johnshep@email.com', 'password', 'salt', 'John Sheppard', '0412345678', 'Customer');

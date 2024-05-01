@@ -1,4 +1,4 @@
-set schema IOTBAYDB;
+set schema APP;
 
 drop table ORDERLINE;
 drop table SAVEDDELIVERYADDRESS;
@@ -10,5 +10,3 @@ drop table CITY;
 drop table PAYMENTDETAILS;
 drop table PRODUCT;
 drop table "USER";
-
-drop schema IoTBayDB restrict;

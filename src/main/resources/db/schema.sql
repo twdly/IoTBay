@@ -1,5 +1,4 @@
-create schema IoTBayDB;
-set schema IoTBayDB;
+set schema APP;
 
 create table "USER"
 (
