@@ -39,11 +39,4 @@ public class ProductDao {
         int stock = result.getInt("PRODUCT_STOCK");
         return new Product(id, name, description, price, stock);
     }
-
-    public static void main(String[] args) {
-        ProductDao dao = new ProductDao();
-        for (Product product : dao.getAllProducts()) {
-            System.out.println(product.getName());
-        }
-    }
 }
