@@ -41,8 +41,8 @@ header a {
 
 .search-box {
     position: relative;
-    width: 31.25em;
-    height: 3.125em;
+    width: 30em;
+    height: 3em;
     border-radius: 1rem;
     border: 1px solid #848484;
     background: #F7F7F7;
@@ -62,6 +62,18 @@ header a {
 .search-box input:focus {
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
     border-radius: 1rem;
+}
+
+.search-button {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    border: none;
+    background: none;
+}
+
+.search-button i {
+    font-size: 1.5em;
 }
 
 .register-or-login{
