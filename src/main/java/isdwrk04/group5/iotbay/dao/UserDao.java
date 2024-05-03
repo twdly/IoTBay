@@ -67,14 +67,6 @@ public class UserDao {
         }
     }
 
-    public static void main(String[] args) {
-        UserDao dao = new UserDao();
-        List<User> users = dao.getAllUsers();
-        for (User user : users) {
-            System.out.println(user.getUsername());
-        }
-    }
-
     public String buildInsertQuery(User user) {
         StringBuilder builder = new StringBuilder();
         builder.append(getNextUserId()).append(", ");
