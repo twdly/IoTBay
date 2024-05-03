@@ -2,11 +2,9 @@ package isdwrk04.group5.iotbay.dao;
 
 import isdwrk04.group5.iotbay.model.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +18,9 @@ public class UserDao {
 
     public void addUser(User user) {
         try {
-            Statement statement = connection.createStatement();
-            statement.execute("insert into \"USER\" VALUES (" + buildInsertQuery(user) + ")");
+            PreparedStatement statement = connection.prepareStatement("insert into \"USER\" values (?, ?, ?, ?, ?, ?, ?)");
+            buildInsertQuery(user, statement);
+            statement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -33,7 +32,7 @@ public class UserDao {
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("select * from \"USER\"");
             while (results.next()) {
-                users.add(new User(results.getString("NAME"), results.getString("EMAIL_ADDRESS"), results.getString("PASSWORD_SALT").getBytes(), results.getString("PASSWORD_HASH").getBytes(), getRoleFromString(results.getString("USER_TYPE"))));
+                users.add(new User(results.getString("NAME"), results.getString("EMAIL_ADDRESS"), Base64.getDecoder().decode(results.getString("PASSWORD_SALT")), Base64.getDecoder().decode(results.getString("PASSWORD_HASH")), getRoleFromString(results.getString("USER_TYPE"))));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -67,15 +66,13 @@ public class UserDao {
         }
     }
 
-    public String buildInsertQuery(User user) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(getNextUserId()).append(", ");
-        builder.append("'").append(user.getEmail()).append("', ");
-        builder.append("'").append(new String(user.getHashedPassword())).append("', ");
-        builder.append("'").append(new String(user.getSalt())).append("', ");
-        builder.append("'").append(user.getUsername()).append("', ");
-        builder.append("'").append("92").append("', ");
-        builder.append("'").append(user.getRole()).append("'");
-        return builder.toString().trim();
+    public void buildInsertQuery(User user, PreparedStatement statement) throws SQLException {
+        statement.setInt(1, getNextUserId());
+        statement.setString(2, user.getEmail());
+        statement.setString(3, Base64.getEncoder().encodeToString(user.getHashedPassword()));
+        statement.setString(4, Base64.getEncoder().encodeToString(user.getSalt()));
+        statement.setString(5, user.getUsername());
+        statement.setString(6, "92");
+        statement.setString(7, user.getRole().name());
     }
 }
