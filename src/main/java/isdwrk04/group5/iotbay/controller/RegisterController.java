@@ -1,7 +1,7 @@
 package isdwrk04.group5.iotbay.controller;
 
 import isdwrk04.group5.iotbay.dao.UserDao;
-import isdwrk04.group5.iotbay.model.Customer;
+import isdwrk04.group5.iotbay.model.User;
 import isdwrk04.group5.iotbay.service.HashingService;
 
 import javax.servlet.ServletException;
@@ -59,7 +59,7 @@ public class RegisterController extends BaseServlet {
                 throw new RuntimeException(e);
             }
 
-            Customer customer = new Customer(name, email, salt, hashedPassword);
+            User customer = new User(name, email, salt, hashedPassword, User.Role.Customer);
             userDao.addUser(customer);
             session.setAttribute("user", customer);
 
