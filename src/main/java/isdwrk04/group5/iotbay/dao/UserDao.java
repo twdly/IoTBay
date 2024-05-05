@@ -76,7 +76,7 @@ public class UserDao {
         }
     }
 
-    public void buildInsertQuery(User user, PreparedStatement statement) throws SQLException {
+    private void buildInsertQuery(User user, PreparedStatement statement) throws SQLException {
         statement.setInt(1, getNextUserId());
         statement.setString(2, user.getEmail());
         statement.setString(3, Base64.getEncoder().encodeToString(user.getHashedPassword()));
