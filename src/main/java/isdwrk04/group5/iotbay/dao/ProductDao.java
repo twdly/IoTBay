@@ -31,7 +31,7 @@ public class ProductDao {
         return products;
     }
 
-    public Product createProductFromResult(ResultSet result) throws SQLException {
+    private Product createProductFromResult(ResultSet result) throws SQLException {
         int id = result.getInt("PRODUCT_ID");
         String name = result.getString("PRODUCT_NAME");
         String description = result.getString("PRODUCT_DESCRIPTION");
