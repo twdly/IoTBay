@@ -1,6 +1,5 @@
 package unit;
 
-import isdwrk04.group5.iotbay.model.Customer;
 import isdwrk04.group5.iotbay.model.User;
 import isdwrk04.group5.iotbay.service.HashingService;
 import org.junit.jupiter.api.Assertions;
@@ -25,7 +24,7 @@ public class HashingServiceTest {
         }
         Assertions.assertNotEquals(hash, otherHash);
 
-        User testUser = new Customer("name", "email", salt, hash);
+        User testUser = new User("name", "email", salt, hash, User.Role.Customer);
 
         Assertions.assertTrue(hashingService.checkPassword(testUser, "testPassword"));
         Assertions.assertFalse(hashingService.checkPassword(testUser, "testpassword"));

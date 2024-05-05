@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 public class RegisterWebTest extends BaseWebTest {
 
@@ -29,6 +31,20 @@ public class RegisterWebTest extends BaseWebTest {
         String message = driver.findElement(By.className("welcome")).getText();
         Assertions.assertTrue(message.contains("Welcome first second"));
         Assertions.assertTrue(message.contains("Your email is test@gmail.com"));
+    }
+
+    @Test
+    public void testLogin() {
+        WebElement accountDiv = driver.findElement(By.className("register-or-login"));
+        accountDiv.findElements(By.xpath(".//*")).get(1).click();
+        driver.findElement(By.name("email")).sendKeys("johnshep@email.com");
+        WebElement passwordBox = driver.findElement(By.name("password"));
+        passwordBox.sendKeys("password");
+        passwordBox.sendKeys(Keys.TAB);
+        passwordBox.sendKeys(Keys.ENTER);
+        String message = driver.findElement(By.className("welcome")).getText();
+        Assertions.assertTrue(message.contains("Welcome John Sheppard"));
+        Assertions.assertTrue(message.contains("Your email is johnshep@email.com"));
     }
 
     @AfterEach
