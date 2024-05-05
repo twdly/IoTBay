@@ -11,17 +11,13 @@ import java.security.spec.InvalidKeySpecException;
 public class HashingServiceTest {
 
     @Test
-    public void testHashingService() throws NoSuchAlgorithmException {
+    public void testHashingService() throws NoSuchAlgorithmException, InvalidKeySpecException {
         HashingService hashingService = new HashingService();
         byte[] salt = hashingService.createSalt();
         byte[] hash;
         byte[] otherHash;
-        try {
-            hash = hashingService.hashPassword(salt, "testPassword");
-            otherHash = hashingService.hashPassword(salt, "otherTestPassword");
-        } catch (InvalidKeySpecException e) {
-            throw new RuntimeException(e);
-        }
+        hash = hashingService.hashPassword(salt, "testPassword");
+        otherHash = hashingService.hashPassword(salt, "otherTestPassword");
         Assertions.assertNotEquals(hash, otherHash);
 
         User testUser = new User("name", "email", salt, hash, User.Role.Customer);

@@ -33,6 +33,7 @@ public class RegisterWebTest extends BaseWebTest {
         Assertions.assertTrue(message.contains("Your email is test@gmail.com"));
     }
 
+    // This test assumes that you have populated your database with the sample data
     @Test
     public void testLogin() {
         WebElement accountDiv = driver.findElement(By.className("register-or-login"));
