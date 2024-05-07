@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+    private int id;
     private final String username;
     private final String email;
     private final byte[] hashedPassword;
@@ -15,7 +16,19 @@ public class User implements Serializable {
         Customer
     }
 
+    // This constructor is used for registration as the user ID is not yet known
     public User(String username, String email, byte[] salt, byte[] hashedPassword, Role role) {
+        this.id = 0;
+        this.username = username;
+        this.email = email;
+        this.hashedPassword = hashedPassword;
+        this.salt = salt;
+        this.role = role;
+    }
+
+    // This constructor is used after the user has registered as they have already been assigned an ID
+    public User(int id, String username, String email, byte[] hashedPassword, byte[] salt, Role role) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.hashedPassword = hashedPassword;
@@ -24,11 +37,16 @@ public class User implements Serializable {
     }
 
     public User() {
+        this.id = 0;
         this.username = "";
         this.email = "";
         this.hashedPassword = new byte[0];
         this.salt = new byte[0];
         this.role = Role.Customer;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public String getUsername() {
@@ -49,5 +67,9 @@ public class User implements Serializable {
 
     public Role getRole() {
         return role;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -18,6 +18,8 @@ public class UserDao {
 
     public void addUser(User user) {
         try {
+            int id = getNextUserId();
+            user.setId(id);
             PreparedStatement statement = connection.prepareStatement("insert into \"USER\" values (?, ?, ?, ?, ?, ?, ?)");
             buildInsertQuery(user, statement);
             statement.execute();
@@ -32,7 +34,7 @@ public class UserDao {
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("select * from \"USER\"");
             while (results.next()) {
-                users.add(new User(results.getString("NAME"), results.getString("EMAIL_ADDRESS"), Base64.getDecoder().decode(results.getString("PASSWORD_SALT")), Base64.getDecoder().decode(results.getString("PASSWORD_HASH")), getRoleFromString(results.getString("USER_TYPE"))));
+                users.add(new User(results.getInt("USER_ID"), results.getString("NAME"), results.getString("EMAIL_ADDRESS"), Base64.getDecoder().decode(results.getString("PASSWORD_SALT")), Base64.getDecoder().decode(results.getString("PASSWORD_HASH")), getRoleFromString(results.getString("USER_TYPE"))));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -67,7 +69,7 @@ public class UserDao {
     }
 
     public void buildInsertQuery(User user, PreparedStatement statement) throws SQLException {
-        statement.setInt(1, getNextUserId());
+        statement.setInt(1, user.getId());
         statement.setString(2, user.getEmail());
         statement.setString(3, Base64.getEncoder().encodeToString(user.getHashedPassword()));
         statement.setString(4, Base64.getEncoder().encodeToString(user.getSalt()));
