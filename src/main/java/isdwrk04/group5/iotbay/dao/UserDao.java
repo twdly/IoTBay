@@ -34,7 +34,7 @@ public class UserDao {
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("select * from \"USER\"");
             while (results.next()) {
-                users.add(new User(results.getInt("USER_ID"), results.getString("NAME"), results.getString("EMAIL_ADDRESS"), Base64.getDecoder().decode(results.getString("PASSWORD_SALT")), Base64.getDecoder().decode(results.getString("PASSWORD_HASH")), getRoleFromString(results.getString("USER_TYPE"))));
+                users.add(new User(results.getInt("USER_ID"), results.getString("NAME"), results.getString("EMAIL_ADDRESS"), Base64.getDecoder().decode(results.getString("PASSWORD_HASH")), Base64.getDecoder().decode(results.getString("PASSWORD_SALT")), getRoleFromString(results.getString("USER_TYPE"))));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
