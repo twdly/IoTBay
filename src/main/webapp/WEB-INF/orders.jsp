@@ -1,3 +1,5 @@
+<%@ page import="isdwrk04.group5.iotbay.model.Order" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
     <head>
@@ -53,6 +55,20 @@
                 <td>Status</td>
                 <td></td>
             </tr>
+                <% for (Order order : (List<Order>) request.getAttribute("orders")) { %>
+                    <tr>
+                        <td><%=order.getId()%></td>
+                        <td><%=order.getOrderDate()%></td>
+                        <td><%=order.getStatus().name()%></td>
+                        <td>
+                            <a href="view-order?<%=order.getId()%>">
+                                <button class="btn-outline-light">
+                                    View Order
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                <%}%>
         </table>
     </body>
 </html>
