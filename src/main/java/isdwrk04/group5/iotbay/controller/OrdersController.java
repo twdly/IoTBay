@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet( name="viewOrdersController", value = "/orders")
-public class ViewOrdersController extends BaseServlet {
+@WebServlet( name="ordersController", value = "/orders")
+public class OrdersController extends BaseServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
+
         if (null == user) {
             redirectToUrl(request, response, "/login");
             return;
