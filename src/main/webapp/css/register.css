@@ -1,8 +1,106 @@
-.form-element + .form-element {
-    margin-top: 5px;
-}
-
 .error {
     color: red;
     font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-element + .form-element {
+    margin-top: 10px;
+}
+
+:root {
+    --colour-main: #2B6B6A;
+    --font-body: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #EF88BB, #291850);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 500px;
+}
+
+.back-to-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-to-home a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-home a:hover {
+    background-color: #295d2a;
+}
+
+.container h1 {
+    text-align: center;
+    margin-bottom: 1.2rem;
+    color: #000000;
+}
+
+.form-element {
+    margin-bottom: 20px;
+}
+
+.form-element label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.form-element input[type="email"],
+.form-element input[type="text"],
+.form-element input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    transition: border-bottom-color 0.3s;
+}
+
+.form-element input[type="email"]:focus,
+.form-element input[type="text"]:focus,
+.form-element input[type="password"]:focus {
+    border-bottom-color: #6a5acd;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8a5aff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff5acd;
 }

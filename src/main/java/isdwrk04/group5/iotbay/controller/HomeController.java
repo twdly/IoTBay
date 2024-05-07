@@ -6,7 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.ArrayList;
+
+import isdwrk04.group5.iotbay.dao.ProductDao;
 import isdwrk04.group5.iotbay.model.Product;
 
 
@@ -17,11 +18,8 @@ public class HomeController extends BaseServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        // Initalize example products
-        List<Product> products = new ArrayList<>();
-        for (int i = 0; i < 60; i++) {
-            products.add(new Product(i, "Product " + i, "Description of Product " + i, (i * 10 + 9.99), i));
-        }
+        ProductDao dao = new ProductDao();
+        List<Product> products = dao.getAllProducts();
 
         // Set list of products as an attribute
         request.setAttribute("products", products);
