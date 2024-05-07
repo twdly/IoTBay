@@ -33,6 +33,23 @@ public class OrderDao {
         return orders;
     }
 
+    public Order getOrderById(int orderId) {
+        Order order;
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from \"ORDER\" where ORDER_ID=?");
+            statement.setInt(1, orderId);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                order = createOrderFromResult(result);
+            } else {
+                order = null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return order;
+    }
+
     private Order createOrderFromResult(ResultSet results) throws SQLException {
         int id = results.getInt("ORDER_ID");
         String name = results.getString("NAME");

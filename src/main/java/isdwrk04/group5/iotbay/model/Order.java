@@ -63,4 +63,8 @@ public class Order implements Serializable {
     public Date getOrderDate() {
         return orderDate;
     }
+
+    public Method getMethod() {
+        return method;
+    }
 }
