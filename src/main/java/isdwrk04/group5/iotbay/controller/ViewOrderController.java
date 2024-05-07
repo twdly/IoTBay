@@ -28,7 +28,18 @@ public class ViewOrderController extends BaseServlet {
         ProductDao productDao = new ProductDao();
 
         Order order = orderDao.getOrderById(Integer.parseInt(request.getQueryString()));
+
+        if (null == order) {
+            response.sendError(404, "Order does not exist");
+            return;
+        }
+
         List<Product> products = productDao.getProductsFromOrder(order.getId());
+
+        if (order.getUserId() != user.getId()) {
+            response.sendError(403);
+            return;
+        }
 
         request.setAttribute("order", order);
         request.setAttribute("products", products);
