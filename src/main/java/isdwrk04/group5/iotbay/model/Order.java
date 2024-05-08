@@ -19,7 +19,8 @@ public class Order implements Serializable {
     public enum Status {
         Processing,
         Shipped,
-        ReadyToCollect
+        ReadyToCollect,
+        Cancelled
     }
 
     public enum Method {

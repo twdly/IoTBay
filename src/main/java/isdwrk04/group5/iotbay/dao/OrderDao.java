@@ -71,8 +71,10 @@ public class OrderDao {
                 return Order.Status.Shipped;
             case "ReadyToCollect":
                 return Order.Status.ReadyToCollect;
-            default:
+            case "Processing":
                 return Order.Status.Processing;
+            default:
+                return Order.Status.Cancelled;
         }
     }
 
