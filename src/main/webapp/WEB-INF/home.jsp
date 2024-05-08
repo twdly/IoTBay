@@ -21,7 +21,7 @@
     <div class="register-or-login">
         <% User user = (User) session.getAttribute("user");
             if (user != null) { %>
-        Hello, <%= user.getUsername() %> | <a href="logout">Logout</a>
+        <a href="account">Hello, <%= user.getUsername()%></a> | <a href="logout">Logout</a>
         <% } else { %>
         <a href="register">Register</a> | <a href="login">Login</a>
         <% } %>
