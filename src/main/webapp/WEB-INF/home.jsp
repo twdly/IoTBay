@@ -14,8 +14,11 @@
 <body>
 <header>
     <div class="logo">
-        <a href="<%=request.getRequestURI()%>"><h1>IoTBay</h1></a>
+        <a href="<%= request.getContextPath() %>/"><h1>IoTBay</h1></a>
     </div>
+
+<%--    SELECT DISTINCT Product_Category FROM PRODUCT; --%>
+<%--    SELECT * FROM PRODUCT WHERE Product_Category = --%>
 
     <form action="search" method="GET" >
         <div class="search-box">

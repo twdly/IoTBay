@@ -24,7 +24,12 @@ public class SearchController extends BaseServlet{
 
             serveJSP(request, response, "home.jsp");
         } else {
-            response.getWriter().println("No search query provided.");
+            ProductDao dao = new ProductDao();
+            List<Product> products = dao.getAllProducts();
+
+            request.setAttribute("products", products);
+
+            serveJSP(request, response, "home.jsp");
         }
     }
 }
