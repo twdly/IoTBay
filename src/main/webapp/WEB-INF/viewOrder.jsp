@@ -52,5 +52,12 @@
         <% for (Product product : (List<Product>) request.getAttribute("products")) { %>
         <p><%=product.getName()%> x<%=product.getQuantity()%> ($<%=product.calculatePrice()%>)</p>
         <% } request.removeAttribute("products"); request.removeAttribute("order");%>
+        <% if (order.getStatus() == Order.Status.Processing) {%>
+        <form action="view-order" method="post">
+            <input type="hidden" name="type" value="cancel"/>
+            <input type="hidden" name="number" value="<%=order.getId()%>"/>
+            <button>Cancel</button>
+        </form>
+        <% } %>
     </body>
 </html>

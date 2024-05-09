@@ -16,6 +16,8 @@ import java.util.List;
 @WebServlet( name = "viewOrderController", value = "/view-order")
 public class ViewOrderController extends BaseServlet {
 
+    public final String CANCEL_TYPE = "cancel";
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
@@ -23,27 +25,54 @@ public class ViewOrderController extends BaseServlet {
             serveJSP(request, response, "login.jsp");
             return;
         }
+        setOrderAttributes(request, response, user, Integer.parseInt(request.getQueryString()), new OrderDao());
+        serveJSP(request, response, "viewOrder.jsp");
+    }
 
-        OrderDao orderDao = new OrderDao();
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String requestType = request.getParameter("type");
+
+        if (requestType.equals(CANCEL_TYPE)) {
+            int orderId;
+            try {
+                orderId = Integer.parseInt(request.getParameter("number"));
+            } catch (NumberFormatException e) {
+                response.sendError(400);
+                return;
+            }
+
+            OrderDao dao = new OrderDao();
+            Order orderToCancel = dao.getOrderById(orderId);
+            User user = (User) request.getSession().getAttribute("user");
+            if (orderToCancel == null || orderToCancel.getUserId() != user.getId()) {
+                response.sendError(400);
+                return;
+            }
+
+            dao.cancelOrder(orderId);
+            setOrderAttributes(request, response, user, orderId, dao);
+
+            serveJSP(request, response, "viewOrder.jsp");
+        }
+    }
+
+    private void setOrderAttributes(HttpServletRequest request, HttpServletResponse response, User user, int orderId, OrderDao orderDao) throws IOException {
         ProductDao productDao = new ProductDao();
 
-        Order order = orderDao.getOrderById(Integer.parseInt(request.getQueryString()));
-
+        Order order = orderDao.getOrderById(orderId);
         if (null == order) {
             response.sendError(404, "Order does not exist");
             return;
         }
-
-        List<Product> products = productDao.getProductsFromOrder(order.getId());
 
         if (order.getUserId() != user.getId()) {
             response.sendError(403);
             return;
         }
 
+        List<Product> products = productDao.getProductsFromOrder(order.getId());
         request.setAttribute("order", order);
         request.setAttribute("products", products);
-
-        serveJSP(request, response, "viewOrder.jsp");
     }
 }

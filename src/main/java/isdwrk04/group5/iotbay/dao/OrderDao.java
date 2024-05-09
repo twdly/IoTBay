@@ -50,6 +50,16 @@ public class OrderDao {
         return order;
     }
 
+    public void cancelOrder(int orderId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("update \"ORDER\" set ORDER_STATUS='Cancelled' where ORDER_ID=?");
+            statement.setInt(1, orderId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Order createOrderFromResult(ResultSet results) throws SQLException {
         int id = results.getInt("ORDER_ID");
         String name = results.getString("NAME");
