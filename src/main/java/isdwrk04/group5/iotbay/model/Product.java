@@ -38,21 +38,18 @@ public class Product implements Serializable {
 
 	public String getImageUrl() {
 		String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-		String fileName = path.substring(1, path.length()-16).replace("%20", " ") + "images/" + id + ".jpg";
+
+		boolean isWindows = System.getProperty("os.name").toLowerCase().contains("windows");
+		String fileName = isWindows
+				? path.substring(1, path.length()-16).replace("%20", " ")
+				: path.substring(0, path.length()-16).replace("%20", " ");
+
+		fileName += "images/" + id + ".jpg";
 		System.out.println(fileName);
 		Path filePath = Paths.get(fileName);
 
-		if (Files.exists(filePath)) {
-			return id + ".jpg";
-		} else {
-			return "digital-temperature-sensor.jpg";
-		}
+		return Files.exists(filePath) ? id + ".jpg" : "digital-temperature-sensor.jpg";
 	}
-
-//	public static void main(String[] args) {
-//		File file = new File("src/main/webapp/images/1000.jpg");
-//		System.out.println(file.exists());
-//	}
 
 	// Constructor
 	public Product(int id, String name, String description, double price, int stock) {
