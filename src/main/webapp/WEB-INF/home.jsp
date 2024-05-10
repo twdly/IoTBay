@@ -45,12 +45,15 @@
 			while (iterator.hasNext()) {
 				Product product = iterator.next();
 		%>
+            <form action="" method="post">
 				<div class="product-card">
+                    <input type="hidden" name="itemId" value="<%=product.getId()%>">
 					<img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
 					<h3 class="product-name"><%=product.getName() %></h3>
 					<p class="unit-price">$<%=product.getPrice() %></p>
 					<button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
 				</div>
+            </form>
 		<%
 			}
 			} else {
