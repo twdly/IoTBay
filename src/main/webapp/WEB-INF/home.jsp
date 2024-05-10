@@ -1,8 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="isdwrk04.group5.iotbay.model.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="isdwrk04.group5.iotbay.model.User" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,53 +14,37 @@
 </head>
 
 <body>
-<header>
-    <div class="logo">
-        <a href="<%= request.getContextPath() %>/"><h1>IoTBay</h1></a>
-    </div>
-
-<%--    SELECT DISTINCT Product_Category FROM PRODUCT; --%>
-<%--    SELECT * FROM PRODUCT WHERE Product_Category = --%>
-
-    <form action="search" method="GET" >
-        <div class="search-box">
-            <label><input name="search" type="search" placeholder="Search IoT Products"></label>
-            <button type="submit" class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </form>
-
-    <div class="register-or-login">
-        <% User user = (User) session.getAttribute("user");
-            if (user != null) { %>
-        <a href="account">Hello, <%= user.getUsername()%></a> | <a href="logout">Logout</a>
-        <% } else { %>
-        <a href="register">Register</a> | <a href="login">Login</a>
-        <% } %>
-    </div>
-
-    <button class ="shopping-cart-button">
-        <i class="fas fa-shopping-cart"></i>
-        $9999.99
-    </button>
-
-</header>
+<jsp:include page="/WEB-INF/header.jsp"/>
 <main>
     <div class="hero">
-        <img src="${pageContext.request.contextPath}/images/hero-image-2.jpg" alt="Graphical representation of IoT">
+        <img src="${pageContext.request.contextPath}/images/hero-image-3.jpg" alt="Graphical representation of IoT">
         <div class="hero-text">
             <h1>Welcome to IoTBay</h1>
             <h2>The store for all your IoT needs!</h2>
         </div>
     </div>
 
-    <% Object query = request.getAttribute("searchQuery"); %>
-    <%   if (query != null) { %>
+    <% Object query = request.getAttribute("searchQuery");
+        Object category = request.getAttribute("category"); %>
 
-    <h1>Search Result: "<%= (String)query %>" </h1>
-
+    <% if (category != null) { %>
+        <h3 id="breadcrumbs">
+            <a href="<%= request.getContextPath() %>/">Home</a>
+            >
+            <%= (String)category %>
+        </h3>
     <% } %>
+
+    <h2 id="products-title">
+        <% if (query != null) { %>
+        Search Result: "<%= (String)query %>"
+        <% } else if (category != null) { %>
+        Category: <%= (String)category %>
+        <% } else { %>
+        Browse Our Products
+        <% } %>
+    </h2>
+
 
     <div class="container">
 

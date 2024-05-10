@@ -1,5 +1,8 @@
 :root{
     --colour-main: #4C2B36;
+    --colour-main-dark: #341D25;
+    --colour-light: #F4F4F9;
+    --colour-background-accent: #DABEC6;
     --font-body: 'Roboto', sans-serif;
 }
 
@@ -10,6 +13,7 @@
 }
 
 body {
+    background: linear-gradient(to bottom, white 90%, var(--colour-light)) fixed;
     font-family: var(--font-body);
     font-size: 1rem;
     display: grid;
@@ -26,12 +30,12 @@ header {
     padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 header h1 {
     color: white;
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding: 0 1em;
 }
 
@@ -39,11 +43,63 @@ header a {
     text-decoration: none;
 }
 
+.product-category-dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-button {
+    background: var(--colour-main);
+    border: 1px solid white;
+    width: 12.5em;
+    height: 3em;
+    padding: 0.5em 1em;
+    font-family: var(--font-body);
+    font-size: 1.1em;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.8em 1.2em;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-content a:first-child {
+    margin-top: 0.5em;
+}
+
+.dropdown-content a:last-child {
+    margin-bottom: 1em;
+}
+
+.dropdown-content a:hover {
+    text-decoration: underline;
+    color: var(--colour-main);
+}
+
+.product-category-dropdown:hover .dropdown-content{
+    display: block;
+}
+
 .search-box {
     position: relative;
-    width: 30em;
+    width: 20em;
     height: 3em;
-    border-radius: 1rem;
+    border-radius: 0.1rem;
     border: 1px solid #848484;
     background: #F7F7F7;
     margin: 0 1em;
@@ -61,7 +117,7 @@ header a {
 
 .search-box input:focus {
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-    border-radius: 1rem;
+    border-radius: 0.1rem;
 }
 
 .search-button {
@@ -78,12 +134,13 @@ header a {
 
 .register-or-login{
     font-family: var(--font-body);
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     color: white;
 }
 
 .register-or-login a{
     text-decoration: none;
+    font-weight: 500;
     color: white;
 }
 
@@ -94,8 +151,15 @@ header a {
     border: 0.1px solid #848484;
     background: #F7F7F7;
     font-family: var(--font-body);
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 600;
+}
+
+.shopping-cart-button:hover {
+    border: 1px solid var(--colour-main);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: white;
+    cursor: pointer;
 }
 
 .hero {
@@ -125,15 +189,28 @@ header a {
 }
 
 .hero .hero-text h1{
-    color: white;
+    color: black;
     font-size: 4rem;
     margin-bottom: 0.8em;
 }
 
 .hero .hero-text h2{
-    color: white;
+    color: black;
     font-size: 2rem;
     margin-bottom: 1.2em;
+}
+
+#breadcrumbs {
+    margin-top: 3rem;
+    margin-left: 6rem;
+    margin-bottom: -1.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+#products-title{
+    margin-top: 3rem;
+    margin-left: 6rem;
 }
 
 .container {
@@ -146,7 +223,6 @@ header a {
 }
 
 .product-card {
-    border-radius: 0.5rem;
     padding: 1.2rem;
     display: flex;
     flex-direction: column;
@@ -155,40 +231,46 @@ header a {
 }
 
 .product-card:hover{
+    background: white;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .product-image{
-    width: 10rem;
-    height: auto;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
+    width: 200px;
+    height: 100%;
+    object-fit: contain;
+    margin: 0 1em;
 }
 
 .product-name {
     font-family: var(--font-body);
-    font-size: 1.2rem;
-    margin-bottom: 0.5em;
+    font-size: 1.1rem;
+    margin: 1em;
     align-self: flex-start;
 }
 
 .unit-price {
     font-family: var(--font-body);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 0.5em;
+    margin: 1em;
     align-self: flex-end;
 }
 
 .add-to-cart-button{
     width: 8em;
-    height: 2.8em;
+    min-height: 2.8em;
     border-style: none;
-    border-radius: 30px;
+    border-radius: 20px;
     background: var(--colour-main);
     font-family: var(--font-body);
     color: white;
     font-weight: 600;
     font-style: normal;
     font-size: 1rem;
+}
+
+.add-to-cart-button:hover {
+    background: var(--colour-main-dark);
+    cursor: pointer;
 }
