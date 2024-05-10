@@ -42,6 +42,16 @@ public class UserDao {
         return users;
     }
 
+    public void deleteUser(String email) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("delete from \"USER\" where EMAIL_ADDRESS=?");
+            statement.setString(1, email);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public User getUserByEmail(String email) {
         Optional<User> foundUser = getAllUsers().stream().filter(x -> x.getEmail().equals(email)).findFirst();
         return foundUser.orElse(null);
@@ -69,7 +79,7 @@ public class UserDao {
     }
 
     public void buildInsertQuery(User user, PreparedStatement statement) throws SQLException {
-        statement.setInt(1, user.getId());
+        statement.setInt(1, getNextUserId());
         statement.setString(2, user.getEmail());
         statement.setString(3, Base64.getEncoder().encodeToString(user.getHashedPassword()));
         statement.setString(4, Base64.getEncoder().encodeToString(user.getSalt()));

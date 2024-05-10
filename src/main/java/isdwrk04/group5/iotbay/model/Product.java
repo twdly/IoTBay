@@ -11,6 +11,10 @@ public class Product implements Serializable {
 	private int stock;
 	private int quantity;
 
+	public int getId() {
+		return id;
+	}
+
 	// Getters
 	public String getName() {
 		return name;
