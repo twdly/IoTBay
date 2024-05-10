@@ -2,10 +2,7 @@ package isdwrk04.group5.iotbay.dao;
 
 import isdwrk04.group5.iotbay.model.Product;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.text.StringEscapeUtils;
@@ -50,7 +47,24 @@ public class ProductDao {
         return products;
     }
 
-    public Product createProductFromResult(ResultSet result) throws SQLException {
+    public List<Product> getProductsFromOrder(int orderId) {
+        List<Product> products = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from PRODUCT, ORDERLINE\n where ORDERLINE.PRODUCT_ID=PRODUCT.PRODUCT_ID and ORDERLINE.ORDER_ID=?");
+            statement.setInt(1, orderId);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                Product newProduct = createProductFromResult(result);
+                newProduct.setQuantity(result.getInt("PRODUCT_QUANTITY"));
+                products.add(newProduct);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return products;
+    }
+
+    private Product createProductFromResult(ResultSet result) throws SQLException {
         int id = result.getInt("PRODUCT_ID");
         String name = result.getString("PRODUCT_NAME");
         String description = result.getString("PRODUCT_DESCRIPTION");

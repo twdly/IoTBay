@@ -1,27 +1,27 @@
 set schema APP;
 
 -- records of Users --
-INSERT INTO "USER" VALUES (1000, 'johnshep@email.com', 'password', 'salt', 'John Sheppard', '0412345678', 'Customer');
-INSERT INTO "USER" VALUES (1001, 'drrmckay@zmail.com', 'password', 'salt', 'Rodney McKay', '0411144777', 'Customer');
-INSERT INTO "USER" VALUES (1002, 'lizweir@email.com', 'password', 'salt', 'Elizabeth Weir', '0413366999', 'Customer');
-INSERT INTO "USER" VALUES (1003, 'drsamanthacarter@zmail.com', 'password', 'salt', 'Sam Carter', '0412255888', 'Customer');
-INSERT INTO "USER" VALUES (1004, 'jackoneill@sgc.gov', 'password', 'salt', 'Jack O''Neill', '0437373737', 'Customer');
-INSERT INTO "USER" VALUES (1005, 'danieljackson@zmail.com', 'password', 'salt', 'Daniel Jackson', '0488811000', 'Customer');
-INSERT INTO "USER" VALUES (1006, 'janet@sgc.gov', 'password', 'salt', 'Janet Frasier', '0434343434', 'Customer');
-INSERT INTO "USER" VALUES (1007, 'jonasquinn@sgc.gov', 'password', 'salt', 'Jonas Quinn', '0477420177', 'Customer');
-INSERT INTO "USER" VALUES (1008, 'sarahjane@sjs.com', 'password', 'salt', 'Sarah Jane Smith', '0478520000', 'Customer');
-INSERT INTO "USER" VALUES (1009, 'jlpicard@sf.gov', 'password', 'salt', 'Jean-Luc Picard', '0479620000', 'Customer');
-INSERT INTO "USER" VALUES (1010, 'sam@cheers.com', 'password', 'salt', 'Sam Malone', '0469696969', 'Customer');
-INSERT INTO "USER" VALUES (1011, 'diane@harvard.edu', 'password', 'salt', 'Diane Chambers', '0435353535', 'Customer');
-INSERT INTO "USER" VALUES (1012, 'carla@cheers.com', 'password', 'salt', 'Carla Tortelli', '0471422077', 'Customer');
-INSERT INTO "USER" VALUES (1013, 'norm@email.com', 'password', 'salt', 'Norm Peterson', '0472522088', 'Customer');
-INSERT INTO "USER" VALUES (1014, 'cliffclavin@post.com', 'password', 'salt', 'Cliff Clavin', '0436363636', 'Customer');
-INSERT INTO "USER" VALUES (1015, 'drfrasiercrane@harvard.edu', 'password', 'salt', 'Frasier Crane', '0474721843', 'Customer');
-INSERT INTO "USER" VALUES (1016, 'woodyboyd@email.com', 'password', 'salt', 'Woody Boyd', '0432323232', 'Customer');
-INSERT INTO "USER" VALUES (1017, 'drlilithsternin@psych.net', 'password', 'salt', 'Lilith Sternin', '0475821144', 'Customer');
-INSERT INTO "USER" VALUES (1018, 'rebeccahowe@bmail.com', 'password', 'salt', 'Rebecca Howe', '0421212121', 'Customer');
-INSERT INTO "USER" VALUES (1019, 'coach@email.com', 'password', 'salt', 'Ernie Pantusso', '0473620902', 'Customer');
-INSERT INTO "USER" VALUES (1020, 'misskelly@aol.com', 'password', 'salt', 'Kelly Gaines', '0476320233', 'Customer');
+INSERT INTO "USER" VALUES (1000, 'johnshep@email.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'John Sheppard', '0412345678', 'Customer');
+INSERT INTO "USER" VALUES (1001, 'drrmckay@zmail.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Rodney McKay', '0411144777', 'Customer');
+INSERT INTO "USER" VALUES (1002, 'lizweir@email.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Elizabeth Weir', '0413366999', 'Customer');
+INSERT INTO "USER" VALUES (1003, 'drsamanthacarter@zmail.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Sam Carter', '0412255888', 'Customer');
+INSERT INTO "USER" VALUES (1004, 'jackoneill@sgc.gov', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Jack O''Neill', '0437373737', 'Customer');
+INSERT INTO "USER" VALUES (1005, 'danieljackson@zmail.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Daniel Jackson', '0488811000', 'Customer');
+INSERT INTO "USER" VALUES (1006, 'janet@sgc.gov', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Janet Frasier', '0434343434', 'Customer');
+INSERT INTO "USER" VALUES (1007, 'jonasquinn@sgc.gov', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Jonas Quinn', '0477420177', 'Customer');
+INSERT INTO "USER" VALUES (1008, 'sarahjane@sjs.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Sarah Jane Smith', '0478520000', 'Customer');
+INSERT INTO "USER" VALUES (1009, 'jlpicard@sf.gov', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Jean-Luc Picard', '0479620000', 'Customer');
+INSERT INTO "USER" VALUES (1010, 'sam@cheers.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Sam Malone', '0469696969', 'Customer');
+INSERT INTO "USER" VALUES (1011, 'diane@harvard.edu', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Diane Chambers', '0435353535', 'Customer');
+INSERT INTO "USER" VALUES (1012, 'carla@cheers.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Carla Tortelli', '0471422077', 'Customer');
+INSERT INTO "USER" VALUES (1013, 'norm@email.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Norm Peterson', '0472522088', 'Customer');
+INSERT INTO "USER" VALUES (1014, 'cliffclavin@post.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Cliff Clavin', '0436363636', 'Customer');
+INSERT INTO "USER" VALUES (1015, 'drfrasiercrane@harvard.edu', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Frasier Crane', '0474721843', 'Customer');
+INSERT INTO "USER" VALUES (1016, 'woodyboyd@email.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Woody Boyd', '0432323232', 'Customer');
+INSERT INTO "USER" VALUES (1017, 'drlilithsternin@psych.net', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Lilith Sternin', '0475821144', 'Customer');
+INSERT INTO "USER" VALUES (1018, 'rebeccahowe@bmail.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Rebecca Howe', '0421212121', 'Customer');
+INSERT INTO "USER" VALUES (1019, 'coach@email.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Ernie Pantusso', '0473620902', 'Customer');
+INSERT INTO "USER" VALUES (1020, 'misskelly@aol.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Kelly Gaines', '0476320233', 'Customer');
 
 -- records of Products --
 INSERT INTO "PRODUCT" VALUES (1000, 'Dingtek Smart Waste Bin Sensor DF703', 'Home Automation', 'A sensor for your bin', 110.00, 1000);

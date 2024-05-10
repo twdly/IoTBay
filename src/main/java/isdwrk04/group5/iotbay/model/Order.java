@@ -51,4 +51,24 @@ public class Order implements Serializable {
         this.collectionId = 0;
         this.deliveryId = 0;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public Method getMethod() {
+        return method;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
 }

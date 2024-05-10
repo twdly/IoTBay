@@ -7,11 +7,16 @@ import java.nio.file.Paths;
 
 public class Product implements Serializable {
 
-	private int id;
+	private final int id;
 	private String name;
-	private double price;
-	private String description;
+	private final double price;
+	private final String description;
 	private int stock;
+	private int quantity;
+
+	public int getId() {
+		return id;
+	}
 
 	// Getters
 	public String getName() {
@@ -64,5 +69,17 @@ public class Product implements Serializable {
 		this.price = 0;
 		this.description = "";
 		this.stock = 0;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public double calculatePrice() {
+		return quantity * price;
 	}
 }
