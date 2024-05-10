@@ -8,6 +8,8 @@ import java.io.IOException;
 
 public abstract class BaseServlet extends HttpServlet {
 
+    public final String USER_ATTRIBUTE = "user";
+
     /**
      * Method used to redirect the user to the given jsp without updating the URL
      * Use redirectToUrl instead if you expect the controller method for the page to run

@@ -17,16 +17,18 @@ import java.util.List;
 public class ViewOrderController extends BaseServlet {
 
     public final String CANCEL_TYPE = "cancel";
+    public final String LOGIN_VIEW = "login.jsp";
+    public final String ORDER_VIEW = "viewOrder.jsp";
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute(USER_ATTRIBUTE);
         if (null == user) {
-            serveJSP(request, response, "login.jsp");
+            serveJSP(request, response, LOGIN_VIEW);
             return;
         }
         setOrderAttributes(request, response, user, Integer.parseInt(request.getQueryString()), new OrderDao());
-        serveJSP(request, response, "viewOrder.jsp");
+        serveJSP(request, response, ORDER_VIEW);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class ViewOrderController extends BaseServlet {
 
             OrderDao dao = new OrderDao();
             Order orderToCancel = dao.getOrderById(orderId);
-            User user = (User) request.getSession().getAttribute("user");
+            User user = (User) request.getSession().getAttribute(USER_ATTRIBUTE);
             if (orderToCancel == null || orderToCancel.getUserId() != user.getId()) {
                 response.sendError(400);
                 return;
@@ -53,7 +55,7 @@ public class ViewOrderController extends BaseServlet {
             dao.cancelOrder(orderId);
             setOrderAttributes(request, response, user, orderId, dao);
 
-            serveJSP(request, response, "viewOrder.jsp");
+            serveJSP(request, response, ORDER_VIEW);
         }
     }
 
