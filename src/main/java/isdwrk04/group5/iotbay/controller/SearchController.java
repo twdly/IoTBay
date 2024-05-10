@@ -21,6 +21,7 @@ public class SearchController extends BaseServlet{
             List<Product> products = dao.getSearchProducts(query);
 
             request.setAttribute("products", products);
+            request.setAttribute("searchQuery", query);
 
             serveJSP(request, response, "home.jsp");
         } else {

@@ -52,6 +52,14 @@
             <h2>The store for all your IoT needs!</h2>
         </div>
     </div>
+
+    <% Object query = request.getAttribute("searchQuery"); %>
+    <%   if (query != null) { %>
+
+    <h1>Search Result: "<%= (String)query %>" </h1>
+
+    <% } %>
+
     <div class="container">
 
         <%
@@ -62,7 +70,7 @@
                     Product product = iterator.next();
         %>
         <div class="product-card">
-            <img class="product-image" src="${pageContext.request.contextPath}/images/digital-temperature-sensor.jpg" alt="A digital temperature sensor">
+            <img class="product-image" src="${pageContext.request.contextPath}/images/<%= product.getImageUrl() %>" alt="<%= product.getDescription()%>">
             <h3 class="product-name"><%=product.getName() %></h3>
             <p class="unit-price">$<%=product.getPrice() %></p>
             <button type="submit" name="add-to-cart" class="add-to-cart-button">Add to Cart</button>
