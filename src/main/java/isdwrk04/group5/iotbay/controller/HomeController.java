@@ -12,7 +12,7 @@ import isdwrk04.group5.iotbay.model.Cart;
 import isdwrk04.group5.iotbay.model.Product;
 
 
-@WebServlet(name = "homeController", value = "")
+@WebServlet(name = "homeController", value = {"", "/search"})
 public class HomeController extends BaseServlet {
 
     public void init() {
@@ -20,27 +20,29 @@ public class HomeController extends BaseServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String query = request.getParameter("search");
+        String category = request.getParameter("category");
+
         ProductDao dao = new ProductDao();
-        List<Product> products = dao.getAllProducts();
+        List<Product> products;
+        List<String> productCategories = dao.getProductCategories();
 
-        // Set list of products as an attribute
+        if (query != null && !query.isEmpty()) {
+            products = dao.getSearchProducts(query);
+            request.setAttribute("searchQuery", query);
+        } else if (category != null && !category.isEmpty()) {
+            products = dao.getCategoryProducts(category);
+            request.setAttribute("category", category);
+        } else {
+            products = dao.getAllProducts();
+        }
+
         request.setAttribute("products", products);
-        request.getSession().setAttribute("cart", new Cart());
-        request.setAttribute("searchQuery", "asdfasdf");
-        getServletContext();
-        serveJSP(request, response, "home.jsp");
-    }
-
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // This method is used to add items to the cart
-        int itemId = Integer.parseInt(request.getParameter("itemId"));
-        Cart cart = (Cart) request.getSession().getAttribute("cart");
-
-        ProductDao productDao = new ProductDao();
+        request.setAttribute("productCategories", productCategories);
 
         serveJSP(request, response, "home.jsp");
     }
+
 
     public void destroy() {
     }
