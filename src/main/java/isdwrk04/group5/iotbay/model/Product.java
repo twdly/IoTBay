@@ -1,6 +1,9 @@
 package isdwrk04.group5.iotbay.model;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Product implements Serializable {
 
@@ -31,6 +34,21 @@ public class Product implements Serializable {
 	// Setters
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImageUrl() {
+		String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+
+		boolean isWindows = System.getProperty("os.name").toLowerCase().contains("windows");
+		String fileName = isWindows
+				? path.substring(1, path.length()-16).replace("%20", " ")
+				: path.substring(0, path.length()-16).replace("%20", " ");
+
+		fileName += "images/" + id + ".jpg";
+		System.out.println(fileName);
+		Path filePath = Paths.get(fileName);
+
+		return Files.exists(filePath) ? id + ".jpg" : "digital-temperature-sensor.jpg";
 	}
 
 	// Constructor
