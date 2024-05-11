@@ -6,44 +6,12 @@
 <html>
     <head>
         <title>IoTBay - Orders</title>
-        <script src="${pageContext.request.contextPath}/js/welcome.js" defer></script>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/welcome.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
-    <header>
-        <nav>
-            <div id="logo">
-                IoTBay
-            </div>
-            <ul class="navigation-menu">
-                <li>
-                    <a href="${pageContext.request.contextPath}">Home</a>
-                </li>
-                <li>
-                    <a href="#">Locations &amp; Hours</a>
-                </li>
-                <li>
-                    <a href="store">Store</a>
-                </li>
-            </ul>
-            <div id="utilities">
-                <div class="search-container">
-                    <form action="search">
-                        <input id=search-bar type="text" placeholder="Search..." name="search">
-                        <a href="#">
-                            <svg class="search-icon" viewBox="0 0 800 800" fill="none">
-                                <path d="M498.453 498.193L700 700M566.667 333.333C566.667 462.2 462.2 566.667 333.333 566.667C204.467 566.667 100 462.2 100 333.333C100 204.467 204.467 100 333.333 100C462.2 100 566.667 204.467 566.667 333.333Z" stroke="currentColor" stroke-width="66.6667" stroke-linecap="round"></path>
-                            </svg>
-                        </a>
-                    </form>
-                </div>
-                <svg>
-                    <use xlink:href="#icon-cart"></use>
-                </svg>
-                <a href="logout" class="logout-link">Logout</a>
-            </div>
-        </nav>
-    </header>
     <body>
+    <jsp:include page="header.jsp"/>
+    <main class="text-display">
         <a href="orders" style="color: blue">< Back</a>
         <% Order order = (Order) request.getAttribute("order");%>
         <h1>Order No. <%=order.getId()%></h1>
@@ -59,5 +27,6 @@
             <button>Cancel</button>
         </form>
         <% } %>
+    </main>
     </body>
 </html>

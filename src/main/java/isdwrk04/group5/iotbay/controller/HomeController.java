@@ -42,7 +42,7 @@ public class HomeController extends BaseServlet {
         }
 
         request.setAttribute("products", products);
-        request.setAttribute("productCategories", productCategories);
+        request.getSession().setAttribute("productCategories", productCategories);
 
         serveJSP(request, response, "home.jsp");
     }

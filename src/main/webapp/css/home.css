@@ -17,6 +17,7 @@ body {
     font-family: var(--font-body);
     font-size: 1rem;
     display: grid;
+    overflow: scroll;
 }
 
 header {
@@ -274,4 +275,8 @@ header a {
 .add-to-cart-button:hover {
     background: var(--colour-main-dark);
     cursor: pointer;
+}
+
+.text-display {
+    padding-top: 100px;
 }

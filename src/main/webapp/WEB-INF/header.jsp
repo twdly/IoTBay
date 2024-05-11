@@ -16,7 +16,7 @@
         <div class="dropdown-content">
             <%--@elvariable id="productCategories" type="java.util.List"--%>
             <c:forEach items="${productCategories}" var="category">
-                <a href="?category=${category}">${category}</a>
+                <a href="${pageContext.request.contextPath}/search?category=${category}">${category}</a>
             </c:forEach>
         </div>
     </div>

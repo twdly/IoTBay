@@ -3,7 +3,6 @@
 <%@ page import="isdwrk04.group5.iotbay.model.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="isdwrk04.group5.iotbay.model.User" %>
 
 <!DOCTYPE html>
 <html>
