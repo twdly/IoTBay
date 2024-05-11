@@ -11,8 +11,8 @@ import isdwrk04.group5.iotbay.dao.ProductDao;
 import isdwrk04.group5.iotbay.model.Product;
 
 
-@WebServlet(name = "headerController", value = {"", "/search"})
-public class HeaderController extends BaseServlet {
+@WebServlet(name = "homeController", value = {"", "/search"})
+public class HomeController extends BaseServlet {
 
     public void init() {
     }
