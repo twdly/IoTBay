@@ -45,6 +45,8 @@ public class CartController extends BaseServlet{
     }
 
     private void placeOrder(HttpServletRequest request, HttpServletResponse response, Cart cart) throws ServletException, IOException {
+        updateQuantities(request, cart);
+        request.getSession().setAttribute("cart", cart);
         serveJSP(request, response, "cart.jsp");
     }
 
@@ -55,6 +57,16 @@ public class CartController extends BaseServlet{
     }
 
     private void saveOrder(HttpServletRequest request, HttpServletResponse response, Cart cart) throws ServletException, IOException {
+        updateQuantities(request, cart);
+        request.getSession().setAttribute("cart", cart);
         serveJSP(request, response, "cart.jsp");
+    }
+
+    private void updateQuantities(HttpServletRequest request, Cart cart) {
+        int size = cart.getProducts().size();
+        for (int i = 0; i < size; i++) {
+            int quantity = Integer.parseInt(request.getParameter("item" + i));
+            cart.updateQuantity(i, quantity);
+        }
     }
 }

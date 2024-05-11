@@ -43,6 +43,14 @@ public class Cart implements Serializable {
     }
 
     public void updateQuantity(int index, int quantity) {
-        this.products.get(index).setQuantity(quantity);
+        if (quantity == 0) {
+            removeProduct(index);
+        } else {
+            this.products.get(index).setQuantity(quantity);
+        }
+    }
+
+    public void removeProduct(int index) {
+        this.products.remove(index);
     }
 }
