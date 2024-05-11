@@ -21,6 +21,7 @@
         <tr>
             <td>Item</td>
             <td>Quantity</td>
+            <td>Stock</td>
             <td>Unit Price</td>
             <td>Total Price</td>
             <td>Manage</td>
@@ -30,6 +31,7 @@
             <tr>
                 <td><%=product.getName()%></td>
                 <td><input type="number" name="item<%=itemNumber%>" min="0" max="<%=product.getStock()%>" value="<%=product.getQuantity()%>"/></td>
+                <td><%=product.getStock()%></td>
                 <td>$<%=product.getPrice()%></td>
                 <td>$<%=product.calculatePrice()%></td>
                 <td><input type="submit" name="remove<%=itemNumber%>" value="Remove"/></td>

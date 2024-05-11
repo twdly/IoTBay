@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 @WebServlet( name = "cartController", value = "/cart")
 public class CartController extends BaseServlet{
@@ -22,7 +23,7 @@ public class CartController extends BaseServlet{
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        String action = null == request.getParameter("action") ? "" : request.getParameter("action");
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         switch (action) {
             case SAVE_BUTTON_VALUE:
@@ -41,6 +42,16 @@ public class CartController extends BaseServlet{
     }
 
     private void removeItem(HttpServletRequest request, HttpServletResponse response, Cart cart) throws ServletException, IOException {
+        Enumeration<String> parameters = request.getParameterNames();
+        int index = -1;
+        while (parameters.hasMoreElements()) {
+            String element = parameters.nextElement();
+            if (element.contains("remove")) {
+                index = Integer.parseInt(element.replace("remove", ""));
+            }
+        }
+        cart.removeProduct(index);
+        request.getSession().setAttribute("cart", cart);
         serveJSP(request, response, "cart.jsp");
     }
 
