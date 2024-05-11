@@ -22,6 +22,7 @@ INSERT INTO "USER" VALUES (1017, 'drlilithsternin@psych.net', '34Ldl7d5XXfYb3Rk+
 INSERT INTO "USER" VALUES (1018, 'rebeccahowe@bmail.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Rebecca Howe', '0421212121', 'Customer');
 INSERT INTO "USER" VALUES (1019, 'coach@email.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Ernie Pantusso', '0473620902', 'Customer');
 INSERT INTO "USER" VALUES (1020, 'misskelly@aol.com', '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Kelly Gaines', '0476320233', 'Customer');
+INSERT INTO "USER" VALUES (1021, 'staff@iotbay.com',  '34Ldl7d5XXfYb3Rk+FTS4A==', 'pZWJoK7SzUM2BGq7jCddhw==', 'Stu Affmember', '0412312344', 'Staff');
 
 -- records of Products --
 INSERT INTO "PRODUCT" VALUES (1000, 'Dingtek Smart Waste Bin Sensor DF703', 'Home Automation', 'A sensor for your bin', 110.00, 1000);
