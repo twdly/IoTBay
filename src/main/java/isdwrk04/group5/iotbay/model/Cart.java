@@ -29,6 +29,7 @@ public class Cart implements Serializable {
         if (foundProduct != null) {
             products.get(products.indexOf(foundProduct)).setQuantity(foundProduct.getQuantity() + 1);
         } else {
+            product.setQuantity(1);
             products.add(product);
         }
     }

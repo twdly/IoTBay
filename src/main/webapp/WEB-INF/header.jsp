@@ -1,9 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="isdwrk04.group5.iotbay.model.Product" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Iterator" %>
 <%@ page import="isdwrk04.group5.iotbay.model.User" %>
+<%@ page import="isdwrk04.group5.iotbay.model.Cart" %>
 
 <header>
     <div class="logo">
@@ -43,7 +41,12 @@
 
     <button class ="shopping-cart-button">
         <i class="fas fa-shopping-cart"></i>
-        $9999.99
+        <% Cart cart = (Cart) request.getSession().getAttribute("cart");%>
+        <% if (cart == null) { %>
+            $0.00
+        <% } else { %>
+            $<%=cart.getTotalPrice()%>
+        <% } %>
     </button>
 
 </header>

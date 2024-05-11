@@ -37,7 +37,10 @@ public class HomeController extends BaseServlet {
             products = dao.getAllProducts();
         }
 
-        request.getSession().setAttribute("cart", new Cart());
+        if (request.getAttribute("cart") == null) {
+            request.setAttribute("cart", new Cart());
+        }
+
         request.setAttribute("products", products);
         request.setAttribute("productCategories", productCategories);
 
@@ -45,7 +48,7 @@ public class HomeController extends BaseServlet {
     }
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
         // This method is used to add items to the cart
         int itemId = Integer.parseInt(request.getParameter("itemId"));
         Cart cart = (Cart) request.getSession().getAttribute("cart");
@@ -69,8 +72,5 @@ public class HomeController extends BaseServlet {
         String contextPath = request.getContextPath();
         String query = request.getQueryString();
         return requestUrl.substring(requestUrl.indexOf(contextPath) + contextPath.length()) + (query != null ? "?" + query : "");
-    }
-
-    public void destroy() {
     }
 }
