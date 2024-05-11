@@ -98,9 +98,10 @@ public class ProductDao {
     private Product createProductFromResult(ResultSet result) throws SQLException {
         int id = result.getInt("PRODUCT_ID");
         String name = result.getString("PRODUCT_NAME");
+        String category = result.getString("PRODUCT_CATEGORY");
         String description = result.getString("PRODUCT_DESCRIPTION");
         double price = result.getDouble("PRODUCT_PRICE");
         int stock = result.getInt("PRODUCT_STOCK");
-        return new Product(id, name, description, price, stock);
+        return new Product(id, name, category, description, price, stock);
     }
 }

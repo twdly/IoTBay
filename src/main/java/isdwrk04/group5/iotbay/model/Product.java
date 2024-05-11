@@ -9,8 +9,9 @@ public class Product implements Serializable {
 
 	private final int id;
 	private String name;
-	private final double price;
+	private String category;
 	private final String description;
+	private final double price;
 	private int stock;
 	private int quantity;
 
@@ -22,14 +23,12 @@ public class Product implements Serializable {
 	public String getName() {
 		return name;
 	}
-
-	public String getDescription() {
-		return description;
-	}
-
+	public String getCategory() { return category; }
+	public String getDescription() { return description; }
 	public String getPrice() {
 		return String.format("%.2f", price);
 	}
+	public int getStock() { return stock; }
 
 	// Setters
 	public void setName(String name) {
@@ -52,9 +51,10 @@ public class Product implements Serializable {
 	}
 
 	// Constructor
-	public Product(int id, String name, String description, double price, int stock) {
+	public Product(int id, String name, String category, String description, double price, int stock) {
 		this.id = id;
 		this.name = name;
+		this.category = category;
 		this.description = description;
 		this.price = price;
 		this.stock = stock;
@@ -63,8 +63,9 @@ public class Product implements Serializable {
 	public Product() {
 		this.id = 0;
 		this.name = "";
-		this.price = 0;
+		this.category = "";
 		this.description = "";
+		this.price = 0;
 		this.stock = 0;
 	}
 

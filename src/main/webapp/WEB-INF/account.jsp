@@ -59,6 +59,11 @@
                         View Recent Orders
                     </button>
                 </a>
+                <a href="productCatalogue">
+                    <button class="btn-outline-light">
+                        Update Product Catalogue
+                    </button>
+                </a>
             </div>
         </section>
     </body>
