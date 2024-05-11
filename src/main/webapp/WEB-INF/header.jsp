@@ -38,15 +38,16 @@
         <a href="register">Register</a> | <a href="login">Login</a>
         <% } %>
     </div>
-
-    <button class ="shopping-cart-button">
-        <i class="fas fa-shopping-cart"></i>
-        <% Cart cart = (Cart) request.getSession().getAttribute("cart");%>
-        <% if (cart == null) { %>
+    <a href="cart">
+        <button class ="shopping-cart-button" >
+            <i class="fas fa-shopping-cart"></i>
+            <% Cart cart = (Cart) request.getSession().getAttribute("cart");%>
+            <% if (cart == null) { %>
             $0.00
-        <% } else { %>
+            <% } else { %>
             $<%=cart.getTotalPrice()%>
-        <% } %>
-    </button>
+            <% } %>
+        </button>
+    </a>
 
 </header>

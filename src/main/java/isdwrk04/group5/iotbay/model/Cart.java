@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Cart implements Serializable {
 
-    public List<Product> products;
+    private List<Product> products;
 
     public Cart() {
         products = new ArrayList<>();
@@ -32,5 +32,17 @@ public class Cart implements Serializable {
             product.setQuantity(1);
             products.add(product);
         }
+    }
+
+    public List<Product> getProducts() {
+        return this.products;
+    }
+
+    public boolean isEmpty() {
+        return products.isEmpty();
+    }
+
+    public void updateQuantity(int index, int quantity) {
+        this.products.get(index).setQuantity(quantity);
     }
 }

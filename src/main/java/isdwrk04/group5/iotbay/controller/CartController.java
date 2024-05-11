@@ -1,0 +1,60 @@
+package isdwrk04.group5.iotbay.controller;
+
+import isdwrk04.group5.iotbay.model.Cart;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet( name = "cartController", value = "/cart")
+public class CartController extends BaseServlet{
+
+    public final String SAVE_BUTTON_VALUE = "Save changes";
+    public final String CLEAR_BUTTON_VALUE = "Clear cart";
+    public final String ORDER_BUTTON_VALUE = "Place order";
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        serveJSP(request, response, "cart.jsp");
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        switch (action) {
+            case SAVE_BUTTON_VALUE:
+                saveOrder(request, response, cart);
+                break;
+            case CLEAR_BUTTON_VALUE:
+                clearCart(request, response, cart);
+                break;
+            case ORDER_BUTTON_VALUE:
+                placeOrder(request, response, cart);
+                break;
+            default:
+                removeItem(request, response, cart);
+                break;
+        }
+    }
+
+    private void removeItem(HttpServletRequest request, HttpServletResponse response, Cart cart) throws ServletException, IOException {
+        serveJSP(request, response, "cart.jsp");
+    }
+
+    private void placeOrder(HttpServletRequest request, HttpServletResponse response, Cart cart) throws ServletException, IOException {
+        serveJSP(request, response, "cart.jsp");
+    }
+
+    private void clearCart(HttpServletRequest request, HttpServletResponse response, Cart cart) throws ServletException, IOException {
+        cart.clearCart();
+        request.getSession().setAttribute("cart", cart);
+        serveJSP(request, response, "cart.jsp");
+    }
+
+    private void saveOrder(HttpServletRequest request, HttpServletResponse response, Cart cart) throws ServletException, IOException {
+        serveJSP(request, response, "cart.jsp");
+    }
+}
