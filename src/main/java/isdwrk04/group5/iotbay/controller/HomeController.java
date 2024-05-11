@@ -37,12 +37,39 @@ public class HomeController extends BaseServlet {
             products = dao.getAllProducts();
         }
 
+        request.getSession().setAttribute("cart", new Cart());
         request.setAttribute("products", products);
         request.setAttribute("productCategories", productCategories);
 
         serveJSP(request, response, "home.jsp");
     }
 
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // This method is used to add items to the cart
+        int itemId = Integer.parseInt(request.getParameter("itemId"));
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+
+        if (cart == null) {
+            cart = new Cart();
+        }
+
+        ProductDao productDao = new ProductDao();
+        cart.addItem( productDao.getProductById(itemId));
+
+        request.getSession().setAttribute("cart", cart);
+
+        // This is necessary to redirect the user back to the current page they are on
+        // Doing so allows all their currently viewed products to still display as if they were never redirected
+        redirectToUrl(request, response, getRedirectUrl(request));
+    }
+
+    private static String getRedirectUrl(HttpServletRequest request) {
+        String requestUrl = String.valueOf(request.getRequestURL());
+        String contextPath = request.getContextPath();
+        String query = request.getQueryString();
+        return requestUrl.substring(requestUrl.indexOf(contextPath) + contextPath.length()) + (query != null ? "?" + query : "");
+    }
 
     public void destroy() {
     }

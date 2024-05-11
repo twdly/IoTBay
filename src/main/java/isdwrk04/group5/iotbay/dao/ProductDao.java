@@ -95,6 +95,21 @@ public class ProductDao {
         return products;
     }
 
+    public Product getProductById(int productId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("Select * from PRODUCT where PRODUCT_ID=?");
+            statement.setInt(1, productId);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return createProductFromResult(result);
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Product createProductFromResult(ResultSet result) throws SQLException {
         int id = result.getInt("PRODUCT_ID");
         String name = result.getString("PRODUCT_NAME");
