@@ -1,6 +1,5 @@
 package isdwrk04.group5.iotbay.model;
 
-import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,6 +35,10 @@ public class Product implements Serializable {
 		return quantity;
 	}
 
+	public int getStock() {
+		return stock;
+	}
+
 	// Setters
 	public void setName(String name) {
 		this.name = name;
@@ -43,6 +46,10 @@ public class Product implements Serializable {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	public String getImageUrl() {
@@ -54,7 +61,6 @@ public class Product implements Serializable {
 				: path.substring(0, path.length()-16).replace("%20", " ");
 
 		fileName += "images/" + id + ".jpg";
-		System.out.println(fileName);
 		Path filePath = Paths.get(fileName);
 
 		return Files.exists(filePath) ? id + ".jpg" : "digital-temperature-sensor.jpg";
