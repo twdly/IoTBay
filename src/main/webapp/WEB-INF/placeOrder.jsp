@@ -1,4 +1,5 @@
 <%@ page import="isdwrk04.group5.iotbay.model.User" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <% User user = (User) session.getAttribute("user");%>
 <html>
@@ -10,6 +11,15 @@
 <body>
 <jsp:include page="header.jsp"/>
 <main class="text-display">
+    <% if (session.getAttribute("errors") != null) {
+        List<String> errors = (List<String>)session.getAttribute("errors");
+    %>
+    <div id="sessionErrors" class="error">
+        <% for (String error : errors) { %>
+        <p style="color: red"><%=error%></p>
+        <%}%>
+    </div>
+    <% session.removeAttribute("errors"); } %>
     <h1>Place Order</h1>
     <h2>Your details:</h2>
     <form method="post" action="place-order">
