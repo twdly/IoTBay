@@ -9,14 +9,10 @@ public class Product implements Serializable {
 
 	private final int id;
 	private String name;
-	private final double price;
+	private double price;
 	private final String description;
 	private int stock;
 	private int quantity;
-
-	public int getId() {
-		return id;
-	}
 
 	// Getters
 	public String getName() {
@@ -31,9 +27,33 @@ public class Product implements Serializable {
 		return String.format("%.2f", price);
 	}
 
+	public int getId() {
+		return this.id;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
 	// Setters
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public String getImageUrl() {
@@ -45,7 +65,6 @@ public class Product implements Serializable {
 				: path.substring(0, path.length()-16).replace("%20", " ");
 
 		fileName += "images/" + id + ".jpg";
-		System.out.println(fileName);
 		Path filePath = Paths.get(fileName);
 
 		return Files.exists(filePath) ? id + ".jpg" : "digital-temperature-sensor.jpg";
@@ -66,14 +85,6 @@ public class Product implements Serializable {
 		this.price = 0;
 		this.description = "";
 		this.stock = 0;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public int getQuantity() {
-		return quantity;
 	}
 
 	public double calculatePrice() {

@@ -10,6 +10,7 @@ public class User implements Serializable {
     private final byte[] hashedPassword;
     private final byte[] salt;
     private final Role role;
+    private String phoneNo;
 
     public enum Role {
         Staff,
@@ -69,7 +70,15 @@ public class User implements Serializable {
         return role;
     }
 
+    public String getPhoneNo() {
+        return null != phoneNo ? phoneNo : "";
+    }
+
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 }

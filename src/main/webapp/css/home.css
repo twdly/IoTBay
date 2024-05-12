@@ -17,6 +17,7 @@ body {
     font-family: var(--font-body);
     font-size: 1rem;
     display: grid;
+    overflow: scroll;
 }
 
 header {
@@ -237,23 +238,24 @@ header a {
 
 .product-image{
     width: 200px;
-    height: 100%;
+    height: 200px;
     object-fit: contain;
     margin: 0 1em;
 }
 
 .product-name {
     font-family: var(--font-body);
-    font-size: 1.1rem;
-    margin: 1em;
+    font-size: 1rem;
+    margin-top: 1em;
     align-self: flex-start;
+    min-height: 3.5rem;
 }
 
 .unit-price {
     font-family: var(--font-body);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    margin: 1em;
+    margin: 0.5em 1em 1em 0.5em;
     align-self: flex-end;
 }
 
@@ -273,4 +275,8 @@ header a {
 .add-to-cart-button:hover {
     background: var(--colour-main-dark);
     cursor: pointer;
+}
+
+.text-display {
+    padding-top: 100px;
 }
