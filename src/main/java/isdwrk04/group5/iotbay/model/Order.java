@@ -57,6 +57,14 @@ public class Order implements Serializable {
         return id;
     }
 
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public Status getStatus() {
         return status;
     }
@@ -71,6 +79,18 @@ public class Order implements Serializable {
 
     public int getUserId() {
         return userId;
+    }
+
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    public int getCollectionId() {
+        return collectionId;
+    }
+
+    public int getDeliveryId() {
+        return deliveryId;
     }
 
     public void setName(String name) {

@@ -31,10 +31,13 @@ public class ConfirmOrderController extends BaseServlet {
         Order order = (Order) request.getSession().getAttribute("currentOrder");
         List<OrderLine> orderLineList = new ArrayList<>();
         for (Product product : cart.getProducts()) {
-            orderLineList.add(new OrderLine(product.getQuantity(), order.getId(), product.getId()));
+            // The orderID is not yet known hence -1 is used as an obviously wrong placeholder value
+            orderLineList.add(new OrderLine(product.getQuantity(), -1, product.getId()));
         }
         OrderDao dao = new OrderDao();
-//        dao.placeOrder();
+        dao.placeOrder(order, orderLineList);
+        request.getSession().removeAttribute("cart");
+        request.getSession().removeAttribute("currentOrder");
         if (user == null) {
             redirectToUrl(request, response, "/");
         } else {

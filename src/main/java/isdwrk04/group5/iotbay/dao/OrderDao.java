@@ -1,11 +1,10 @@
 package isdwrk04.group5.iotbay.dao;
 
 import isdwrk04.group5.iotbay.model.Order;
+import isdwrk04.group5.iotbay.model.OrderLine;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +47,53 @@ public class OrderDao {
             throw new RuntimeException(e);
         }
         return order;
+    }
+
+    public void placeOrder(Order order, List<OrderLine> orderLines) {
+        try {
+            int orderId = getNextOrderId();
+
+            PreparedStatement statement = connection.prepareStatement("insert into \"ORDER\" values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            statement.setInt(1, orderId);
+            statement.setString(2, order.getName());
+            statement.setString(3, order.getPhoneNo());
+            statement.setString(4, Order.Status.Processing.name());
+            statement.setDate(5, java.sql.Date.valueOf(LocalDate.now()));
+            statement.setString(6, order.getMethod().name());
+
+            if (order.getUserId() == 0) {
+                statement.setNull(7, Types.INTEGER);
+            } else {
+                statement.setInt(7, order.getUserId());
+            }
+            if (order.getPaymentId() == 0) {
+                statement.setNull(8, Types.INTEGER);
+            } else {
+                statement.setInt(8, order.getPaymentId());
+            }
+            if (order.getCollectionId() == 0) {
+                statement.setNull(9, Types.INTEGER);
+            } else {
+                statement.setInt(9, order.getCollectionId());
+            }
+            if (order.getDeliveryId() == 0) {
+                statement.setNull(10, Types.INTEGER);
+            } else {
+                statement.setInt(10, order.getDeliveryId());
+            }
+
+            statement.execute();
+
+            for (OrderLine orderLine : orderLines) {
+                statement = connection.prepareStatement("insert into ORDERLINE values (?, ?, ?)");
+                statement.setInt(1, orderLine.getQuantity());
+                statement.setInt(2, orderId);
+                statement.setInt(3, orderLine.getProductId());
+                statement.execute();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void cancelOrder(int orderId) {
@@ -94,5 +140,12 @@ public class OrderDao {
         } else {
             return Order.Method.Collection;
         }
+    }
+
+    private int getNextOrderId() throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery("select max(ORDER_ID) as ID from \"ORDER\"");
+        result.next();
+        return result.getInt("ID") + 1;
     }
 }

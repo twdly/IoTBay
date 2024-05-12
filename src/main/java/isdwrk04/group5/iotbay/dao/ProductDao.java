@@ -84,7 +84,7 @@ public class ProductDao {
             PreparedStatement statement = connection.prepareStatement("select * from PRODUCT, ORDERLINE\n where ORDERLINE.PRODUCT_ID=PRODUCT.PRODUCT_ID and ORDERLINE.ORDER_ID=?");
             statement.setInt(1, orderId);
             ResultSet result = statement.executeQuery();
-            if (result.next()) {
+            while (result.next()) {
                 Product newProduct = createProductFromResult(result);
                 newProduct.setQuantity(result.getInt("PRODUCT_QUANTITY"));
                 products.add(newProduct);
