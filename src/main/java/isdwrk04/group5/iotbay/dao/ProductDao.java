@@ -15,6 +15,18 @@ public class ProductDao {
         connection = new DbConnector().getConnection();
     }
 
+    public void addProduct(Product product){
+        try {
+            int id = getNextProductId();
+            product.setId(id);
+            PreparedStatement statement = connection.prepareStatement("insert into \"PRODUCT\" values (?, ?, ?, ?, ?, ?)");
+            buildInsertQuery(product, statement);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<String> getProductCategories() {
         List<String> categories = new ArrayList<>();
         try {
@@ -44,14 +56,16 @@ public class ProductDao {
     }
 
     public List<Product> getSearchProducts(String search) {
-
-        String escapedSearch = StringEscapeUtils.escapeJava(search).toUpperCase();
-
         List<Product> products = new ArrayList<>();
         try {
-            Statement statement = connection.createStatement();
 
-            ResultSet results = statement.executeQuery("SELECT * FROM PRODUCT WHERE UPPER(Product_Name) LIKE '%" + escapedSearch + "%'");
+            String sanitisedSearch = search.replaceAll("[^a-zA-Z0-9 ]", "");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM PRODUCT WHERE UPPER(Product_Name) LIKE ?");
+            preparedStatement.setString(1, "%" + sanitisedSearch.toUpperCase() + "%");
+
+            ResultSet results = preparedStatement.executeQuery();
             while (results.next()) {
                 products.add(createProductFromResult(results));
             }
@@ -64,11 +78,11 @@ public class ProductDao {
     public List<Product> getCategoryProducts(String category) {
         List<Product> products = new ArrayList<>();
         try {
-            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM PRODUCT WHERE Product_Category = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, category);
 
-            String query = "SELECT * FROM PRODUCT WHERE Product_Category = '" + category + "'";
-            ResultSet results = statement.executeQuery(query);
-
+            ResultSet results = preparedStatement.executeQuery();
             while (results.next()) {
                 products.add(createProductFromResult(results));
             }
@@ -95,6 +109,27 @@ public class ProductDao {
         return products;
     }
 
+    public int getNextProductId(){
+        int foundId;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("select max(PRODUCT_ID) as ID from \"PRODUCT\"");
+            result.next();
+            foundId = result.getInt("ID") + 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return foundId;
+    }
+
+    public void buildInsertQuery(Product product, PreparedStatement statement) throws SQLException {
+        statement.setInt(1, getNextProductId());
+        statement.setString(2, product.getName());
+        statement.setString(3, product.getCategory());
+        statement.setString(4, product.getDescription());
+        statement.setDouble(5, Double.parseDouble(product.getPrice()));
+        statement.setInt(6, product.getStock());
+    }
     private Product createProductFromResult(ResultSet result) throws SQLException {
         int id = result.getInt("PRODUCT_ID");
         String name = result.getString("PRODUCT_NAME");

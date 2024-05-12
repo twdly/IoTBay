@@ -7,11 +7,11 @@ import java.nio.file.Paths;
 
 public class Product implements Serializable {
 
-	private final int id;
+	private int id;
 	private String name;
 	private String category;
-	private final String description;
-	private final double price;
+	private String description;
+	private double price;
 	private int stock;
 	private int quantity;
 
@@ -35,6 +35,8 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
+	public void setId(int id) { this.id = id; }
+
 	public String getImageUrl() {
 		String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 
@@ -51,6 +53,16 @@ public class Product implements Serializable {
 	}
 
 	// Constructor
+	// this constructor is used when staff is adding a new product via the system as the ID has not yet been assigned
+	public Product(String name, String category, String description, double price, int stock) {
+		this.id = 0;
+		this.name = name;
+		this.category = category;
+		this.description = description;
+		this.price = price;
+		this.stock = stock;
+	}
+
 	public Product(int id, String name, String category, String description, double price, int stock) {
 		this.id = id;
 		this.name = name;

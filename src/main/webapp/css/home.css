@@ -352,3 +352,53 @@ header a {
     background: var(--colour-main);
     color: white;
 }
+
+.hidden {
+    display: none;
+}
+
+#add-new-product {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 3rem auto;
+    border: 1px solid black;
+    padding: 1.5rem;
+}
+
+#add-product-form-title{
+    margin: 0 auto 1.5rem;
+}
+
+#add-new-product label {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#add-new-product input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+}
+
+#submit-add-product-button {
+    border: 1px solid var(--colour-main);
+    color: black;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submit-add-product-button:hover {
+    background: var(--colour-main);
+    color: white;
+}

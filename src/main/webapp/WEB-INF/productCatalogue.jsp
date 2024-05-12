@@ -30,6 +30,24 @@
         <%}%>
     </table>
 
-    <button class="add-product-button">Add New Product</button>
+    <button class="add-product-button" onclick="toggleForm()">Add New Product</button>
+    <form id="add-new-product" action="productCatalogue" method="post">
+        <h3 id="add-product-form-title">Enter Product Details Here</h3>
+        <label for="product-name">Product Name<input type="text" name="product-name" id="product-name" placeholder="e.g. Smart Bin Sensor"></label>
+        <label for="product-category">Product Category<input type="text" name="product-category" id="product-category" placeholder="e.g. Home Automation"></label>
+        <label for="product-description">Description<input type="text" name="product-description" id="product-description" placeholder="e.g. A sensor for your bin"></label>
+        <label for="product-price">Product Price<input type="text" name="product-price" id="product-price" placeholder="e.g. 100.00"></label>
+        <label for="product-stock">Product Stock<input type="text" name="product-stock" id="product-stock" placeholder="e.g. 200"></label>
+        <button id="submit-add-product-button" type="submit">Add Product</button>
+    </form>
+
+<script>
+    function toggleForm() {
+        const form = document.getElementById("add-new-product");
+        form.style.display = form.style.display === "none" ? "flex" : "none";
+        const button = document.querySelector(".add-product-button");
+        button.style.display = button.style.display === "block" ? "none" : "block";
+    }
+</script>
 </body>
 </html>
