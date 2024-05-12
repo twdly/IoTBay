@@ -25,6 +25,11 @@ public class ProductCatalogueController extends BaseServlet {
             return;
         }
 
+        if (!user.getRole().equals(User.Role.Staff)) {
+            redirectToUrl(request, response, "/");
+            return;
+        }
+
         ProductDao dao = new ProductDao();
         List<Product> products;
         products = dao.getAllProducts();
@@ -60,15 +65,15 @@ public class ProductCatalogueController extends BaseServlet {
     private boolean validateNewProduct(HttpSession session, String productName, String productCategory, String productDescription, String productPrice, String productStock) {
         boolean isValid = true;
         List<String> errors = new ArrayList<>();
-        if (!productName.matches("^[a-zA-Z0-9()\\-]+$")) {
+        if (!productName.matches("^[a-zA-Z0-9()\\-\\s]+$")) {
             errors.add("Product name can only include letters, numbers and the symbols ( ) and -");
             isValid = false;
         }
-        if (!productCategory.matches("^[a-zA-Z]+$")) {
+        if (!productCategory.matches("^[a-zA-Z\\s]+$")) {
             errors.add("Product category can only contain letters");
             isValid = false;
         }
-        if (!productDescription.matches("^[a-zA-Z0-9,.\\s]{1,200}$")) {
+        if (!productDescription.matches("^[a-zA-Z0-9,.\\s'-]{1,200}$")) {
             errors.add("Product description can only include letters numbers , and . and must be under 200 characters");
             isValid = false;
         }

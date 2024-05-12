@@ -1,4 +1,6 @@
+<%@ page import="isdwrk04.group5.iotbay.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<% User user = (User) request.getSession().getAttribute("user");%>
 <html>
     <head>
         <title>IoTBay - Account</title>
@@ -59,11 +61,13 @@
                         View Recent Orders
                     </button>
                 </a>
+                <% if (user.getRole().equals(User.Role.Staff)) { %>
                 <a href="productCatalogue">
                     <button class="btn-outline-light">
                         Update Product Catalogue
                     </button>
                 </a>
+                <% } %>
             </div>
         </section>
     </body>

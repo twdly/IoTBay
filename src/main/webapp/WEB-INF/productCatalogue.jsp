@@ -30,6 +30,16 @@
         <%}%>
     </table>
 
+    <% if (session.getAttribute("errors") != null) {
+        List<String> errors = (List<String>)session.getAttribute("errors");
+    %>
+    <div id="sessionErrors" class="error">
+        <% for (String error : errors) { %>
+        <p style="color: red"><%=error%></p>
+        <%}%>
+    </div>
+    <% session.removeAttribute("errors"); } %>
+
     <button class="add-product-button" onclick="toggleForm()">Add New Product</button>
     <form id="add-new-product" action="productCatalogue" method="post">
         <h3 id="add-product-form-title">Enter Product Details Here</h3>
