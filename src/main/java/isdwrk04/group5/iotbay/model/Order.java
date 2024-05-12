@@ -72,4 +72,20 @@ public class Order implements Serializable {
     public int getUserId() {
         return userId;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public void setMethod(Method method) {
+        this.method = method;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

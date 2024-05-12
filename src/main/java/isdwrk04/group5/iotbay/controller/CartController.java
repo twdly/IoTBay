@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 @WebServlet( name = "cartController", value = "/cart")
-public class CartController extends BaseServlet{
+public class CartController extends BaseServlet {
 
     public final String SAVE_BUTTON_VALUE = "Save changes";
     public final String CLEAR_BUTTON_VALUE = "Clear cart";
@@ -57,10 +57,10 @@ public class CartController extends BaseServlet{
         serveJSP(request, response, "cart.jsp");
     }
 
-    private void placeOrder(HttpServletRequest request, HttpServletResponse response, Cart cart) throws ServletException, IOException {
+    private void placeOrder(HttpServletRequest request, HttpServletResponse response, Cart cart) {
         updateQuantities(request, cart);
         request.getSession().setAttribute("cart", cart);
-        serveJSP(request, response, "cart.jsp");
+        redirectToUrl(request, response, "/place-order");
     }
 
     private void clearCart(HttpServletRequest request, HttpServletResponse response, Cart cart) throws ServletException, IOException {
