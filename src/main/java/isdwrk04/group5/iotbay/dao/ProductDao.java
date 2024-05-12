@@ -1,5 +1,6 @@
 package isdwrk04.group5.iotbay.dao;
 
+import isdwrk04.group5.iotbay.model.OrderLine;
 import isdwrk04.group5.iotbay.model.Product;
 
 import java.sql.*;
@@ -104,6 +105,25 @@ public class ProductDao {
                 return createProductFromResult(result);
             } else {
                 return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void reduceStockForOrder(List<OrderLine> orderLines) {
+        try {
+            for (OrderLine orderLine : orderLines) {
+                PreparedStatement statement = connection.prepareStatement("select PRODUCT_STOCK as STOCK from PRODUCT where PRODUCT_ID=?");
+                statement.setInt(1, orderLine.getProductId());
+                ResultSet results = statement.executeQuery();
+                results.next();
+                int stock = results.getInt("STOCK");
+
+                statement = connection.prepareStatement("update PRODUCT set PRODUCT_STOCK=? where PRODUCT_ID=?");
+                statement.setInt(1, stock - orderLine.getQuantity());
+                statement.setInt(2, orderLine.getProductId());
+                statement.execute();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

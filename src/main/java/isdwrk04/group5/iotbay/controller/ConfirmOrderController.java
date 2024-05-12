@@ -1,6 +1,7 @@
 package isdwrk04.group5.iotbay.controller;
 
 import isdwrk04.group5.iotbay.dao.OrderDao;
+import isdwrk04.group5.iotbay.dao.ProductDao;
 import isdwrk04.group5.iotbay.model.*;
 
 import javax.servlet.ServletException;
@@ -33,8 +34,10 @@ public class ConfirmOrderController extends BaseServlet {
             // The orderID is not yet known hence -1 is used as an obviously wrong placeholder value
             orderLineList.add(new OrderLine(product.getQuantity(), -1, product.getId()));
         }
-        OrderDao dao = new OrderDao();
-        dao.placeOrder(order, orderLineList);
+        OrderDao orderDao = new OrderDao();
+        orderDao.placeOrder(order, orderLineList);
+        ProductDao productDao = new ProductDao();
+        productDao.reduceStockForOrder(orderLineList);
         request.getSession().removeAttribute("cart");
         request.getSession().removeAttribute("currentOrder");
         serveJSP(request, response, "postOrder.jsp");
