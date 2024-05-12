@@ -23,6 +23,8 @@ public class CartController extends BaseServlet{
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Action will be null if the remove button is clicked
+        // Setting action to an empty string instead of null prevents the switch statement from throwing a NullPointerException
         String action = null == request.getParameter("action") ? "" : request.getParameter("action");
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         switch (action) {

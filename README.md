@@ -14,7 +14,10 @@ The source code for this project can be found in our team's [GitHub repository](
 7. Go to http://localhost:8080 (or the port that you have configured for Tomcat if you have used it before).
 8. Click on "manager app" then enter the username and password you configured earlier.
 9. Scroll down to the "WAR file to deploy" subheading, click on "Choose file" and then locate and open the IoTBay WAR file.
-10. Click deploy and the IoTBay website should be ready to use.
+10. Click deploy to start the web server.
+11. Follow the database creation guide below and ensure that the `startServer` script for your platform is running on the background.
+12. Refresh the IoTBay website that was opened when you clicked deploy.
+13. The website is now ready for use.
 
 # How to create the database with IntelliJ
 1. Download the Apache Derby binaries from [here](https://db.apache.org/derby/releases/release-10_14_2_0.html).
