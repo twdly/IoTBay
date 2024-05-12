@@ -25,8 +25,7 @@ public class ConfirmOrderController extends BaseServlet {
     }
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        User user = (User) request.getSession().getAttribute(USER_ATTRIBUTE);
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         Order order = (Order) request.getSession().getAttribute("currentOrder");
         List<OrderLine> orderLineList = new ArrayList<>();
@@ -38,10 +37,6 @@ public class ConfirmOrderController extends BaseServlet {
         dao.placeOrder(order, orderLineList);
         request.getSession().removeAttribute("cart");
         request.getSession().removeAttribute("currentOrder");
-        if (user == null) {
-            redirectToUrl(request, response, "/");
-        } else {
-            redirectToUrl(request, response, "/orders");
-        }
+        serveJSP(request, response, "postOrder.jsp");
     }
 }
