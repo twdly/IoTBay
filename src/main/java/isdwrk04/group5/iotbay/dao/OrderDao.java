@@ -106,6 +106,33 @@ public class OrderDao {
         }
     }
 
+    public List<Order> getOrderByStatus(Order.Status status) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from \"ORDER\" where ORDER_STATUS=?");
+            statement.setString(1, status.name());
+            ResultSet results = statement.executeQuery();
+            List<Order> foundOrders = new ArrayList<>();
+            while (results.next()) {
+                foundOrders.add(createOrderFromResult(results));
+            }
+            return foundOrders;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void updateStatus(int orderId, Order.Status newStatus) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("update \"ORDER\" set ORDER_STATUS=? where ORDER_ID=?");
+            statement.setString(1, newStatus.name());
+            statement.setInt(2, orderId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Order createOrderFromResult(ResultSet results) throws SQLException {
         int id = results.getInt("ORDER_ID");
         String name = results.getString("NAME");
