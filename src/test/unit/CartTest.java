@@ -18,6 +18,7 @@ public class CartTest {
         this.cart = new Cart();
         testProduct1 = new Product();
         testProduct1.setName("test1");
+        testProduct1.setPrice(10.00);
     }
 
     @Test
@@ -67,5 +68,16 @@ public class CartTest {
 
         cart.removeProduct(0);
         Assertions.assertEquals(0, cart.getProducts().size());
+    }
+
+    @Test
+    public void testTotalPrice() {
+        Assertions.assertEquals("0.00", cart.getTotalPrice());
+
+        cart.addItem(testProduct1);
+        Assertions.assertEquals("10.00", cart.getTotalPrice());
+
+        cart.updateQuantity(0, 5);
+        Assertions.assertEquals("50.00", cart.getTotalPrice());
     }
 }

@@ -9,7 +9,7 @@ public class Product implements Serializable {
 
 	private final int id;
 	private String name;
-	private final double price;
+	private double price;
 	private final String description;
 	private int stock;
 	private int quantity;
@@ -50,6 +50,10 @@ public class Product implements Serializable {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public String getImageUrl() {
