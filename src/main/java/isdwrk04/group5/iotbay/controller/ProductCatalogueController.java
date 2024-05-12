@@ -16,7 +16,6 @@ import java.util.List;
 @WebServlet( name="productCatalogueController", value = "/productCatalogue")
 public class ProductCatalogueController extends BaseServlet {
 
-    private ProductDao productDao;
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
@@ -37,6 +36,8 @@ public class ProductCatalogueController extends BaseServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ProductDao productDao = new ProductDao();
+
         HttpSession session = request.getSession();
 
         String productName = request.getParameter("product-name");
@@ -50,11 +51,10 @@ public class ProductCatalogueController extends BaseServlet {
             int productStock = Integer.parseInt(productStockStr);
             Product product = new Product(productName, productCategory, productDescription, productPrice, productStock);
             productDao.addProduct(product);
-
-            serveJSP(request, response, "productCatalogue.jsp");
-        } else {
-            serveJSP(request, response, "productCatalogue.jsp");
         }
+        List<Product> products = productDao.getAllProducts();;
+        request.setAttribute("products", products);
+        serveJSP(request, response, "productCatalogue.jsp");
     }
 
     private boolean validateNewProduct(HttpSession session, String productName, String productCategory, String productDescription, String productPrice, String productStock) {
