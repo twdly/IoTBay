@@ -110,7 +110,7 @@ create table ACCESSLOG
 (
     Log_ID INTEGER primary key,
     User_ID INTEGER not null ,
-    Event VARCHAR(6) not null ,
+    Event VARCHAR(12) not null ,
     Event_Time TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT ACCESSLOGS_USERID foreign key (USER_ID) references "USER"(User_ID)
 )
