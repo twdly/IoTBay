@@ -33,7 +33,7 @@
                 <td><input type="number" name="item<%=itemNumber%>" min="0" max="<%=product.getStock()%>" value="<%=product.getQuantity()%>"/></td>
                 <td><%=product.getStock()%></td>
                 <td>$<%=product.getPrice()%></td>
-                <td>$<%=product.calculatePrice()%></td>
+                <td>$<%=String.format("%.2f", product.calculatePrice())%></td>
                 <td><input type="submit" name="remove<%=itemNumber%>" value="Remove"/></td>
             </tr>
         <% itemNumber++; } %>
