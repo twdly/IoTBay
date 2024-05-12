@@ -17,7 +17,7 @@ public class ManageOrdersController extends BaseServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
-        if (!user.getRole().equals(User.Role.Staff)) {
+        if (null == user || !user.getRole().equals(User.Role.Staff)) {
             redirectToUrl(request, response, "/");
             return;
         }
