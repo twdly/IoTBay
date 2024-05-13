@@ -7,12 +7,14 @@
     <head>
         <title>IoTBay - Orders</title>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
     <jsp:include page="header.jsp"/>
-    <main class="text-display">
-        <a href="orders" style="color: blue">< Back</a>
+    <main>
+        <a href="orders"><button type="button" class="back-button">< Back</button></a>
         <% Order order = (Order) request.getAttribute("order");%>
         <h1>Order No. <%=order.getId()%></h1>
         <p>Order status: <%=order.getStatus()%></p>

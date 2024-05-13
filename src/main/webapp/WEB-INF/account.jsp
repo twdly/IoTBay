@@ -5,6 +5,8 @@
     <head>
         <title>IoTBay - Account</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
@@ -18,16 +20,21 @@
             <h1>Your account</h1>
             <div class="btn-group">
                 <a href="update-account">
-                    <button class="btn-outline-light">Update Account Details</button>
+                    <button class="general-buttons btn-outline-light">Update Account Details</button>
                 </a>
                 <a href="orders">
-                    <button class="btn-outline-light">
+                    <button class="general-buttons btn-outline-dark">
                         View Recent Orders
                     </button>
                 </a>
                 <% if (user.getRole().equals(User.Role.Staff)) { %>
+                <a href="productCatalogue">
+                    <button class="general-buttons btn-outline-dark">
+                        Update Product Catalogue
+                    </button>
+                </a>
                 <a href="manage-orders">
-                    <button class="btn-outline-light">
+                    <button class="general-buttons btn-outline-dark">
                         Manage Orders
                     </button>
                 </a>

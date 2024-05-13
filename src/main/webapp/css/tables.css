@@ -1,0 +1,104 @@
+:root{
+    --colour-main: #4C2B36;
+    --colour-main-dark: #341D25;
+    --colour-light: #F4F4F9;
+    --colour-background-accent: #DABEC6;
+    --font-body: 'Roboto', sans-serif;
+    --text-01: #000000;
+    --light-01: #F9F9F9;
+    --light-02: #FFFFFF;
+    --brand-01: #4C2B36;
+    --hover-timing: all 0.2s ease;
+    -webkit-font-smoothing: antialiased;
+    --pg-margin: 80px;
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(to bottom, white 80%, var(--colour-light)) fixed;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    display: grid;
+    overflow: scroll;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.page-heading{
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.display-table {
+    min-width: 60%;
+    max-width: 85%;
+    width: auto;
+    border-collapse: collapse;
+    margin: 1.2em auto;
+}
+
+.display-table th, .display-table td {
+    border: 1px solid var(--colour-main);
+    padding: 0.8rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.display-table th {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1.2rem;
+    background: var(--colour-main);
+    color: white;
+}
+
+#product-catalogue-table td:nth-child(6){
+    padding: 1.5em 0 1.5em 1.5em;
+    border: none;
+}
+
+.display-table td:last-child{
+    padding: 1.5em;
+    border: none;
+}
+
+.hidden {
+    display: none;
+}
+
+#add-new-product {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 3rem auto;
+    border: 1px solid black;
+    padding: 1.5rem;
+}
+
+#add-product-form-title{
+    margin: 0 auto 1.5rem;
+}
+
+#add-new-product label {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#add-new-product input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+}

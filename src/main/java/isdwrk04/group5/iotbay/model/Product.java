@@ -7,10 +7,11 @@ import java.nio.file.Paths;
 
 public class Product implements Serializable {
 
-	private final int id;
+	private int id;
 	private String name;
+	private String category;
+	private String description;
 	private double price;
-	private final String description;
 	private int stock;
 	private int quantity;
 
@@ -18,14 +19,12 @@ public class Product implements Serializable {
 	public String getName() {
 		return name;
 	}
-
-	public String getDescription() {
-		return description;
-	}
-
+	public String getCategory() { return category; }
+	public String getDescription() { return description; }
 	public String getPrice() {
 		return String.format("%.2f", price);
 	}
+	public int getStock() { return stock; }
 
 	public int getId() {
 		return this.id;
@@ -35,14 +34,12 @@ public class Product implements Serializable {
 		return quantity;
 	}
 
-	public int getStock() {
-		return stock;
-	}
-
 	// Setters
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public void setId(int id) { this.id = id; }
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
@@ -71,9 +68,20 @@ public class Product implements Serializable {
 	}
 
 	// Constructor
-	public Product(int id, String name, String description, double price, int stock) {
+	// this constructor is used when staff is adding a new product via the system as the ID has not yet been assigned
+	public Product(String name, String category, String description, double price, int stock) {
+		this.id = 0;
+		this.name = name;
+		this.category = category;
+		this.description = description;
+		this.price = price;
+		this.stock = stock;
+	}
+
+	public Product(int id, String name, String category, String description, double price, int stock) {
 		this.id = id;
 		this.name = name;
+		this.category = category;
 		this.description = description;
 		this.price = price;
 		this.stock = stock;
@@ -82,8 +90,9 @@ public class Product implements Serializable {
 	public Product() {
 		this.id = 0;
 		this.name = "";
-		this.price = 0;
+		this.category = "";
 		this.description = "";
+		this.price = 0;
 		this.stock = 0;
 	}
 
