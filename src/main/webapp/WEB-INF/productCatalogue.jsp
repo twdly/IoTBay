@@ -4,13 +4,16 @@
 <html>
 <head>
     <title>Product Catalogue</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tables.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/header.jsp"/>
-    <h1 id="product-catalogue-heading">Product Catalogue</h1>
-    <a href="account" style="color: blue">< Back</a>
-    <table id="product-catalogue-table">
+<a href="account"><button type="button" class="back-button">< Back</button></a>
+    <h1 class="page-heading">Product Catalogue</h1>
+    <table class="display-table" id="product-catalogue-table">
         <tr>
             <th>Product Name</th>
             <th>Product Category</th>

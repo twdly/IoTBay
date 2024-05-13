@@ -4,6 +4,14 @@
     --colour-light: #F4F4F9;
     --colour-background-accent: #DABEC6;
     --font-body: 'Roboto', sans-serif;
+    --text-01: #000000;
+    --light-01: #F9F9F9;
+    --light-02: #FFFFFF;
+    --brand-01: #4C2B36;
+    --hover-timing: all 0.2s ease;
+    -webkit-font-smoothing: antialiased;
+    --pg-margin: 80px;
+    scroll-behavior: smooth;
 }
 
 * {
@@ -20,154 +28,8 @@ body {
     overflow: scroll;
 }
 
-header {
-    position: fixed;
-    top: 0;
-    height: 5.5rem;
-    width: 100%;
-    z-index: 1000;
-    background-color: var(--colour-main);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-header h1 {
-    color: white;
-    font-size: 2.5rem;
-    padding: 0 1em;
-}
-
-header a {
+a {
     text-decoration: none;
-}
-
-.product-category-dropdown{
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-button {
-    background: var(--colour-main);
-    border: 1px solid white;
-    width: 12.5em;
-    height: 3em;
-    padding: 0.5em 1em;
-    font-family: var(--font-body);
-    font-size: 1.1em;
-    font-weight: 500;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    cursor: pointer;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 0.8em 1.2em;
-    text-decoration: none;
-    color: black;
-}
-
-.dropdown-content a:first-child {
-    margin-top: 0.5em;
-}
-
-.dropdown-content a:last-child {
-    margin-bottom: 1em;
-}
-
-.dropdown-content a:hover {
-    text-decoration: underline;
-    color: var(--colour-main);
-}
-
-.product-category-dropdown:hover .dropdown-content{
-    display: block;
-}
-
-.search-box {
-    position: relative;
-    width: 20em;
-    height: 3em;
-    border-radius: 0.1rem;
-    border: 1px solid #848484;
-    background: #F7F7F7;
-    margin: 0 1em;
-}
-
-.search-box input {
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    border: none;
-    padding: 1em;
-    font-size: 1rem;
-    background: none;
-}
-
-.search-box input:focus {
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-    border-radius: 0.1rem;
-}
-
-.search-button {
-    position: absolute;
-    right: 1em;
-    top: 1em;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.search-button i {
-    font-size: 1.5em;
-}
-
-.register-or-login{
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    color: white;
-}
-
-.register-or-login a{
-    text-decoration: none;
-    font-weight: 500;
-    color: white;
-}
-
-.register-or-login a:hover{
-    cursor: pointer;
-}
-
-.shopping-cart-button {
-    width: 7.8em;
-    height: 3em;
-    border-radius: 3rem;
-    border: 0.1px solid #848484;
-    background: #F7F7F7;
-    font-family: var(--font-body);
-    font-size: 1.1em;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-.shopping-cart-button:hover {
-    border: 1px solid var(--colour-main);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background: white;
-    cursor: pointer;
 }
 
 .hero {
@@ -266,144 +128,30 @@ header a {
     align-self: flex-end;
 }
 
-.add-to-cart-button{
-    width: 8em;
-    min-height: 2.8em;
-    border-style: none;
-    border-radius: 3rem;
-    background: var(--colour-main);
-    font-family: var(--font-body);
-    color: white;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-.add-to-cart-button:hover {
-    background: var(--colour-main-dark);
-    cursor: pointer;
-}
-
 .text-display {
-    padding-top: 100px;
+    margin-top: 7.5rem;
 }
 
-#product-catalogue-heading{
-    margin: 7.5rem auto 1rem;
-}
-
-#product-catalogue-table {
-    min-width: 60%;
-    max-width: 85%;
-    width: auto;
-    border-collapse: collapse;
-    margin: 1.2em auto;
-}
-
-#product-catalogue-table th, #product-catalogue-table td {
-    border: 1px solid var(--colour-main);
-    padding: 0.8rem;
-    text-align: center;
-    font-size: 1rem;
-}
-
-#product-catalogue-table th {
-    font-size: 1.2rem;
-    font-weight: 600;
-    padding: 1.2rem;
-}
-
-#product-catalogue-table td:nth-child(6){
-    padding: 1.5em 0 1.5em 1.5em;
-    border: none;
-}
-
-#product-catalogue-table td:last-child {
-    padding: 1.5em;
-    border: none;
-}
-
-.table-button {
-    border: 1px solid var(--colour-main);
-    color: black;
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 0.8rem 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.table-button:hover {
-    background: var(--colour-main);
-    color: white;
-}
-
-.add-product-button {
-    border: 1px solid var(--colour-main);
-    color: black;
-    font-size: 1rem;
-    width: fit-content;
-    padding: 1rem;
+#total-price {
     margin: 2rem auto;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    text-align: right;
 }
 
-.add-product-button:hover {
-    background: var(--colour-main);
-    color: white;
+#cart {
+    max-width: 70%;
+    margin: auto;
 }
 
-.hidden {
-    display: none;
+#empty-cart {
+    text-align: center;
 }
 
-#add-new-product {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    max-width: 400px;
-    margin: 3rem auto;
-    border: 1px solid black;
-    padding: 1.5rem;
-}
-
-#add-product-form-title{
-    margin: 0 auto 1.5rem;
-}
-
-#add-new-product label {
+#empty-cart h1{
     margin-bottom: 1rem;
-    font-size: 1rem;
-    font-weight: 500;
+    margin-top: 3rem;
 }
 
-#add-new-product input[type="text"] {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid black;
-    box-sizing: border-box;
-    margin-top: 0.5rem;
-}
-
-#submit-add-product-button {
-    border: 1px solid var(--colour-main);
-    color: black;
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 0.8rem 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#submit-add-product-button:hover {
-    background: var(--colour-main);
-    color: white;
+#empty-cart a{
+    font-weight: 600;
+    text-decoration: underline;
 }
