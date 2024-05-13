@@ -1,9 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="isdwrk04.group5.iotbay.model.Product" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Iterator" %>
 <%@ page import="isdwrk04.group5.iotbay.model.User" %>
+<%@ page import="isdwrk04.group5.iotbay.model.Cart" %>
 
 <header>
     <div class="logo">
@@ -18,7 +16,7 @@
         <div class="dropdown-content">
             <%--@elvariable id="productCategories" type="java.util.List"--%>
             <c:forEach items="${productCategories}" var="category">
-                <a href="?category=${category}">${category}</a>
+                <a href="${pageContext.request.contextPath}/search?category=${category}">${category}</a>
             </c:forEach>
         </div>
     </div>
@@ -40,10 +38,16 @@
         <a href="register">Register</a> | <a href="login">Login</a>
         <% } %>
     </div>
-
-    <button class ="shopping-cart-button">
-        <i class="fas fa-shopping-cart"></i>
-        $9999.99
-    </button>
+    <a href="cart">
+        <button class ="shopping-cart-button" >
+            <i class="fas fa-shopping-cart"></i>
+            <% Cart cart = (Cart) request.getSession().getAttribute("cart");%>
+            <% if (cart == null) { %>
+            $0.00
+            <% } else { %>
+            $<%=cart.getTotalPrice()%>
+            <% } %>
+        </button>
+    </a>
 
 </header>

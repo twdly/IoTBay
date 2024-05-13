@@ -19,7 +19,8 @@ public class Order implements Serializable {
     public enum Status {
         Processing,
         Shipped,
-        ReadyToCollect
+        ReadyToCollect,
+        Cancelled
     }
 
     public enum Method {
@@ -56,6 +57,14 @@ public class Order implements Serializable {
         return id;
     }
 
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public Status getStatus() {
         return status;
     }
@@ -70,5 +79,33 @@ public class Order implements Serializable {
 
     public int getUserId() {
         return userId;
+    }
+
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    public int getCollectionId() {
+        return collectionId;
+    }
+
+    public int getDeliveryId() {
+        return deliveryId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public void setMethod(Method method) {
+        this.method = method;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
