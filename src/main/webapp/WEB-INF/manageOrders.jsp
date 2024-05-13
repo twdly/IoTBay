@@ -10,6 +10,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <main class="text-display">
+    <a href="account" style="color: blue">< Back</a>
     <h1>Processing Orders:</h1>
     <form method="post" action="manage-orders">
     <table>

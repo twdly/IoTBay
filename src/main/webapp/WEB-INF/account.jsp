@@ -1,3 +1,4 @@
+<%@ page import="isdwrk04.group5.iotbay.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <% User user = (User) request.getSession().getAttribute("user");%>
 <html>

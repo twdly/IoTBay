@@ -9,6 +9,7 @@
 <body>
 <jsp:include page="/WEB-INF/header.jsp"/>
     <h1 id="product-catalogue-heading">Product Catalogue</h1>
+    <a href="account" style="color: blue">< Back</a>
     <table id="product-catalogue-table">
         <tr>
             <th>Product Name</th>

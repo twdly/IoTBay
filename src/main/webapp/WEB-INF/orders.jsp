@@ -1,6 +1,7 @@
 <%@ page import="isdwrk04.group5.iotbay.model.Order" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<% List<Order> orders = (List<Order>) request.getAttribute("orders"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,6 +50,9 @@
             </symbol>
         </svg>
         <a href="account" style="color: blue">< Back</a>
+        <% if (orders.isEmpty()) { %>
+            <h1>You have not placed any orders.</h1>
+        <% } else { %>
         <table>
             <tr>
                 <td>Order ID</td>
@@ -57,7 +61,7 @@
                 <td>Method</td>
                 <td></td>
             </tr>
-                <% for (Order order : (List<Order>) request.getAttribute("orders")) { %>
+                <% for (Order order : orders) { %>
                     <tr>
                         <td><%=order.getId()%></td>
                         <td><%=order.getOrderDate()%></td>
@@ -73,5 +77,6 @@
                     </tr>
                 <%}%>
         </table>
+        <% } %>
     </body>
 </html>
