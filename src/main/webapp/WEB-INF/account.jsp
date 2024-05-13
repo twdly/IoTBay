@@ -22,13 +22,11 @@
                 <a href="update-account">
                     <button class="general-buttons btn-outline-light">Update Account Details</button>
                 </a>
-                <% if (user.getRole().equals(User.Role.Customer)) { %>
                 <a href="orders">
                     <button class="general-buttons btn-outline-dark">
                         View Recent Orders
                     </button>
                 </a>
-                <% } %>
                 <% if (user.getRole().equals(User.Role.Staff)) { %>
                 <a href="productCatalogue">
                     <button class="general-buttons btn-outline-dark">
