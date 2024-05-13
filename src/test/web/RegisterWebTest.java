@@ -50,7 +50,7 @@ public class RegisterWebTest extends BaseWebTest {
 
     @AfterEach
     public void after() {
-        driver.findElement(By.className("logout-link")).click();
+        driver.findElement(By.className("btn-outline-light")).click();
         userDao.deleteUser("test@gmail.com");
     }
 }
