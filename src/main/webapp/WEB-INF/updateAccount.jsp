@@ -19,7 +19,8 @@
         </svg>
         <a href="account" style="color: blue">< Back</a>
         <h2>Account details:</h2>
-        <form id="accountForm" action="register" method="post">
+        <form id="accountForm" action="update-account" method="post">
+            <input type="hidden" name="action" value="updateDetails">
             <div class="form-element">
                 <label class="form-element" for="email">Email:</label>
                 <input type="email" id="email" name="email" value=<%=user.getEmail()%>>
@@ -32,9 +33,14 @@
                 <label class="form-element" for="lastname">Last name:</label>
                 <input type="text" id="lastname" name="lastname" value=<%=user.getUsername().split(" ")[1]%>>
             </div>
+            <div class="form-element">
+                <label class="form-element" for="phoneNumber">Phone number:</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" value=<%=user.getPhoneNo()%>>
+            </div>
+            <button type="submit">Update details</button>
         </form>
-        <button>Update details</button>
         <form id="passwordForm">
+            <input type="hidden" name="action" value="updatePassword">
             <h2>Change password:</h2>
             <div class="form-element">
                 <label class="form-element" for="password">Password:</label>
@@ -44,7 +50,7 @@
                 <label class="form-element" for="passwordCheck">Re-enter password:</label>
                 <input type="password" id="passwordCheck" name="passwordCheck">
             </div>
+            <button type="submit">Change password</button>
         </form>
-        <button>Change password</button>
     </body>
 </html>
