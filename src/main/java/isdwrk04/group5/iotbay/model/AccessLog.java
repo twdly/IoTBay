@@ -36,4 +36,8 @@ public class AccessLog implements Serializable {
         return eventTime;
     }
 
+    public void setLogId(int id) {
+        this.logId = id;
+    }
+
 }

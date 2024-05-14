@@ -17,20 +17,21 @@ public class AccessLogDAO {
 
     public void insertLog(AccessLog log) {
         try {
-            Statement statement = connection.createStatement();
-            statement.execute("insert into \"ACCESSLOG\" VALUES (" + buildQuery(log) + ")");
+            int id = getNextLogId();
+            log.setLogId(id);
+            PreparedStatement statement = connection.prepareStatement("insert into \"ACCESSLOG\" values (?, ?, ?, ?)");
+            buildQuery(log, statement);
+            statement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private String buildQuery(AccessLog log) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(getNextLogId()).append(", ");
-        builder.append("'").append(log.getUserId()).append("', ");
-        builder.append("'").append(log.getEvent()).append("', ");
-        builder.append("'").append(log.getEventTime()).append("', ");
-        return builder.toString().trim();
+    private void buildQuery(AccessLog log, PreparedStatement statement) throws SQLException {
+        statement.setInt(1, getNextLogId());
+        statement.setInt(2, log.getUserId());
+        statement.setString(3, log.getEvent());
+        statement.setTimestamp(4, log.getEventTime());
     }
 
     private int getNextLogId() {
