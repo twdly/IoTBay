@@ -50,7 +50,7 @@ public class RegisterController extends BaseServlet {
         String passwordCheck = request.getParameter("passwordCheck");
         String phone = request.getParameter("phoneNumber");
 
-        if (validateRegistration(session, email, password, passwordCheck)) {
+        if (validateRegistration(session, email, password, passwordCheck, phone)) {
             byte[] salt = hashingService.createSalt();
             byte[] hashedPassword;
 
@@ -74,7 +74,7 @@ public class RegisterController extends BaseServlet {
     public void destroy() {
     }
 
-    private boolean validateRegistration(HttpSession session, String email, String password, String passwordCheck) {
+    private boolean validateRegistration(HttpSession session, String email, String password, String passwordCheck, String phone) {
         boolean isValid = true;
         List<String> errors = new ArrayList<>();
         if (!email.contains("@")) {
@@ -91,6 +91,10 @@ public class RegisterController extends BaseServlet {
         }
         if (password.length() < 8) {
             errors.add("Password is less than 8 characters");
+            isValid = false;
+        }
+        if (!phone.matches("\\d{10}")) {
+            errors.add("Phone number must be a 10-digit number.");
             isValid = false;
         }
 
