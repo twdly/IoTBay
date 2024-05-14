@@ -81,6 +81,14 @@ public class User implements Serializable {
         this.id = id;
     }
 
+//    public void setEmail(String email) {this.email = email;}
+
+//    public void setUsername(String name) {this.username = name;}
+
+//    public void setHashedPassword(byte[] hashedPassword) {this.hashedPassword = hashedPassword;}
+
+//    public void setSalt(byte[] salt) {this.salt = salt;}
+
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
