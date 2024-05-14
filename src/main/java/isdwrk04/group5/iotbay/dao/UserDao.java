@@ -28,14 +28,19 @@ public class UserDao {
         }
     }
 
-    public void updateUserDetails(User user) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("update \"USER\" set EMAIL_ADDRESS=?, PASSWORD_HASH=?, PASSWORD_SALT=?, NAME=?, PHONE=? where USER_ID=?");
-        statement.setString(1, user.getEmail());
-        statement.setString(2, Base64.getEncoder().encodeToString(user.getHashedPassword()));
-        statement.setString(3, Base64.getEncoder().encodeToString(user.getSalt()));
-        statement.setString(4, user.getUsername());
-        statement.setString(5, user.getPhoneNo());
-        statement.execute();
+    public void updateUserDetails(User user) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("update \"USER\" set EMAIL_ADDRESS=?, PASSWORD_HASH=?, PASSWORD_SALT=?, NAME=?, PHONE=? where USER_ID=?");
+            statement.setString(1, user.getEmail());
+            statement.setString(2, Base64.getEncoder().encodeToString(user.getHashedPassword()));
+            statement.setString(3, Base64.getEncoder().encodeToString(user.getSalt()));
+            statement.setString(4, user.getUsername());
+            statement.setString(5, user.getPhoneNo());
+            statement.setInt(6, user.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<User> getAllUsers() {
