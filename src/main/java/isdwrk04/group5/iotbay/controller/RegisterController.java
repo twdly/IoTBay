@@ -48,6 +48,7 @@ public class RegisterController extends BaseServlet {
         String name = request.getParameter("firstname") + " " + request.getParameter("lastname");
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
+        String phone = request.getParameter("phoneNumber");
 
         if (validateRegistration(session, email, password, passwordCheck)) {
             byte[] salt = hashingService.createSalt();
@@ -59,7 +60,7 @@ public class RegisterController extends BaseServlet {
                 throw new RuntimeException(e);
             }
 
-            User customer = new User(name, email, salt, hashedPassword, User.Role.Customer);
+            User customer = new User(name, email, salt, hashedPassword, User.Role.Customer, phone);
             userDao.addUser(customer);
             session.setAttribute("user", customer);
 
