@@ -1,0 +1,75 @@
+.side-bar {
+    position: fixed;
+    width: 250px;
+    padding-left: 25px;
+    top: 0;
+    bottom: 0;
+    background-color: #dce0dd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;/
+}
+
+nav {
+    margin: 50%;
+    width: 225px;
+}
+
+nav ul li{
+    line-height:50px;
+    list-style:none;
+}
+
+nav ul li a{
+    color:#000000;
+    font-weight: bold;
+}
+
+nav ul li a:hover{
+    color:#4C2B36;
+}
+
+.account-content{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 300px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-details {
+    margin-left: 10px;
+}
+
+.page-details {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.page-details h2{
+    margin-bottom: 20px;
+}
+
+.page-details p {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+svg#icon-profile {
+    width: 125px;
+    height: 125px;
+}
+
+.user-name {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.user-email {
+    font-size: 16px;
+}
