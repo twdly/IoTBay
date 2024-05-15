@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
@@ -56,6 +57,8 @@ public class UpdateAccountController extends BaseServlet {
             updateDetails(request, response, user, session);
         } else if ("updatePassword".equals(action)) {
             updatePassword(request, response, user, session);
+        } else if ("deactivate".equals(action)) {
+            deactivateAccount(request, response, user, session);
         } else {
             session.setAttribute("errors", Collections.singletonList("Invalid action."));
             serveJSP(request, response, "account.jsp");
@@ -96,6 +99,26 @@ public class UpdateAccountController extends BaseServlet {
             userDao.updateUserDetails(user);
             serveJSP(request, response, "account.jsp");
         }
+    }
+
+    public void deactivateAccount(HttpServletRequest request, HttpServletResponse response, User user, HttpSession session) {
+        String str = "deleted";
+        byte[] byteArray = str.getBytes(StandardCharsets.UTF_8);
+        user.setEmail(str);
+        user.setUsername(str);
+        user.setPhoneNo(str);
+        user.setHashedPassword(byteArray);
+        user.setSalt(byteArray);
+
+        userDao.updateUserDetails(user);
+        request.getSession(false).invalidate();
+
+        try {
+            response.sendRedirect(request.getContextPath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private boolean validateDetails(HttpSession session, String email, String name, String phone) {

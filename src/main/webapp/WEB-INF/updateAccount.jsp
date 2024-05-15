@@ -52,5 +52,9 @@
             </div>
             <button type="submit">Change password</button>
         </form>
+        <form id="deactivateForm" action="update-account" method="post">
+            <input type="hidden" name="action" value="deactivate">
+            <button type="submit" onclick="return confirm('Are you sure you want to deactivate your account?')">Deactivate Account</button>
+        </form>
     </body>
 </html>
