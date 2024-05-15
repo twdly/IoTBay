@@ -16,8 +16,7 @@ public class PaymentDetails implements Serializable {
 
     public enum Method {
         Credit,
-        Transfer,
-        PayPal
+        Debit,
     }
 
     public enum Status {
