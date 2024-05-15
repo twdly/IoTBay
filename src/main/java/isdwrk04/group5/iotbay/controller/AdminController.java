@@ -18,7 +18,7 @@ public class AdminController extends BaseServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		OrderDao dao = new OrderDao();
-		List<Order> orders = dao.getOrderByStatus(Order.Status.Processing);
+		List<Order> orders = dao.getAllOrders();
 		request.setAttribute("orders" ,orders);
 		serveJSP(request, response, "admin.jsp");
 	}

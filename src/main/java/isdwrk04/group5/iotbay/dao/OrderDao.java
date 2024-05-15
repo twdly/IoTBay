@@ -175,4 +175,19 @@ public class OrderDao {
         result.next();
         return result.getInt("ID") + 1;
     }
+
+    public List<Order> getAllOrders() {
+    List<Order> orders = new ArrayList<>();
+    try {
+        PreparedStatement statement = connection.prepareStatement("select * from \"ORDER\"");
+        ResultSet results = statement.executeQuery();
+        while (results.next()) {
+            orders.add(createOrderFromResult(results));
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+    return orders;
+}
+
 }
