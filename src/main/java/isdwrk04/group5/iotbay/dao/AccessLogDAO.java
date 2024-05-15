@@ -45,6 +45,21 @@ public class AccessLogDAO {
         }
     }
 
+    public List<AccessLog> getLogsByUser(int id) {
+        List<AccessLog> logs = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from ACCESSLOG where USER_ID = ?");
+            statement.setInt(1, id);
+            ResultSet results = statement.executeQuery();
+            while (results.next()) {
+                logs.add(createAccessLogFromResult(results));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return logs;
+    }
+
     public List<AccessLog> getAllLogs() {
         List<AccessLog> logs = new ArrayList<>();
         try {

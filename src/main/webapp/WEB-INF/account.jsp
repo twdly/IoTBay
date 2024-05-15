@@ -1,4 +1,7 @@
 <%@ page import="isdwrk04.group5.iotbay.model.User" %>
+<%@ page import="isdwrk04.group5.iotbay.model.AccessLog" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.time.LocalDateTime" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <% User user = (User) request.getSession().getAttribute("user");%>
 <html>
@@ -27,11 +30,10 @@
                 <li><a href="account">Your Account</a></li>
                 <li><a href="update-account">Update Account Details</a></li>
                 <li><a href="orders">View Recent Orders</a></li>
-                <li><a href="orders">Your Access Logs </a></li>
-<%--                <% if (user.getRole().equals(User.Role.Staff)) { %>&ndash;%&gt;--%>
+                <% if (user.getRole().equals(User.Role.Staff)) { %>--%>
                 <li><a href="productCatalogue">Update Product Catalogue</a></li>
                 <li><a href="manage-orders">Manage Orders</a></li>
-<%--                <% } %>--%>
+                <% } %>
             </ul>
         </nav>
     </div>
@@ -46,14 +48,39 @@
                 <div class="user-email"><%= user.getEmail() %></div>
             </div>
         </div>
-        <div class="page-details">
-            <h2>Your Account</h2>
-            <p>Welcome to your IoTBay account page! Here, you can take various actions to manage your account and explore our services. You can update your personal information, such as your contact details and preferences, view your order history, track your shipments, and manage your saved items. Simply click on the links in the sidebar to take action.</p>
-            <h2>Emails</h2>
-            <p>You will only receive emails from IoTBay at your provided email address. Our emails will contain important updates about your account, promotions, and other relevant information related to your interactions with IoTBay.</p>
-            <p>You will only receive emails from IoTBay at your provided email address. We value your privacy and will never share your email with third parties without your consent.</p>
-            <h2>Access Logs</h2>
-            <p>Monitor and track your interactions with IoTBay. These logs provide a detailed record of your login and logout activities, giving you insights into when and how you accessed the platform.</p>
+        <br>
+        <div class="filter-by-date">
+            <form>
+                <input type="date">
+                <button class="filter-btn" type="submit" onclick="">Filter</button>
+            </form>
+        </div>
+        <div class="log-table">
+            <table class="log-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Event</th>
+                        <th>Event Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <% if (request.getAttribute("userLogs") != null) {
+                    for (AccessLog log : (List<AccessLog>) request.getAttribute("userLogs")) {
+                        LocalDateTime dateTime = log.getEventTime().toLocalDateTime();
+                        String date = dateTime.toLocalDate().toString();
+                        String time = dateTime.toLocalTime().toString();%>
+                <tbody>
+                    <tr>
+                        <td><%=user.getUsername()%></td>
+                        <td><%=log.getEvent()%></td>
+                        <td><%=date%></td>
+                        <td><%=time%></td>
+                    </tr>
+                </tbody>
+                <%}
+                }%>
+            </table>
         </div>
     </div>
     </body>
