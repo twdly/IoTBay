@@ -2,19 +2,34 @@ package isdwrk04.group5.iotbay.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class AccessLog implements Serializable {
 
     private int logId;
 
-    private int userId;
+    private final int userId;
 
-    private String event;
+    private final String event;
 
-    private Timestamp eventTime;
+    private final Timestamp eventTime;
+
+    public AccessLog(int logId, int userId, String event) {
+        this.logId = logId;
+        this.userId = userId;
+        this.event = event;
+        this.eventTime = Timestamp.valueOf(LocalDateTime.now());
+    }
+
+    public AccessLog(int userId, String event) {
+        this.logId = 0;
+        this.userId = userId;
+        this.event = event;
+        this.eventTime = Timestamp.valueOf(LocalDateTime.now());
+    }
 
     public AccessLog(int logId, int userId, String event, Timestamp eventTime) {
-        this.logId = logId;
+        this.logId = 0;
         this.userId = userId;
         this.event = event;
         this.eventTime = eventTime;
@@ -24,9 +39,7 @@ public class AccessLog implements Serializable {
         return logId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
+    public int getUserId() { return userId; }
 
     public String getEvent() {
         return event;
