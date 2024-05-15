@@ -24,7 +24,7 @@ public class LogoutController extends BaseServlet {
         User user = (User) session.getAttribute("user");
 
         request.getSession(false).invalidate();
-        AccessLog log = new AccessLog(user.getId(), "login");
+        AccessLog log = new AccessLog(user.getId(), "logout");
         logDao.insertLog(log);
 
         try {

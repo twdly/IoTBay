@@ -73,7 +73,7 @@
                             <label class="form-element" for="phoneNumber">Phone number</label>
                             <input type="text" id="phoneNumber" name="phoneNumber" value=<%=user.getPhoneNo()%>>
                         </div>
-                        <button class="general-buttons" type="submit" onclick="updateDetails()">Update details</button>
+                        <button class="general-buttons" type="submit">Update details</button>
                     </form>
                 </div>
                 <div class="password-form">
@@ -100,7 +100,7 @@
                             <label class="form-element" for="passwordCheck">Re-enter password</label>
                             <input type="password" id="passwordCheck" name="passwordCheck">
                         </div>
-                        <button class="general-buttons" type="submit" onclick="updatePassword()">Change password</button>
+                        <button class="general-buttons" type="submit">Change password</button>
                     </form>
                 </div>
             </div>

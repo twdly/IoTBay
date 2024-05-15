@@ -1,7 +1,6 @@
 package isdwrk04.group5.iotbay.controller;
 
 import isdwrk04.group5.iotbay.dao.AccessLogDAO;
-import isdwrk04.group5.iotbay.dao.UserDao;
 import isdwrk04.group5.iotbay.model.AccessLog;
 import isdwrk04.group5.iotbay.model.User;
 
@@ -18,12 +17,10 @@ import java.util.List;
 public class AccountController extends BaseServlet {
 
     private AccessLogDAO logDao;
-    private UserDao userDao;
 
     @Override
     public void init() {
         this.logDao = new AccessLogDAO();
-        this.userDao = new UserDao();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,6 +36,21 @@ public class AccountController extends BaseServlet {
             request.setAttribute("userLogs", userLogs);
             serveJSP(request, response, "account.jsp");
         }
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        String date = request.getParameter("date");
+        int id = user.getId();
+        List<AccessLog> userLogs;
+        if (date.equals("")) {
+            userLogs = logDao.getLogsByUser(id);
+        } else {
+            userLogs = logDao.getLogsByDate(id, date);
+        }
+        request.setAttribute("userLogs", userLogs);
+        serveJSP(request, response, "account.jsp");
+
     }
 
     public void destroy() {

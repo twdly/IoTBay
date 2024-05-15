@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
@@ -61,7 +60,7 @@ public class UpdateAccountController extends BaseServlet {
             deactivateAccount(request, response, user, session);
         } else {
             session.setAttribute("errors", Collections.singletonList("Invalid action."));
-            serveJSP(request, response, "account.jsp");
+            serveJSP(request, response, "updateAccount.jsp");
         }
     }
 
@@ -76,7 +75,7 @@ public class UpdateAccountController extends BaseServlet {
             user.setUsername(name);
             user.setPhoneNo(phone);
             userDao.updateUserDetails(user);
-            serveJSP(request, response, "account.jsp");
+            serveJSP(request, response, "updateAccount.jsp");
         } else {
             serveJSP(request, response, "updateAccount.jsp");
         }
@@ -99,7 +98,7 @@ public class UpdateAccountController extends BaseServlet {
             user.setHashedPassword(hashedPassword);
             user.setSalt(salt);
             userDao.updateUserDetails(user);
-            serveJSP(request, response, "account.jsp");
+            serveJSP(request, response, "updateAccount.jsp");
         } else {
             serveJSP(request, response, "updateAccount.jsp");
         }

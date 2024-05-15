@@ -64,7 +64,6 @@ svg#icon-profile {
     font-size: 16px;
 }
 
-
 .form-element {
     margin-bottom: 10px;
 }
@@ -84,6 +83,7 @@ input {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
+    width: 80%;
 }
 
 .password-form {
@@ -130,10 +130,6 @@ form button {
 .log-table th,
 .log-table td {
     padding: 12px 15px;
-}
-
-th {
-    position: sticky;
 }
 
 .log-table tbody tr:hover {

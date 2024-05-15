@@ -50,9 +50,9 @@
         </div>
         <br>
         <div class="filter-by-date">
-            <form>
-                <input type="date">
-                <button class="filter-btn" type="submit" onclick="">Filter</button>
+            <form id="filter-logs" action="account" method="post">
+                <input id="date" name="date" type="date">
+                <button class="filter-btn" type="submit">Filter</button>
             </form>
         </div>
         <div class="log-table">
@@ -65,7 +65,7 @@
                         <th>Time</th>
                     </tr>
                 </thead>
-                <% if (request.getAttribute("userLogs") != null) {
+                <% if (request.getAttribute("userLogs") != null && request.getAttribute("userLogs") instanceof List) {
                     for (AccessLog log : (List<AccessLog>) request.getAttribute("userLogs")) {
                         LocalDateTime dateTime = log.getEventTime().toLocalDateTime();
                         String date = dateTime.toLocalDate().toString();
