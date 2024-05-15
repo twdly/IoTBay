@@ -69,8 +69,8 @@ public class UpdateAccountController extends BaseServlet {
         String phone = request.getParameter("phoneNumber");
 
         if (validateDetails(session, email, name, phone)) {
-//            user.setEmail(email);
-//            user.setUsername(name);
+            user.setEmail(email);
+            user.setUsername(name);
             user.setPhoneNo(phone);
             userDao.updateUserDetails(user);
             serveJSP(request, response, "account.jsp");
@@ -91,8 +91,8 @@ public class UpdateAccountController extends BaseServlet {
                 throw new RuntimeException(e);
             }
 
-//            user.setHashedPassword(hashedPassword);
-//            user.setSalt(salt);
+            user.setHashedPassword(hashedPassword);
+            user.setSalt(salt);
             userDao.updateUserDetails(user);
             serveJSP(request, response, "account.jsp");
         }

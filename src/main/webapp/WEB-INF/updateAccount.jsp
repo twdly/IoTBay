@@ -39,7 +39,7 @@
             </div>
             <button type="submit">Update details</button>
         </form>
-        <form id="passwordForm">
+        <form id="passwordForm" action="update-account" method="post">
             <input type="hidden" name="action" value="updatePassword">
             <h2>Change password:</h2>
             <div class="form-element">

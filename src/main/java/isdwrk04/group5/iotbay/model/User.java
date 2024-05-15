@@ -5,11 +5,11 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private int id;
-    private final String username;
-    private final String email;
-    private final byte[] hashedPassword;
-    private final byte[] salt;
-    private final Role role;
+    private String username;
+    private String email;
+    private byte[] hashedPassword;
+    private byte[] salt;
+    private Role role;
     private String phoneNo;
 
     public enum Role {
@@ -81,13 +81,13 @@ public class User implements Serializable {
         this.id = id;
     }
 
-//    public void setEmail(String email) {this.email = email;}
+    public void setEmail(String email) {this.email = email;}
 
-//    public void setUsername(String name) {this.username = name;}
+    public void setUsername(String name) {this.username = name;}
 
-//    public void setHashedPassword(byte[] hashedPassword) {this.hashedPassword = hashedPassword;}
+    public void setHashedPassword(byte[] hashedPassword) {this.hashedPassword = hashedPassword;}
 
-//    public void setSalt(byte[] salt) {this.salt = salt;}
+    public void setSalt(byte[] salt) {this.salt = salt;}
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
