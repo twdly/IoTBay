@@ -1,5 +1,6 @@
 set schema APP;
 
+drop table ACCESSLOG;
 drop table ORDERLINE;
 drop table SAVEDDELIVERYADDRESS;
 drop table SAVEDPAYMENTDETAILS;
