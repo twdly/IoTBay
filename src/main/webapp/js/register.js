@@ -1,6 +1,7 @@
 function register() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
+    let phone = document.getElementById("phoneNumber").value;
     let passwordCheck = document.getElementById("passwordCheck").value;
 
     let errorList = ""
@@ -17,6 +18,10 @@ function register() {
     if (email.indexOf('@') === -1) {
         isValid = false;
         errorList += "Email is not valid<br/>"
+    }
+    if (!phone.matches("\\d{10}")) {
+        isValid = false;
+        errorList += "Phone number must be a 10-digit number.<br/>"
     }
 
     if (isValid) {

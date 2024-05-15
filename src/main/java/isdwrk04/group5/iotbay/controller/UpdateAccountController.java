@@ -77,6 +77,8 @@ public class UpdateAccountController extends BaseServlet {
             user.setPhoneNo(phone);
             userDao.updateUserDetails(user);
             serveJSP(request, response, "account.jsp");
+        } else {
+            serveJSP(request, response, "updateAccount.jsp");
         }
     }
 
@@ -98,6 +100,8 @@ public class UpdateAccountController extends BaseServlet {
             user.setSalt(salt);
             userDao.updateUserDetails(user);
             serveJSP(request, response, "account.jsp");
+        } else {
+            serveJSP(request, response, "updateAccount.jsp");
         }
     }
 
@@ -128,12 +132,8 @@ public class UpdateAccountController extends BaseServlet {
             errors.add("Email is not valid");
             isValid = false;
         }
-        if (userDao.getUserByEmail(email) != null) {
-            errors.add("This email has already been used");
-            isValid = false;
-        }
-        if (!phone.matches("\\d{10}")) {
-            errors.add("Phone number must be a 10-digit number.");
+        if (!phone.matches("\\d{10}") || phone.length() != 10) {
+            errors.add("Phone number can only contain 10-digit number.");
             isValid = false;
         }
         if (!isValid) {

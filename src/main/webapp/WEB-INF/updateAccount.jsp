@@ -1,4 +1,5 @@
 <%@ page import="isdwrk04.group5.iotbay.model.User" %>
+<%@ page import="java.util.List" %>
 <% User user = (User)session.getAttribute("user"); %>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -19,6 +20,17 @@
         </svg>
         <a href="account" style="color: blue">< Back</a>
         <h2>Account details:</h2>
+        <p id="errors" class="error"></p>
+        <% if (session.getAttribute("errors") != null) {
+            List<String> errors = (List<String>)session.getAttribute("errors");
+        %>
+        <div id="sessionErrors" class="error">
+            <% for (String error : errors) { %>
+            <p><%=error%></p>
+            <% } %>
+        </div>
+        <%session.removeAttribute("errors");
+        } %>
         <form id="accountForm" action="update-account" method="post">
             <input type="hidden" name="action" value="updateDetails">
             <div class="form-element">
@@ -37,7 +49,7 @@
                 <label class="form-element" for="phoneNumber">Phone number:</label>
                 <input type="text" id="phoneNumber" name="phoneNumber" value=<%=user.getPhoneNo()%>>
             </div>
-            <button type="submit">Update details</button>
+            <button type="submit" onclick="updateDetails()">Update details</button>
         </form>
         <form id="passwordForm" action="update-account" method="post">
             <input type="hidden" name="action" value="updatePassword">
@@ -50,7 +62,7 @@
                 <label class="form-element" for="passwordCheck">Re-enter password:</label>
                 <input type="password" id="passwordCheck" name="passwordCheck">
             </div>
-            <button type="submit">Change password</button>
+            <button type="submit" onclick="updatePassword()">Change password</button>
         </form>
         <form id="deactivateForm" action="update-account" method="post">
             <input type="hidden" name="action" value="deactivate">
