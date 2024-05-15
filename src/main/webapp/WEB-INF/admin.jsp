@@ -5,18 +5,13 @@
 <html>
 	<head>
 		<title>IoTBay - Admin Panel</title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tables.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/admin.css">
 	</head>
 	<body>
 		<main>
-			<a href="account"><button type="button" class="back-button">< Back</button></a>
-			<h1 class="page-heading">Processing Orders:</h1>
-			<form method="post" action="manage-orders">
-				<table class="display-table">
+			<div class="container">
+				<h2 class="heading">Orders</h2>
+				<table id="orders-table">
 					<tr>
 						<th>Order ID</th>
 						<th>Customer Name</th>
@@ -30,7 +25,7 @@
 						</tr>
 					<% } %>
 				</table>
-			</form>
+			</div>
 		</main>
 	</body>
 </html>
