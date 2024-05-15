@@ -52,7 +52,7 @@
         <div class="filter-by-date">
             <form id="filter-logs" action="account" method="post">
                 <input id="date" name="date" type="date">
-                <button class="filter-btn" type="submit">Filter</button>
+                <button class="filter-btn" type="submit">Filter/Clear</button>
             </form>
         </div>
         <div class="log-table">

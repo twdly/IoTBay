@@ -100,6 +100,7 @@ form button {
     color: white;
     border: none;
     cursor: pointer;
+    margin: 15px 0px;
 }
 
 .error {
