@@ -14,13 +14,6 @@ public class AccessLog implements Serializable {
 
     private final Timestamp eventTime;
 
-    public AccessLog(int logId, int userId, String event) {
-        this.logId = logId;
-        this.userId = userId;
-        this.event = event;
-        this.eventTime = Timestamp.valueOf(LocalDateTime.now());
-    }
-
     public AccessLog(int userId, String event) {
         this.logId = 0;
         this.userId = userId;
@@ -29,7 +22,7 @@ public class AccessLog implements Serializable {
     }
 
     public AccessLog(int logId, int userId, String event, Timestamp eventTime) {
-        this.logId = 0;
+        this.logId = logId;
         this.userId = userId;
         this.event = event;
         this.eventTime = eventTime;
