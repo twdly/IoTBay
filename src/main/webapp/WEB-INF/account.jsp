@@ -65,8 +65,7 @@
                         <th>Time</th>
                     </tr>
                 </thead>
-                <% if (request.getAttribute("userLogs") != null && request.getAttribute("userLogs") instanceof List) {
-                    for (AccessLog log : (List<AccessLog>) request.getAttribute("userLogs")) {
+                <%for (AccessLog log : (List<AccessLog>) request.getAttribute("userLogs")) {
                         LocalDateTime dateTime = log.getEventTime().toLocalDateTime();
                         String date = dateTime.toLocalDate().toString();
                         String time = dateTime.toLocalTime().toString();%>
@@ -78,8 +77,7 @@
                         <td><%=time%></td>
                     </tr>
                 </tbody>
-                <%}
-                }%>
+                <%}%>
             </table>
         </div>
     </div>
