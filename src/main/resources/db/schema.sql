@@ -15,6 +15,7 @@ create table PRODUCT
 (
     Product_ID INTEGER primary key,
     Product_Name VARCHAR(255) not null,
+    Product_Category VARCHAR(255) not null,
     Product_Description VARCHAR(25565),
     Product_Price float,
     Product_Stock INTEGER
