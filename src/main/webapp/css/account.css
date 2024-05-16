@@ -94,7 +94,7 @@ input {
     width: 300px;
 }
 
-form button {
+.filter-by-date form button {
     padding: 5px 15px;
     background-color: #4C2B36;
     color: white;
