@@ -28,13 +28,28 @@ public class UserDao {
         }
     }
 
+    public void updateUserDetails(User user) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("update \"USER\" set EMAIL_ADDRESS=?, PASSWORD_HASH=?, PASSWORD_SALT=?, NAME=?, PHONE=? where USER_ID=?");
+            statement.setString(1, user.getEmail());
+            statement.setString(2, Base64.getEncoder().encodeToString(user.getHashedPassword()));
+            statement.setString(3, Base64.getEncoder().encodeToString(user.getSalt()));
+            statement.setString(4, user.getUsername());
+            statement.setString(5, user.getPhoneNo());
+            statement.setInt(6, user.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("select * from \"USER\"");
             while (results.next()) {
-                users.add(new User(results.getInt("USER_ID"), results.getString("NAME"), results.getString("EMAIL_ADDRESS"), Base64.getDecoder().decode(results.getString("PASSWORD_HASH")), Base64.getDecoder().decode(results.getString("PASSWORD_SALT")), getRoleFromString(results.getString("USER_TYPE"))));
+                users.add(new User(results.getInt("USER_ID"), results.getString("NAME"), results.getString("EMAIL_ADDRESS"), Base64.getDecoder().decode(results.getString("PASSWORD_HASH")), Base64.getDecoder().decode(results.getString("PASSWORD_SALT")), getRoleFromString(results.getString("USER_TYPE")), results.getString("PHONE")));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -42,9 +57,22 @@ public class UserDao {
         return users;
     }
 
+    // This method is used for testing only
     public void deleteUser(String email) {
         try {
-            PreparedStatement statement = connection.prepareStatement("delete from \"USER\" where EMAIL_ADDRESS=?");
+            PreparedStatement statement = connection.prepareStatement("select USER_ID as ID from \"USER\" where EMAIL_ADDRESS=?");
+            statement.setString(1, email);
+            ResultSet results = statement.executeQuery();
+            int id = 0;
+            if (results.next()) {
+                id = results.getInt("ID");
+            }
+
+            statement = connection.prepareStatement("delete from \"ACCESSLOG\" where USER_ID=?");
+            statement.setInt(1, id);
+            statement.execute();
+
+            statement = connection.prepareStatement("delete from \"USER\" where EMAIL_ADDRESS=?");
             statement.setString(1, email);
             statement.execute();
         } catch (SQLException e) {
@@ -84,7 +112,7 @@ public class UserDao {
         statement.setString(3, Base64.getEncoder().encodeToString(user.getHashedPassword()));
         statement.setString(4, Base64.getEncoder().encodeToString(user.getSalt()));
         statement.setString(5, user.getUsername());
-        statement.setString(6, "92");
+        statement.setString(6, user.getPhoneNo());
         statement.setString(7, user.getRole().name());
     }
 }
