@@ -63,8 +63,10 @@ public class UserDao {
             PreparedStatement statement = connection.prepareStatement("select USER_ID as ID from \"USER\" where EMAIL_ADDRESS=?");
             statement.setString(1, email);
             ResultSet results = statement.executeQuery();
-            results.next();
-            int id = results.getInt("ID");
+            int id = 0;
+            if (results.next()) {
+                id = results.getInt("ID");
+            }
 
             statement = connection.prepareStatement("delete from \"ACCESSLOG\" where USER_ID=?");
             statement.setInt(1, id);
