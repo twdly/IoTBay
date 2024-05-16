@@ -20,6 +20,11 @@ public class AdminController extends BaseServlet {
 		OrderDao dao = new OrderDao();
 		List<Order> orders = dao.getAllOrders();
 		request.setAttribute("orders" ,orders);
+
+		UserDao dao = new UserDao();
+		List<User> users = dao.getAllUsers();
+		request.setAttribute("users" ,users);
+
 		serveJSP(request, response, "admin.jsp");
 	}
 

@@ -2,6 +2,7 @@
 <%@ page import="isdwrk04.group5.iotbay.model.Order" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <% List<Order> orders = (List<Order>) request.getAttribute("orders"); %>
+<% List<User> users = (List<User>) request.getAttribute("users"); %>
 <html>
 	<head>
 		<title>IoTBay - Admin Panel</title>
@@ -22,6 +23,23 @@
 							<td><%=order.getId()%></td>
 							<td><%=order.getName()%></td>
 							<td><%=order.getMethod()%></td>
+						</tr>
+					<% } %>
+				</table>
+				<h2 class-"heading">Users</h2>
+				<table id="users-table">
+					<tr>
+						<th>User ID</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>User Role</th>
+					</tr>
+					<% for (User user : users) { %>
+						<tr>
+							<td><%=user.getId()%></td>
+							<td><%=user.getUsername%></td>
+							<td><%=user.getEmail()%></td>
+							<td><%=user.getRole()%></td>
 						</tr>
 					<% } %>
 				</table>
