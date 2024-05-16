@@ -15,8 +15,20 @@ public class DeliveryAddress implements Serializable {
     }
 
     public DeliveryAddress() {
-        this.id = 0;
-        this.address = "";
-        this.cityId = 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setShipmentMethod(String shipmentMethod) {
     }
 }
