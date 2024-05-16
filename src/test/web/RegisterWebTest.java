@@ -25,6 +25,7 @@ public class RegisterWebTest extends BaseWebTest {
         driver.findElement(By.name("email")).sendKeys("test@gmail.com");
         driver.findElement(By.name("firstname")).sendKeys("first");
         driver.findElement(By.name("lastname")).sendKeys("second");
+        driver.findElement(By.name("phoneNumber")).sendKeys("1234567890");
         driver.findElement(By.name("password")).sendKeys("password");
         driver.findElement(By.name("passwordCheck")).sendKeys("password");
         driver.findElement(By.id("register")).click();

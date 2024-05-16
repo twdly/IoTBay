@@ -23,7 +23,7 @@ public class UserDaoTest {
         List<User> users = dao.getAllUsers();
         assertTrue(users.stream().noneMatch(user -> user.getUsername().equals("Creation Test")));
 
-        dao.addUser(new User("Creation Test", "testemail@gmail.com", new byte[16], new byte[16], User.Role.Customer));
+        dao.addUser(new User("Creation Test", "testemail@gmail.com", new byte[16], new byte[16], User.Role.Customer, ""));
         users = dao.getAllUsers();
         assertTrue(users.stream().anyMatch(user -> user.getUsername().equals("Creation Test")));
 

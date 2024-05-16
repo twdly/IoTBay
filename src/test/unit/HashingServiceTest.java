@@ -20,7 +20,7 @@ public class HashingServiceTest {
         otherHash = hashingService.hashPassword(salt, "otherTestPassword");
         Assertions.assertNotEquals(hash, otherHash);
 
-        User testUser = new User("name", "email", salt, hash, User.Role.Customer);
+        User testUser = new User("name", "email", salt, hash, User.Role.Customer, "");
 
         Assertions.assertTrue(hashingService.checkPassword(testUser, "testPassword"));
         Assertions.assertFalse(hashingService.checkPassword(testUser, "testpassword"));
