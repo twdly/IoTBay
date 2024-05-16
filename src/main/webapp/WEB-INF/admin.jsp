@@ -76,7 +76,7 @@
 							<tr>
 								<td><%=product.getId()%></td>
 								<td><%=product.getName()%></td>
-								<td><%=product.getQuantity()%></td>
+								<td><%=product.getStock()%></td>
 								<td><%=product.getPrice()%></td>
 								<td><%=product.getImageUrl()%></td>
 							</tr>
