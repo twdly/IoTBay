@@ -11,9 +11,10 @@ public class PaymentDao {
 
     private final Connection connection;
 
-    public PaymentDao(Connection connection) {
-        this.connection = connection;
+    public PaymentDao() {
+        connection = new DbConnector().getConnection();
     }
+
 
     public void addPaymentDetails(PaymentDetails paymentDetails, int userId) {
         try {

@@ -26,7 +26,7 @@ PaymentDetails paymentDetails = (PaymentDetails) session.getAttribute("paymentDe
     <p>Method: <%=order.getMethod()%></p>
     <br>
     <h2>Payment details:
-        <a href="Payment_Create.jsp" class="edit-icon"><i class="fas fa-edit"></i></a>
+        <a href="payment.jsp" class="edit-icon"><i class="fas fa-edit"></i></a>
         <a href="payment?action=delete" class="delete-icon"><i class="fas fa-trash-alt"></i></a>
     </h2>
     <p>Name on Card: <%= paymentDetails.getCardholder() %></p>

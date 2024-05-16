@@ -1,5 +1,6 @@
 package isdwrk04.group5.iotbay.controller;
 
+import isdwrk04.group5.iotbay.dao.PaymentDao;
 import isdwrk04.group5.iotbay.model.Order;
 import isdwrk04.group5.iotbay.model.PaymentDetails;
 
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "paymentController", value = "/payment")
 public class PaymentController extends BaseServlet {
@@ -16,33 +19,30 @@ public class PaymentController extends BaseServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Order currentOrder = (Order) session.getAttribute("currentOrder");
+        Order order = (Order) session.getAttribute("currentOrder");
 
-        if (currentOrder == null) {
-            // If there's no current order, redirect to the place order page
+        if (order == null) {
             redirectToUrl(request, response, "/place-order");
-        } else {
-            // Otherwise, serve the payment creation page
-            serveJSP(request, response, "payment_create.jsp");
+            return;
         }
+        serveJSP(request, response, "/WEB-INF/payment.jsp");
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if ("delete".equals(action)) {
-            handleDelete(request, response);
-        } else {
-            handlePaymentCreation(request, response);
-        }
-    }
-
-    private void handlePaymentCreation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nameOnCard = request.getParameter("nameOnCard");
         String cardNumber = request.getParameter("cardNumber");
         String cvv = request.getParameter("cvv");
         String expDate = request.getParameter("expDate");
         String billingAddress = request.getParameter("billingAddress");
+
+        if (isNullOrEmpty(nameOnCard) || isNullOrEmpty(cardNumber) || isNullOrEmpty(cvv) || isNullOrEmpty(expDate) || isNullOrEmpty(billingAddress)) {
+            List<String> errors = new ArrayList<>();
+            errors.add("Please enter your Payment Details");
+            request.getSession().setAttribute("errors", errors);
+            serveJSP(request, response, "payment.jsp");
+            return;
+        }
 
         PaymentDetails paymentDetails = new PaymentDetails();
         paymentDetails.setCardholder(nameOnCard);
@@ -53,18 +53,11 @@ public class PaymentController extends BaseServlet {
 
         request.getSession().setAttribute("paymentDetails", paymentDetails);
 
-        // Redirect to confirmation page
+        // Redirect to the confirmation page or the next step
         response.sendRedirect("/confirmOrder");
     }
 
-    private void handleDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        PaymentDetails paymentDetails = (PaymentDetails) session.getAttribute("paymentDetails");
-        if (paymentDetails != null) {
-            session.removeAttribute("paymentDetails");
-            redirectToUrl(request, response, "/payment");
-        } else {
-            redirectToUrl(request, response, "/confirmOrder?error=true");
-        }
+    private boolean isNullOrEmpty(String str) {
+        return str == null || str.isEmpty();
     }
 }
