@@ -2,6 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <% List<Order> orders = (List<Order>) request.getAttribute("orders"); %>
+<%@ page import="isdwrk04.group5.iotbay.model.User" %>
+<% User user = (User) request.getSession().getAttribute("user");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +13,8 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tables.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/account.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
     <jsp:include page="/WEB-INF/header.jsp"/>
@@ -20,6 +24,20 @@
             </symbol>
         </svg>
         <a href="account"><button type="button" class="back-button">< Back</button></a>
+    <div class="side-bar">
+        <nav>
+            <ul>
+                <li><a href="account">Your Account</a></li>
+                <li><a href="update-account">Update Account Details</a></li>
+                <li><a href="orders">View Recent Orders</a></li>
+                <% if (user.getRole().equals(User.Role.Staff)) { %>
+                <li><a href="productCatalogue">Update Product Catalogue</a></li>
+                <li><a href="manage-orders">Manage Orders</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
         <% if (orders.isEmpty()) { %>
             <h1>You have not placed any orders.</h1>
         <% } else { %>
@@ -48,5 +66,6 @@
                 <%}%>
         </table>
         <% } %>
+    </div>
     </body>
 </html>

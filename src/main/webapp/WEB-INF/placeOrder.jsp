@@ -13,32 +13,39 @@
 <body>
 <jsp:include page="header.jsp"/>
 <main class="text-display">
-    <% if (session.getAttribute("errors") != null) {
-        List<String> errors = (List<String>)session.getAttribute("errors");
-    %>
-    <div id="sessionErrors" class="error">
-        <% for (String error : errors) { %>
-        <p style="color: red"><%=error%></p>
-        <%}%>
+    <div class="content">
+        <% if (session.getAttribute("errors") != null) {
+            List<String> errors = (List<String>)session.getAttribute("errors");
+        %>
+        <div id="sessionErrors" class="error">
+            <% for (String error : errors) { %>
+            <p style="color: red"><%=error%></p>
+            <%}%>
+        </div>
+        <% session.removeAttribute("errors"); } %>
+            <h1 class="form-element">Place Order</h1>
+            <h2 class="form-element">Your details:</h2>
+            <div class="form-container">
+                <form method="post" action="place-order">
+                    <div class="form-element">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name" value="<%=user != null ? user.getUsername() : ""%>"/>
+                    </div>
+                    <div class="form-element">
+                        <label for="phone">Phone number:</label>
+                        <input type="text" name="phone" id="phone" value="<%=user != null ? user.getPhoneNo() : ""%>"/>
+                    </div>
+                    <div class="form-element">
+                        <label for="methods">Method:</label>
+                        <select id="methods" name="method">
+                            <option value="Delivery">Delivery</option>
+                            <option value="Collection">Collection</option>
+                        </select>
+                    </div>
+                    <button class="general-buttons btn-outline-dark button-gap">Next ></button>
+                </form>
+            </div>
     </div>
-    <% session.removeAttribute("errors"); } %>
-    <h1>Place Order</h1>
-    <h2>Your details:</h2>
-    <form method="post" action="place-order">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" value="<%=user != null ? user.getUsername() : ""%>"/>
-        <br>
-        <label for="phone">Phone number:</label>
-        <input type="text" name="phone" id="phone" value="<%=user != null ? user.getPhoneNo() : ""%>"/>
-        <br>
-        <label for="methods">Method:</label>
-        <select id="methods" name="method">
-            <option value="Delivery">Delivery</option>
-            <option value="Collection">Collection</option>
-        </select>
-        <br>
-        <button>Next ></button>
-    </form>
 </main>
 </body>
 </html>

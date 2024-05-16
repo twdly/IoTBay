@@ -15,23 +15,27 @@ Cart cart = (Cart) request.getSession().getAttribute("cart");%>
 <body>
 <jsp:include page="header.jsp"/>
 <main class="text-display">
-    <h1>Your Order</h1>
-    <h2>Your details:</h2>
-    <p>Name: <%=order.getName()%></p>
-    <p>Phone number: <%=order.getPhoneNo()%></p>
-    <p>Method: <%=order.getMethod()%></p>
-    <br>
-    <h2>Display shipment and payment details here</h2>
-    <br>
-    <h2>Products:</h2>
-    <% for (Product product : cart.getProducts()) {%>
-        <p><%=product.getQuantity()%>x <%=product.getName()%> ($<%=product.calculatePrice()%>)</p>
-    <% } %>
-    <p>Price: $<%=cart.getTotalPrice()%></p>
-    <br>
-    <form method="post" action="confirm-order">
-        <button>Confirm order</button>
-    </form>
+    <div class="content">
+        <h1 class="form-element">Your Order</h1>
+        <h2 class="form-element">Your details:</h2>
+        <div class="form-container">
+            <p class="form-element">Name: <%=order.getName()%></p>
+            <p class="form-element">Phone number: <%=order.getPhoneNo()%></p>
+            <p class="form-element">Method: <%=order.getMethod()%></p>
+            <br>
+            <h2>Display shipment and payment details here</h2>
+            <br>
+            <h2 class="form-element">Products:</h2>
+            <% for (Product product : cart.getProducts()) {%>
+                <p class="form-element"><%=product.getQuantity()%>x <%=product.getName()%> ($<%=product.calculatePrice()%>)</p>
+            <% } %>
+            <p class="form-element">Price: $<%=cart.getTotalPrice()%></p>
+            <br>
+            <form method="post" action="confirm-order">
+                <button class="general-buttons btn-outline-dark button-gap">Confirm order</button>
+            </form>
+        </div>
+    </div>
 </main>
 </body>
 </html>

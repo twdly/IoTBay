@@ -2,6 +2,8 @@
 <%@ page import="isdwrk04.group5.iotbay.model.Order" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <% List<Order> orders = (List<Order>) request.getAttribute("orders"); %>
+<%@ page import="isdwrk04.group5.iotbay.model.User" %>
+<% User user = (User) request.getSession().getAttribute("user");%>
 <html>
 <head>
     <title>IoTBay - Manage Orders</title>
@@ -9,12 +11,27 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tables.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
 <main>
     <a href="account"><button type="button" class="back-button">< Back</button></a>
+    <div class="side-bar">
+        <nav>
+            <ul>
+                <li><a href="account">Your Account</a></li>
+                <li><a href="update-account">Update Account Details</a></li>
+                <li><a href="orders">View Recent Orders</a></li>
+                <% if (user.getRole().equals(User.Role.Staff)) { %>
+                <li><a href="productCatalogue">Update Product Catalogue</a></li>
+                <li><a href="manage-orders">Manage Orders</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
     <h1 class="page-heading">Processing Orders:</h1>
     <form method="post" action="manage-orders">
     <table class="display-table">
@@ -35,6 +52,7 @@
         <% } %>
     </table>
     </form>
+    </div>
 </main>
 </body>
 </html>

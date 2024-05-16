@@ -137,3 +137,9 @@ input {
     color:  #4C2B36;
     background: #f5f0f0;
 }
+
+.content {
+    position: absolute;
+    margin-left: 18.75rem;
+    margin-top: 7.5rem;
+}

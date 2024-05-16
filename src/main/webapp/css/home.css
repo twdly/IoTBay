@@ -155,3 +155,22 @@ a {
     font-weight: 600;
     text-decoration: underline;
 }
+
+.content {
+    position: absolute;
+    margin-left: 20rem;
+    margin-top: 5rem;
+}
+
+.form-container {
+    margin-bottom: 2rem;
+}
+
+.form-element {
+    margin-bottom: 1.5rem;
+}
+
+.button-gap {
+    margin-top: 2rem;
+    margin-left: auto;
+}
