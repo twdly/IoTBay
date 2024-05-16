@@ -15,6 +15,7 @@ public class Order implements Serializable {
     private int paymentId;
     private int collectionId;
     private int deliveryId;
+    private PaymentDetails paymentDetails;
 
     public enum Status {
         Processing,
@@ -109,3 +110,4 @@ public class Order implements Serializable {
         this.userId = userId;
     }
 }
+

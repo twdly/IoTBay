@@ -24,7 +24,7 @@
     <% session.removeAttribute("errors"); } %>
     <h1>Place Order</h1>
     <h2>Your details:</h2>
-    <form method="post" action="place-order">
+    <form method="post" action="payment">
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" value="<%=user != null ? user.getUsername() : ""%>"/>
         <br>

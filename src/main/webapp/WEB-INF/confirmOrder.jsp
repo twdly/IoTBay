@@ -1,9 +1,12 @@
 <%@ page import="isdwrk04.group5.iotbay.model.Order" %>
 <%@ page import="isdwrk04.group5.iotbay.model.Cart" %>
 <%@ page import="isdwrk04.group5.iotbay.model.Product" %>
+<%@ page import="isdwrk04.group5.iotbay.model.PaymentDetails" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <% Order order = (Order) request.getSession().getAttribute("currentOrder");
-Cart cart = (Cart) request.getSession().getAttribute("cart");%>
+Cart cart = (Cart) request.getSession().getAttribute("cart");
+PaymentDetails paymentDetails = (PaymentDetails) session.getAttribute("paymentDetails");
+%>
 <html>
 <head>
     <title>IoTBay - Confirm Order</title>
@@ -11,6 +14,7 @@ Cart cart = (Cart) request.getSession().getAttribute("cart");%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Payment.css">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -21,7 +25,14 @@ Cart cart = (Cart) request.getSession().getAttribute("cart");%>
     <p>Phone number: <%=order.getPhoneNo()%></p>
     <p>Method: <%=order.getMethod()%></p>
     <br>
-    <h2>Display shipment and payment details here</h2>
+    <h2>Payment details:
+        <a href="Payment_Create.jsp" class="edit-icon"><i class="fas fa-edit"></i></a>
+        <a href="payment?action=delete" class="delete-icon"><i class="fas fa-trash-alt"></i></a>
+    </h2>
+    <p>Name on Card: <%= paymentDetails.getCardholder() %></p>
+    <p>Card Number: <%= paymentDetails.getCardNumber() %></p>
+    <p>CVV: <%= paymentDetails.getCvv() %></p>
+    <p>Expiration Date: <%= paymentDetails.getExpirationDate() %></p>
     <br>
     <h2>Products:</h2>
     <% for (Product product : cart.getProducts()) {%>

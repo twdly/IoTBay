@@ -51,6 +51,7 @@ public class PlaceOrderController extends BaseServlet {
         request.getSession().setAttribute("currentOrder", order);
 
         // Change this following line here to redirect to shipment or payment controllers
-        redirectToUrl(request, response, "/confirm-order");
+        redirectToUrl(request, response, "/payment");
+
     }
 }

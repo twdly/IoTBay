@@ -7,16 +7,75 @@ public class PaymentDetails implements Serializable {
 
     private int id;
     private float amount;
-    private Date date;
     private Method method;
     private String cardholder;
+    private String cardNumber;
     private Date expirationDate;
-    private String address;
+    private String billingAddress;
     private Status status;
+    private String cvv;
+
+    public float getAmount() {
+
+        return amount;
+    }
+
+    public Method getMethod() {
+
+        return method;
+    }
+
+    public String getCardholder() {
+
+        return cardholder;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public String getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+
+    public void setCardholder(String cardholder) {
+        this.cardholder = cardholder;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setExpirationDate(String expDate) {
+    }
+
+    public void setBillingAddress(String billingAddress) {
+    }
+
 
     public enum Method {
         Credit,
-        Debit,
+        Debit
     }
 
     public enum Status {
@@ -25,25 +84,17 @@ public class PaymentDetails implements Serializable {
         Declined
     }
 
-    public PaymentDetails(int id, float amount, Date date, Method method, String cardholder, Date expirationDate, String address, Status status) {
-        this.id = id;
-        this.amount = amount;
-        this.date = date;
-        this.method = method;
-        this.cardholder = cardholder;
-        this.expirationDate = expirationDate;
-        this.address = address;
-        this.status = status;
+    public PaymentDetails() {
     }
 
-    public PaymentDetails() {
-        this.id = 0;
-        this.amount = 0;
-        this.date = new Date();
-        this.method = Method.Credit;
-        this.cardholder = "";
-        this.expirationDate = new Date();
-        this.address = "";
-        this.status = Status.Pending;
+    public PaymentDetails(int id, float amount, Method method, String cardholder, String cardNumber, Date expirationDate, String billingAddress, Status status) {
+        this.id = id;
+        this.amount = amount;
+        this.method = method;
+        this.cardholder = cardholder;
+        this.cardNumber = cardNumber;
+        this.expirationDate = expirationDate;
+        this.billingAddress = billingAddress;
+        this.status = status;
     }
 }

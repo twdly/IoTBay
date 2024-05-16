@@ -34,6 +34,7 @@ public class ConfirmOrderController extends BaseServlet {
             // The orderID is not yet known hence -1 is used as an obviously wrong placeholder value
             orderLineList.add(new OrderLine(product.getQuantity(), -1, product.getId()));
         }
+
         OrderDao orderDao = new OrderDao();
         orderDao.placeOrder(order, orderLineList);
         ProductDao productDao = new ProductDao();

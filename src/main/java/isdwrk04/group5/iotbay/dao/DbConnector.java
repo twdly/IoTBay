@@ -16,6 +16,7 @@ public class DbConnector extends Db {
     }
 
     public Connection getConnection() {
+
         return this.connection;
     }
 

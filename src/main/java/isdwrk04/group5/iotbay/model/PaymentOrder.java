@@ -29,22 +29,27 @@ public class PaymentOrder {
     }
 
     public String getDatePaid() {
+
         return datePaid;
     }
 
     public void setDatePaid(String datePaid) {
+
         this.datePaid = datePaid;
     }
 
     public String getCardNumber() {
+
         return cardNumber;
     }
 
     public void setCardNumber(String cardNumber) {
+
         this.cardNumber = cardNumber;
     }
 
     public String getExpiryDate() {
+
         return expiryDate;
     }
 
