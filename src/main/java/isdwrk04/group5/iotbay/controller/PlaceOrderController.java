@@ -33,9 +33,16 @@ public class PlaceOrderController extends BaseServlet {
         String phone = request.getParameter("phone");
         String method = request.getParameter("method");
 
+        List<String> errors = new ArrayList<>();
         if (name.isEmpty() || phone.isEmpty() || method.isEmpty()) {
-            List<String> errors = new ArrayList<>();
             errors.add("Please enter a name and a phone number.");
+        }
+
+        if (!phone.isEmpty() && !phone.matches("\\d{10}")) {
+            errors.add("Phone numbers must be 10 digits long.");
+        }
+
+        if (!errors.isEmpty()) {
             request.getSession().setAttribute("errors", errors);
             serveJSP(request, response, "placeOrder.jsp");
             return;

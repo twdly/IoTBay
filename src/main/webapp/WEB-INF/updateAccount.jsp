@@ -25,7 +25,7 @@
                 <li><a href="account">Your Account</a></li>
                 <li><a href="update-account">Update Account Details</a></li>
                 <li><a href="orders">View Recent Orders</a></li>
-                <% if (user.getRole().equals(User.Role.Staff)) { %>--%>
+                <% if (user.getRole().equals(User.Role.Staff)) { %>
                 <li><a href="productCatalogue">Update Product Catalogue</a></li>
                 <li><a href="manage-orders">Manage Orders</a></li>
                 <% } %>
