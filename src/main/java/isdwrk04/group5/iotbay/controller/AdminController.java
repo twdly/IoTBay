@@ -1,8 +1,11 @@
 package isdwrk04.group5.iotbay.controller;
 
 import isdwrk04.group5.iotbay.dao.OrderDao;
+import isdwrk04.group5.iotbay.dao.UserDao;
+import isdwrk04.group5.iotbay.dao.ProductDao;
 import isdwrk04.group5.iotbay.model.Order;
 import isdwrk04.group5.iotbay.model.User;
+import isdwrk04.group5.iotbay.model.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,19 +20,36 @@ public class AdminController extends BaseServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		OrderDao dao = new OrderDao();
-		List<Order> orders = dao.getAllOrders();
+		OrderDao orderDao = new OrderDao();
+		List<Order> orders = orderDao.getAllOrders();
 		request.setAttribute("orders" ,orders);
+
+		UserDao userDao = new UserDao();
+		List<User> users = userDao.getAllUsers();
+		request.setAttribute("users", users);
+
+		ProductDao productDao = new ProductDao();
+		List<Product> products = productDao.getAllProducts();
+		request.setAttribute("products", products);
+
 		serveJSP(request, response, "admin.jsp");
 	}
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+
 		int orderId = Integer.parseInt(request.getParameter("orderId"));
-		OrderDao dao = new OrderDao();
-		Order order = dao.getOrderById(orderId);
-		Order.Status newStatus = order.getMethod().equals(Order.Method.Delivery) ? Order.Status.Shipped : Order.Status.ReadyToCollect;
-		dao.updateStatus(orderId, newStatus);
+		OrderDao orderDao = new OrderDao();
+		Order order = orderDao.getOrderById(orderId);
+
+		UserDao userDao = new UserDao();
+		List<User> users = userDao.getAllUsers();
+		request.setAttribute("users", users);
+
+		ProductDao productDao = new ProductDao();
+		List<Product> products = productDao.getAllProducts();
+		request.setAttribute("products", products);
+
 		redirectToUrl(request, response, "/admin");
 	}
 	
