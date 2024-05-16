@@ -41,6 +41,10 @@
                 <input type="text" id="lastname" name="lastname">
             </div>
             <div class="form-element">
+                <label for="phoneNumber">Phone number:</label>
+                <input type="text" id="phoneNumber" name="phoneNumber">
+            </div>
+            <div class="form-element">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password">
             </div>
@@ -49,6 +53,6 @@
                 <input type="password" id="passwordCheck" name="passwordCheck">
             </div>
         </form>
-        <button onclick="register()">Register</button>
+        <button id="register" onclick="register()">Register</button>
     </body>
 </html>

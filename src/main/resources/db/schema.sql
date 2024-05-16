@@ -15,6 +15,7 @@ create table PRODUCT
 (
     Product_ID INTEGER primary key,
     Product_Name VARCHAR(255) not null,
+    Product_Category VARCHAR(255) not null,
     Product_Description VARCHAR(25565),
     Product_Price float,
     Product_Stock INTEGER
@@ -105,3 +106,12 @@ create table ORDERLINE
     CONSTRAINT ORDERLINE_ORDERID foreign key (Order_ID) references "ORDER"(Order_ID),
     CONSTRAINT ORDERLINE_PRODUCTID foreign key (Product_ID) references "PRODUCT"(Product_ID)
 );
+
+create table ACCESSLOG
+(
+    Log_ID INTEGER primary key,
+    User_ID INTEGER not null ,
+    Event VARCHAR(12) not null ,
+    Event_Time TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT ACCESSLOGS_USERID foreign key (USER_ID) references "USER"(User_ID)
+)

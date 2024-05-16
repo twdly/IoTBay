@@ -19,4 +19,16 @@ public class OrderLine implements Serializable {
         this.orderId = 0;
         this.productId = 0;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
 }

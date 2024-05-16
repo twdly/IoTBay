@@ -1,6 +1,8 @@
 package isdwrk04.group5.iotbay.controller;
 
+import isdwrk04.group5.iotbay.dao.AccessLogDAO;
 import isdwrk04.group5.iotbay.dao.UserDao;
+import isdwrk04.group5.iotbay.model.AccessLog;
 import isdwrk04.group5.iotbay.model.User;
 import isdwrk04.group5.iotbay.service.HashingService;
 
@@ -19,10 +21,12 @@ public class LoginController extends BaseServlet {
 
     private HashingService hashingService;
     private UserDao userDao;
+    private AccessLogDAO logDao;
 
     @Override
     public void init() {
         this.userDao = new UserDao();
+        this.logDao = new AccessLogDAO();
         try {
             hashingService = new HashingService();
         } catch (NoSuchAlgorithmException e) {
@@ -51,6 +55,8 @@ public class LoginController extends BaseServlet {
             if (hashingService.checkPassword(user, password)) {
                 session.setAttribute("user", user);
                 serveJSP(request, response, "welcome.jsp");
+                AccessLog log = new AccessLog(user.getId(), "login");
+                logDao.insertLog(log);
             } else {
                 errors.add("Invalid password");
             }

@@ -7,46 +7,14 @@
 <head>
     <title>Welcome - IoTBay</title>
     <script src="${pageContext.request.contextPath}/js/welcome.js" defer></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/welcome.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/welcome.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<header>
-    <nav>
-        <div id="logo">
-            IoTBay
-        </div>
-        <ul class="navigation-menu">
-            <li>
-                <a href="${pageContext.request.contextPath}">Home</a>
-            </li>
-            <li>
-                <a href="#">Locations &amp; Hours</a>
-            </li>
-            <li>
-                <a href="store">Store</a>
-            </li>
-        </ul>
-        <div id="utilities">
-            <div class="search-container">
-                <form action="search">
-                    <input id=search-bar type="text" placeholder="Search..." name="search">
-                    <a href="#">
-                        <svg class="search-icon" viewBox="0 0 800 800" fill="none">
-                            <path d="M498.453 498.193L700 700M566.667 333.333C566.667 462.2 462.2 566.667 333.333 566.667C204.467 566.667 100 462.2 100 333.333C100 204.467 204.467 100 333.333 100C462.2 100 566.667 204.467 566.667 333.333Z" stroke="currentColor" stroke-width="66.6667" stroke-linecap="round"></path>
-                        </svg>
-                    </a>
-                </form>
-            </div>
-            <svg>
-                <use xlink:href="#icon-cart"></use>
-            </svg>
-<%--            <svg>--%>
-<%--                <use xlink:href="#icon-profile" onclick="toggleMenu()"></use>--%>
-<%--            </svg>--%>
-            <a href="logout" class="logout-link">Logout</a>
-        </div>
-    </nav>
-</header>
+
 <body>
+<jsp:include page="/WEB-INF/header.jsp"/>
 <svg>
     <symbol id="icon-search" viewBox="0 0 800 800" fill="none">
         <path d="M498.453 498.193L700 700M566.667 333.333C566.667 462.2 462.2 566.667 333.333 566.667C204.467 566.667 100 462.2 100 333.333C100 204.467 204.467 100 333.333 100C462.2 100 566.667 204.467 566.667 333.333Z" stroke="currentColor" stroke-width="66.6667" stroke-linecap="round"></path>
@@ -70,17 +38,25 @@
     <h1>Welcome <%= customer.getUsername() %></h1>
     <h2>Your email is <%= customer.getEmail() %></h2>
     <div class="btn-group">
-        <a href="${pageContext.request.contextPath}/store">
-            <button type="button" class="btn-outline-dark">
+        <a href="${pageContext.request.contextPath}/">
+            <button type="button" class="btn-outline-dark general-buttons">
                 Shop All Products
                 <svg id="welcome-icon-product" viewBox="0 0 24 24" fill="none">
                     <path d="M4.5 5H18.2768C19.0446 5 19.526 5.82948 19.1451 6.49614L16.5758 10.9923C16.2198 11.6154 15.5571 12 14.8394 12H8M8 12L6.45625 14.47C6.03997 15.136 6.51881 16 7.30425 16H18M8 12L4.05279 4.10557C3.714 3.428 3.02148 3 2.26393 3H2M8 20C8 20.5523 7.55228 21 7 21C6.44772 21 6 20.5523 6 20C6 19.4477 6.44772 19 7 19C7.55228 19 8 19.4477 8 20ZM18 20C18 20.5523 17.5523 21 17 21C16.4477 21 16 20.5523 16 20C16 19.4477 16.4477 19 17 19C17.5523 19 18 19.4477 18 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                 </svg>
             </button>
         </a>
+        <a href="${pageContext.request.contextPath}/account">
+            <button type="button" class="btn-outline-dark general-buttons">
+                Go to Account
+                <svg id="icon-profile" class="bad" viewBox="0 0 32 32" fill="currentColor">
+                    <path d="M16 16.75c4.28 0 7.75-3.47 7.75-7.75s-3.47-7.75-7.75-7.75c-4.28 0-7.75 3.47-7.75 7.75v0c0.005 4.278 3.472 7.745 7.75 7.75h0zM16 2.75c3.452 0 6.25 2.798 6.25 6.25s-2.798 6.25-6.25 6.25c-3.452 0-6.25-2.798-6.25-6.25v0c0.004-3.45 2.8-6.246 6.25-6.25h0zM30.41 29.84c-1.503-6.677-7.383-11.59-14.41-11.59s-12.907 4.913-14.391 11.491l-0.019 0.099c-0.011 0.048-0.017 0.103-0.017 0.16 0 0.414 0.336 0.75 0.75 0.75 0.357 0 0.656-0.25 0.731-0.585l0.001-0.005c1.351-5.998 6.633-10.41 12.945-10.41s11.594 4.413 12.929 10.322l0.017 0.089c0.076 0.34 0.374 0.59 0.732 0.59 0 0 0.001 0 0.001 0h-0c0.057-0 0.112-0.007 0.165-0.019l-0.005 0.001c0.34-0.076 0.59-0.375 0.59-0.733 0-0.057-0.006-0.112-0.018-0.165l0.001 0.005z"></path>
+                </svg>
+            </button>
+        </a>
         <form id="logoutForm" action="logout" method="get">
             <input input type="hidden" name="logout" value="true">
-                <button onclick="logout()" class="btn-outline-light">
+                <button onclick="logout()" class="btn-outline-light general-buttons">
                     Not Your Account?
                     <svg id="welcome-icon-logout" viewBox="0 0 24 24" fill="none">
                         <path d="M21 12L13 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>

@@ -1,0 +1,151 @@
+.btn-group {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 2rem;
+}
+
+.btn-outline-dark {
+    border: 2px solid var(--text-01);
+    color: var(--light-01);
+    background: var(--text-01);
+    transition: background-color 0.3s ease;
+}
+
+.btn-outline-dark:hover {
+    background: var(--brand-01);
+    border: 2px solid var(--brand-01);
+}
+
+.btn-outline-light {
+    border: 2px solid var(--text-01);
+    color: var(--text-01);
+    background: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background: var(--brand-01);
+    border: 2px solid var(--brand-01);
+    color: var(--light-01);
+}
+
+.btn-outline-light svg:hover {
+    stroke: var(--light-01);
+}
+
+.general-buttons {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.2rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 3rem;
+    display: flex;
+    flex-direction: row;
+    grid-gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.back-button {
+    margin-top: 6rem;
+    margin-left: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.2rem;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid var(--text-01);
+    color: var(--text-01);
+    background: none;
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background: var(--brand-01);
+    border: 2px solid var(--brand-01);
+    color: var(--light-01);
+}
+
+.add-to-cart-button{
+    width: 8em;
+    min-height: 2.8em;
+    border-style: none;
+    border-radius: 3rem;
+    background: var(--colour-main);
+    font-family: var(--font-body);
+    color: white;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+    background: var(--colour-main-dark);
+    cursor: pointer;
+}
+
+.table-button {
+    border: 1px solid var(--colour-main);
+    color: black;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.table-button:hover {
+    background: var(--colour-main);
+    color: white;
+}
+
+.add-product-button {
+    border: 1px solid var(--colour-main);
+    color: black;
+    font-size: 1rem;
+    width: fit-content;
+    padding: 1rem;
+    margin: 2rem auto;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-product-button:hover {
+    background: var(--colour-main);
+    color: white;
+}
+
+#submit-add-product-button {
+    border: 1px solid var(--colour-main);
+    color: black;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submit-add-product-button:hover {
+    background: var(--colour-main);
+    color: white;
+}
+
+#cart-buttons{
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+    justify-content: right;
+    grid-gap: 6rem;
+}

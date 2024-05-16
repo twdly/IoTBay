@@ -1,6 +1,8 @@
 package isdwrk04.group5.iotbay.controller;
 
 import isdwrk04.group5.iotbay.dao.UserDao;
+import isdwrk04.group5.iotbay.dao.AccessLogDAO;
+import isdwrk04.group5.iotbay.model.AccessLog;
 import isdwrk04.group5.iotbay.model.User;
 import isdwrk04.group5.iotbay.service.HashingService;
 
@@ -20,10 +22,12 @@ public class RegisterController extends BaseServlet {
 
     private HashingService hashingService;
     private UserDao userDao;
+    private AccessLogDAO logDao;
 
     @Override
     public void init() {
         this.userDao = new UserDao();
+        this.logDao = new AccessLogDAO();
         try {
             hashingService = new HashingService();
         } catch (NoSuchAlgorithmException e) {
@@ -48,8 +52,9 @@ public class RegisterController extends BaseServlet {
         String name = request.getParameter("firstname") + " " + request.getParameter("lastname");
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
+        String phone = request.getParameter("phoneNumber");
 
-        if (validateRegistration(session, email, password, passwordCheck)) {
+        if (validateRegistration(session, email, password, passwordCheck, phone)) {
             byte[] salt = hashingService.createSalt();
             byte[] hashedPassword;
 
@@ -59,10 +64,11 @@ public class RegisterController extends BaseServlet {
                 throw new RuntimeException(e);
             }
 
-            User customer = new User(name, email, salt, hashedPassword, User.Role.Customer);
+            User customer = new User(name, email, salt, hashedPassword, User.Role.Customer, phone);
             userDao.addUser(customer);
+            AccessLog log = new AccessLog(customer.getId(), "registration");
+            logDao.insertLog(log);
             session.setAttribute("user", customer);
-
             serveJSP(request, response, "welcome.jsp");
         } else {
             serveJSP(request, response, "register.jsp");
@@ -73,7 +79,7 @@ public class RegisterController extends BaseServlet {
     public void destroy() {
     }
 
-    private boolean validateRegistration(HttpSession session, String email, String password, String passwordCheck) {
+    private boolean validateRegistration(HttpSession session, String email, String password, String passwordCheck, String phone) {
         boolean isValid = true;
         List<String> errors = new ArrayList<>();
         if (!email.contains("@")) {
@@ -90,6 +96,14 @@ public class RegisterController extends BaseServlet {
         }
         if (password.length() < 8) {
             errors.add("Password is less than 8 characters");
+            isValid = false;
+        }
+        if (!phone.matches("\\d{10}")) {
+            errors.add("Phone number can only have digits.");
+            isValid = false;
+        }
+        if (phone.length() != 10) {
+            errors.add("Phone number must be a 10-digit number.");
             isValid = false;
         }
 
