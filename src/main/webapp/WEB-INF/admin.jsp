@@ -15,6 +15,11 @@
 		<main>
 			<div class="container">
 				<h2 class="heading">Orders</h2>
+				<form action="${pageContext.request.contextPath}/admin" method="post" enctype="multipart/form-data">
+					<input type="file" name="file" accept=".csv">
+					<input type="hidden" name="fileType" value="orders">
+					<input type="submit" value="Upload CSV">
+				</form>
 				<div class="table-container">
 					<table id="orders-table">
 						<tr>
@@ -41,6 +46,11 @@
 
 			<div class="container">
 				<h2 class="heading">Users</h2>
+				<form action="${pageContext.request.contextPath}/admin" method="post" enctype="multipart/form-data">
+					<input type="file" name="file" accept=".csv">
+					<input type="hidden" name="fileType" value="users">
+					<input type="submit" value="Upload CSV">
+				</form>
 				<div class="table-container">
 					<table id="users-table">
 						<tr>
@@ -63,6 +73,11 @@
 
 			<div class="container">
 				<h2 class="heading">Products</h2>
+				<form action="${pageContext.request.contextPath}/admin" method="post" enctype="multipart/form-data">
+					<input type="file" name="file" accept=".csv">
+					<input type="hidden" name="fileType" value="products">
+					<input type="submit" value="Upload CSV">
+				</form>
 				<div class="table-container">
 					<table id="product-table">
 						<tr>
