@@ -7,7 +7,6 @@
     User user = (User) session.getAttribute("user");
     Order order = (Order) session.getAttribute("order");
     PaymentDetails paymentDetails = (PaymentDetails) session.getAttribute("paymentDetails");
-
 %>
 <html>
 <head>
@@ -22,11 +21,14 @@
 <body>
 <jsp:include page="header.jsp"/>
 <main class="text-display">
-    <div class="payment-methods">
-        <button><img src="${pageContext.request.contextPath}/images/mastercard-logo.png" alt="MasterCard"></button>
-    </div>
+    <h1>Payment Details</h1>
     <!-- Payment form -->
     <form class="payment-form" method="post" action="confirmOrder.jsp">
+        <div class="form-group">
+            <div class="payment-methods">
+                <button><img src="${pageContext.request.contextPath}/images/mastercard-logo.png" alt="MasterCard"></button>
+            </div>
+        </div>
         <div class="form-group">
             <label for="name-on-card">Name on Card</label>
             <input type="text" id="name-on-card" name="nameOnCard" required>

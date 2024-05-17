@@ -1,32 +1,45 @@
 body {
     font-family: Arial, sans-serif;
 }
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .payment-form {
     width: 300px;
     margin: 0 auto;
     border: 1px solid #ccc;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Optional: to give the form rounded corners */
 }
+
 .payment-methods {
+    text-align: center;
     margin-bottom: 20px;
 }
+
 .payment-methods button {
     border: none;
     background: none;
-    margin-right: 10px;
 }
+
 .payment-methods img {
     width: 50px;
     height: auto;
 }
+
 .form-group {
     margin-bottom: 10px;
 }
+
 label {
     display: block;
     margin-bottom: 5px;
 }
+
 input[type="text"],
 input[type="number"] {
     width: 100%;
@@ -34,6 +47,7 @@ input[type="number"] {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 .submit-btn {
     background-color: #4C2B36;
     color: white;
