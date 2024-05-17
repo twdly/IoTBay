@@ -60,3 +60,18 @@ input[type="number"] {
     cursor: pointer;
     margin-top: 20px;
 }
+
+.edit-icon, .delete-icon {
+    color: #000000; /* Bootstrap primary color */
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.edit-icon:hover, .delete-icon:hover {
+    color: #606060; /* Darker shade for hover */
+}
+
+.edit-icon i, .delete-icon i {
+    font-size: 1.2em;
+    vertical-align: middle;
+}

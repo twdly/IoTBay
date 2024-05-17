@@ -20,13 +20,14 @@ public class PaymentController extends BaseServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Order order = (Order) session.getAttribute("currentOrder");
-
         if (order == null) {
             redirectToUrl(request, response, "/place-order");
             return;
         }
         serveJSP(request, response, "/WEB-INF/payment.jsp");
     }
+
+    private final PaymentDao paymentDao = new PaymentDao();
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,6 +51,8 @@ public class PaymentController extends BaseServlet {
         paymentDetails.setCvv(cvv);
         paymentDetails.setExpirationDate(expDate);
         paymentDetails.setBillingAddress(billingAddress);
+
+        paymentDao.addPaymentDetails(paymentDetails, paymentDetails.getId());
 
         request.getSession().setAttribute("paymentDetails", paymentDetails);
 

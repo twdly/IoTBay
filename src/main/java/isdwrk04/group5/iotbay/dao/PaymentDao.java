@@ -108,14 +108,14 @@ public class PaymentDao {
         }
     }
 
-    public boolean deletePaymentDetails(int paymentId) {
-        String query = "DELETE FROM payment_details WHERE id = ?";
+    public void deletePaymentDetails(int paymentId) {
+        String query = "DELETE FROM PAYMENTDETAILS WHERE Payment_ID = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, paymentId);
             int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 }
