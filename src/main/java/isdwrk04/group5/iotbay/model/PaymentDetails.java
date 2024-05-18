@@ -1,7 +1,7 @@
 package isdwrk04.group5.iotbay.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PaymentDetails implements Serializable {
 
@@ -10,23 +10,20 @@ public class PaymentDetails implements Serializable {
     private Method method;
     private String cardholder;
     private String cardNumber;
-    private Date expirationDate;
+    private LocalDate expirationDate;
     private String billingAddress;
     private Status status;
     private String cvv;
 
     public float getAmount() {
-
         return amount;
     }
 
     public Method getMethod() {
-
         return method;
     }
 
     public String getCardholder() {
-
         return cardholder;
     }
 
@@ -34,7 +31,7 @@ public class PaymentDetails implements Serializable {
         return cardNumber;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
@@ -66,12 +63,17 @@ public class PaymentDetails implements Serializable {
         return id;
     }
 
-    public void setExpirationDate(String expDate) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
     }
-
 
     public enum Method {
         Credit,
@@ -87,7 +89,7 @@ public class PaymentDetails implements Serializable {
     public PaymentDetails() {
     }
 
-    public PaymentDetails(int id, float amount, Method method, String cardholder, String cardNumber, Date expirationDate, String billingAddress, Status status) {
+    public PaymentDetails(int id, float amount, Method method, String cardholder, String cardNumber, LocalDate expirationDate, String billingAddress, Status status) {
         this.id = id;
         this.amount = amount;
         this.method = method;

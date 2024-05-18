@@ -12,60 +12,131 @@ public class PaymentDao {
     private final Connection connection;
 
     public PaymentDao() {
-        connection = new DbConnector().getConnection();
+        this.connection = new DbConnector().getConnection();
     }
 
-
     public void addPaymentDetails(PaymentDetails paymentDetails, int userId) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO PAYMENTDETAILS (Payment_Amount, Payment_Date, Payment_Method, Cardholder_Name, Card_Number, Expiration_Date, Billing_Address, Transaction_Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            statement.setFloat(1, paymentDetails.getAmount());
-            statement.setDate(2, Date.valueOf(LocalDate.now()));
-            statement.setString(3, paymentDetails.getMethod().name());
-            statement.setString(4, paymentDetails.getCardholder());
-            statement.setString(5, paymentDetails.getCardNumber());
-            statement.setDate(6, new Date(paymentDetails.getExpirationDate().getTime()));
-            statement.setString(7, paymentDetails.getBillingAddress());
-            statement.setString(8, paymentDetails.getStatus().name());
-            statement.executeUpdate();
+        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO PAYMENTDETAILS (User_ID, Payment_Amount, Payment_Date, Payment_Method, Cardholder_Name, Card_Number, Expiration_Date, Billing_Address, Transaction_Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+            statement.setInt(1, userId);
+            statement.setFloat(2, paymentDetails.getAmount());
+            statement.setDate(3, Date.valueOf(LocalDate.now()));
+            statement.setString(4, paymentDetails.getMethod().name());
+            statement.setString(5, paymentDetails.getCardholder());
+            statement.setString(6, paymentDetails.getCardNumber());
+            statement.setDate(7, Date.valueOf(paymentDetails.getExpirationDate()));
+            statement.setString(8, paymentDetails.getBillingAddress());
+            statement.setString(9, paymentDetails.getStatus().name());
+            int affectedRows = statement.executeUpdate();
 
-            ResultSet rs = statement.getGeneratedKeys();
-            int paymentId;
-            if (rs.next()) {
-                paymentId = rs.getInt(1);
-            } else {
-                throw new SQLException("Creating payment failed, no ID obtained.");
+            if (affectedRows == 0) {
+                throw new SQLException("Creating payment failed, no rows affected.");
             }
 
-            rs.close();
-            statement.close();
-
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int paymentId = generatedKeys.getInt(1);
+                    paymentDetails.setId(paymentId);
+                } else {
+                    throw new SQLException("Creating payment failed, no ID obtained.");
+                }
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to add payment details.", e);
         }
     }
 
     public PaymentDetails getPaymentDetailsById(int paymentId) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM PAYMENTDETAILS WHERE Payment_ID = ?");
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM PAYMENTDETAILS WHERE Payment_ID = ?")) {
             statement.setInt(1, paymentId);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return createPaymentDetailsFromResult(rs);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return createPaymentDetailsFromResult(rs);
+                }
             }
-            rs.close();
-            statement.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to retrieve payment details by ID.", e);
         }
         return null;
     }
 
     public List<PaymentDetails> getAllPaymentDetails() {
         List<PaymentDetails> paymentDetailsList = new ArrayList<>();
+        try (Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery("SELECT * FROM PAYMENTDETAILS")) {
+            while (rs.next()) {
+                paymentDetailsList.add(createPaymentDetailsFromResult(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to retrieve all payment details.", e);
+        }
+        return paymentDetailsList;
+    }
+
+    public List<PaymentDetails> getPaymentsByUserId(int userId) {
+        List<PaymentDetails> paymentDetailsList = new ArrayList<>();
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM PAYMENTDETAILS");
+            String query = "SELECT * FROM PAYMENTDETAILS WHERE User_ID = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                paymentDetailsList.add(createPaymentDetailsFromResult(rs));
+            }
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return paymentDetailsList;
+    }
+
+    public List<PaymentDetails> getPaymentsByDateRange(int userId, String startDate, String endDate) {
+        List<PaymentDetails> paymentDetailsList = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM PAYMENTDETAILS WHERE User_ID = ? AND Payment_Date BETWEEN ? AND ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userId);
+            statement.setDate(2, Date.valueOf(startDate));
+            statement.setDate(3, Date.valueOf(endDate));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                paymentDetailsList.add(createPaymentDetailsFromResult(rs));
+            }
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return paymentDetailsList;
+    }
+
+    public List<PaymentDetails> getPaymentsByStatus(int userId, PaymentDetails.Status status) {
+        List<PaymentDetails> paymentDetailsList = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM PAYMENTDETAILS WHERE User_ID = ? AND Transaction_Status = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userId);
+            statement.setString(2, status.name());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                paymentDetailsList.add(createPaymentDetailsFromResult(rs));
+            }
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return paymentDetailsList;
+    }
+
+    public List<PaymentDetails> getPaymentsByMethod(int userId, PaymentDetails.Method method) {
+        List<PaymentDetails> paymentDetailsList = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM PAYMENTDETAILS WHERE User_ID = ? AND Payment_Method = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userId);
+            statement.setString(2, method.name());
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 paymentDetailsList.add(createPaymentDetailsFromResult(rs));
             }
@@ -80,42 +151,14 @@ public class PaymentDao {
     private PaymentDetails createPaymentDetailsFromResult(ResultSet rs) throws SQLException {
         int id = rs.getInt("Payment_ID");
         float amount = rs.getFloat("Payment_Amount");
-        Date date = rs.getDate("Payment_Date");
+        LocalDate date = rs.getDate("Payment_Date").toLocalDate();
         PaymentDetails.Method method = PaymentDetails.Method.valueOf(rs.getString("Payment_Method"));
         String cardholder = rs.getString("Cardholder_Name");
         String cardNumber = rs.getString("Card_Number");
-        Date expirationDate = rs.getDate("Expiration_Date");
+        LocalDate expirationDate = rs.getDate("Expiration_Date").toLocalDate();
         String billingAddress = rs.getString("Billing_Address");
         PaymentDetails.Status status = PaymentDetails.Status.valueOf(rs.getString("Transaction_Status"));
 
         return new PaymentDetails(id, amount, method, cardholder, cardNumber, expirationDate, billingAddress, status);
     }
-
-    public boolean savePaymentDetails(PaymentDetails paymentDetails) {
-        String query = "INSERT INTO payment_details (amount, method, cardholder, card_number, expiration_date, billing_address, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setFloat(1, paymentDetails.getAmount());
-            stmt.setString(2, paymentDetails.getMethod().toString());
-            stmt.setString(3, paymentDetails.getCardholder());
-            stmt.setString(4, paymentDetails.getCardNumber());
-            stmt.setDate(5, new java.sql.Date(paymentDetails.getExpirationDate().getTime()));
-            stmt.setString(6, paymentDetails.getBillingAddress());
-            stmt.setString(7, paymentDetails.getStatus().toString());
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void deletePaymentDetails(int paymentId) {
-        String query = "DELETE FROM PAYMENTDETAILS WHERE Payment_ID = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, paymentId);
-            int rowsAffected = stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }

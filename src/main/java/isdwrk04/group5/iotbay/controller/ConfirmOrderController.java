@@ -12,25 +12,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet( name = "confirmOrderController", value = "/confirmOrder")
+@WebServlet(name = "confirmOrderController", value = "/confirmOrder")
 public class ConfirmOrderController extends BaseServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PaymentDetails paymentDetails = (PaymentDetails) request.getSession().getAttribute("paymentDetails");
         if (paymentDetails == null) {
-            // Redirect to payment page if payment details are not present
+            // Redirect to payment controller to view payments if payment details are not present
             redirectToUrl(request, response, "/payment");
         } else {
-            // If payment details are present, proceed with order confirmation
-            Order order = (Order) request.getSession().getAttribute("currentOrder");
-            if (order == null) {
-                redirectToUrl(request, response, "/cart");
-            } else {
-                serveJSP(request, response, "/WEB-INF/confirmOrder.jsp");
+            serveJSP(request, response, "confirmOrder.jsp");
             }
         }
-    }
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cart cart = (Cart) request.getSession().getAttribute("cart");
@@ -44,9 +39,23 @@ public class ConfirmOrderController extends BaseServlet {
         orderDao.placeOrder(order, orderLineList);
         ProductDao productDao = new ProductDao();
         productDao.reduceStockForOrder(orderLineList);
+
+        // Retrieve payment details
+        PaymentDao paymentDao = new PaymentDao();
+        PaymentDetails paymentDetails = (PaymentDetails) request.getSession().getAttribute("paymentDetails");
+        List<PaymentDetails> paymentDetailsList = paymentDao.getPaymentsByUserId(order.getUserId());
+
+        // Set attributes for order and payment details
+        request.setAttribute("order", order);
+        request.setAttribute("orderLines", orderLineList);
+        request.setAttribute("payments", paymentDetailsList);
+
+        // Clear session attributes
         request.getSession().removeAttribute("cart");
         request.getSession().removeAttribute("currentOrder");
-        request.getSession().removeAttribute("paymentDetails");
-        serveJSP(request, response, "postOrder.jsp");
+
+        // Forward to the confirmation page with order and payment details
+        serveJSP(request, response, "/WEB-INF/confirmOrder.jsp");
     }
 }
+

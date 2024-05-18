@@ -25,14 +25,17 @@ PaymentDetails paymentDetails = (PaymentDetails) session.getAttribute("paymentDe
     <p>Phone number: <%=order.getPhoneNo()%></p>
     <p>Method: <%=order.getMethod()%></p>
     <br>
-    <h2>Payment details:
-        <a href="payment.jsp" class="edit-icon"><i class="fas fa-edit"></i></a>
-        <a href="payment?action=delete" class="delete-icon"><i class="fas fa-trash-alt"></i></a>
-    </h2>
-    <p>Name on Card: <%= paymentDetails.getCardholder() %></p>
-    <p>Card Number: <%= paymentDetails.getCardNumber() %></p>
-    <p>CVV: <%= paymentDetails.getCvv() %></p>
-    <p>Expiration Date: <%= paymentDetails.getExpirationDate() %></p>
+    <h2>Payment details:</h2>
+    <c:if test = "${not empty PaymentDetails}">
+        <p>Name on Card: <%= paymentDetails.getCardholder() %></p>
+        <p>Card Number: <%= paymentDetails.getCardNumber() %></p>
+        <p>CVV: <%= paymentDetails.getCvv() %></p>
+        <p>Expiration Date: <%= paymentDetails.getExpirationDate() %></p>
+        <a href="updatePayment.jsp" class="edit-icon"><i class="fas fa-edit"></i></a>
+    </c:if>
+    <c:if test = "${empty PaymentDetails}">
+        <p> No payment details found. Please provide payment details.</p>
+    </c:if>
     <br>
     <h2>Products:</h2>
     <% for (Product product : cart.getProducts()) {%>
@@ -40,7 +43,7 @@ PaymentDetails paymentDetails = (PaymentDetails) session.getAttribute("paymentDe
     <% } %>
     <p>Price: $<%=cart.getTotalPrice()%></p>
     <br>
-    <form method="post" action="confirm-order">
+    <form method="post" action="confirmOrder">
         <button>Confirm order</button>
     </form>
 </main>
