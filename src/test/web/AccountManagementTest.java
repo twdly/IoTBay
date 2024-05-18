@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class AccountManagementTest extends BaseWebTest{
 
@@ -37,6 +39,32 @@ public class AccountManagementTest extends BaseWebTest{
         driver.findElement(By.id("register")).click();
         driver.findElement(By.cssSelector("a[href*='/account']")).click();
         driver.findElement(By.linkText("Update Account Details")).click();
+    }
+
+    @Test
+    public void testViewDetails() {
+        createAccount();
+//        Verify the correct account details are displayed
+        Assertions.assertEquals(driver.findElement(By.id("firstname")).getAttribute("value"), "first");
+        Assertions.assertEquals(driver.findElement(By.id("lastname")).getAttribute("value"), "second");
+        Assertions.assertEquals(driver.findElement(By.id("email")).getAttribute("value"), "test@gmail.com");
+        Assertions.assertEquals(driver.findElement(By.id("phoneNumber")).getAttribute("value"), "1234567890");
+    }
+
+    @Test
+    public void testViewLogs() {
+        createAccount();
+//        Extract username and event from table of logs
+        driver.findElement(By.linkText("Your Account")).click();
+        WebElement table = driver.findElement(By.cssSelector("table.log-table"));
+        WebElement firstRow = table.findElement(By.cssSelector("tbody tr"));
+        List<WebElement> cells = firstRow.findElements(By.tagName("td"));
+        String username = cells.get(0).getText();
+        String event = cells.get(1).getText();
+
+//        Verify the correct username and event is displayed
+        Assertions.assertEquals(username, "first second");
+        Assertions.assertEquals(event, "registration");
     }
 
     @Test
