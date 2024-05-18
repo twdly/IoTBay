@@ -23,13 +23,13 @@ public class AccessLogDaoTest {
 //    Test for inserting and deleting a log
     @Test
     public void testInsertDeleteLog() {
-        AccessLog log = new AccessLog(1000, "logout");
+        AccessLog log = new AccessLog(1001, "logout");
         dao.insertLog(log);
-        List<AccessLog> logs = dao.getLogsByUser(1000);
+        List<AccessLog> logs = dao.getLogsByUser(1001);
         assertTrue(logs.stream().anyMatch(l -> l.getEvent().equals("logout")));
 
         dao.deleteAccessLog(log.getLogId());
-        logs = dao.getLogsByUser(1000);
+        logs = dao.getLogsByUser(1001);
         assertTrue(logs.stream().noneMatch(user -> user.getEvent().equals("logout")));
     }
 
@@ -39,7 +39,7 @@ public class AccessLogDaoTest {
         List<AccessLog> logs = dao.getLogsByUser(1);
         assertTrue(logs.isEmpty());
 
-        logs = dao.getLogsByUser(1000);
+        logs = dao.getLogsByUser(1001);
         assertFalse(logs.isEmpty());
         assertEquals("registration", logs.get(0).getEvent());
     }
@@ -47,10 +47,10 @@ public class AccessLogDaoTest {
 //    Test for getting logs by date
     @Test
     public void testGetLogsByDate() {
-        List<AccessLog> logs = dao.getLogsByDate(1000, "2000-05-16");
+        List<AccessLog> logs = dao.getLogsByDate(1001, "2000-05-16");
         assertTrue(logs.isEmpty());
 
-        logs = dao.getLogsByDate(1000, "2024-05-16");
+        logs = dao.getLogsByDate(1001, "2024-05-16");
         assertFalse(logs.isEmpty());
         assertEquals("registration", logs.get(0).getEvent());
     }
