@@ -1,3 +1,5 @@
+// The validation in this function is now redundant as validation has been moved to the server side of the application
+// but is kept to show the original validation logic
 function register() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;

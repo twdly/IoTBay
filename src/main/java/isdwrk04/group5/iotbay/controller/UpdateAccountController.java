@@ -17,8 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
+// Handles account management related operations:
+// update account details, update password, account deletion
+
 @WebServlet( name= "updateAccountController", value = "/update-account" )
 public class UpdateAccountController extends BaseServlet {
+
+//    Initialize the servlet by creating instances of HashingService and UserDao
 
     private HashingService hashingService;
     private UserDao userDao;
@@ -33,10 +38,11 @@ public class UpdateAccountController extends BaseServlet {
         }
     }
 
+//    Handle GET requests to the servlet
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
-
+//        Redirect to the login page if the user is not logged in
         if (null == user) {
             redirectToUrl(request, response, "/login");
             return;
@@ -44,12 +50,13 @@ public class UpdateAccountController extends BaseServlet {
         serveJSP(request, response, "updateAccount.jsp");
     }
 
-
+//    Handle POST requests to the servlet
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
+//         Retrieve 'action' parameter and perform operations based on the 'action' parameter
         String action = request.getParameter("action");
 
         if ("updateDetails".equals(action)) {
@@ -64,6 +71,7 @@ public class UpdateAccountController extends BaseServlet {
         }
     }
 
+//    Update user details based on the form input
     public void updateDetails(HttpServletRequest request, HttpServletResponse response, User user, HttpSession session) throws ServletException, IOException {
 
         String email = request.getParameter("email");
@@ -74,6 +82,7 @@ public class UpdateAccountController extends BaseServlet {
             user.setEmail(email);
             user.setUsername(name);
             user.setPhoneNo(phone);
+//            Update the user's details in the database
             userDao.updateUserDetails(user);
             serveJSP(request, response, "updateAccount.jsp");
         } else {
@@ -81,6 +90,7 @@ public class UpdateAccountController extends BaseServlet {
         }
     }
 
+//    Update user password based on the form input
     public void updatePassword(HttpServletRequest request, HttpServletResponse response, User user, HttpSession session) throws ServletException, IOException {
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
@@ -97,6 +107,7 @@ public class UpdateAccountController extends BaseServlet {
 
             user.setHashedPassword(hashedPassword);
             user.setSalt(salt);
+//            Update the user's details in the database
             userDao.updateUserDetails(user);
             serveJSP(request, response, "updateAccount.jsp");
         } else {
@@ -104,15 +115,20 @@ public class UpdateAccountController extends BaseServlet {
         }
     }
 
+//    Deactivate user account
     public void deactivateAccount(HttpServletRequest request, HttpServletResponse response, User user, HttpSession session) {
+//        Set a placeholder value for deletion
         String str = "deleted";
+//        Convert the placeholder string to a byte array
         byte[] byteArray = str.getBytes(StandardCharsets.UTF_8);
+//        Set the user's email, username, phone number, hashed password, and salt to the placeholder values
         user.setEmail(str);
         user.setUsername(str);
         user.setPhoneNo(str);
         user.setHashedPassword(byteArray);
         user.setSalt(byteArray);
 
+//        Update the user's details in the database
         userDao.updateUserDetails(user);
         request.getSession(false).invalidate();
 
@@ -124,6 +140,7 @@ public class UpdateAccountController extends BaseServlet {
 
     }
 
+//    Validate user details (email, name, phone number)
     private boolean validateDetails(HttpSession session, String email, String name, String phone) {
         boolean isValid = true;
         List<String> errors = new ArrayList<>();
@@ -141,6 +158,7 @@ public class UpdateAccountController extends BaseServlet {
         return isValid;
     }
 
+//    Validate user password
     private boolean validatePassword(HttpSession session, String password, String passwordCheck) {
         boolean isValid = true;
         List<String> errors = new ArrayList<>();

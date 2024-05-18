@@ -28,15 +28,19 @@ public class UserDao {
         }
     }
 
+//    Updates the user details in the database
     public void updateUserDetails(User user) {
         try {
+//            Prepare the SQL statement to update the user details
             PreparedStatement statement = connection.prepareStatement("update \"USER\" set EMAIL_ADDRESS=?, PASSWORD_HASH=?, PASSWORD_SALT=?, NAME=?, PHONE=? where USER_ID=?");
+//            Set the parameters for the SQL statement
             statement.setString(1, user.getEmail());
             statement.setString(2, Base64.getEncoder().encodeToString(user.getHashedPassword()));
             statement.setString(3, Base64.getEncoder().encodeToString(user.getSalt()));
             statement.setString(4, user.getUsername());
             statement.setString(5, user.getPhoneNo());
             statement.setInt(6, user.getId());
+//            Execute the SQL statement
             statement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
