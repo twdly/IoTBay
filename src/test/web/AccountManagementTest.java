@@ -68,6 +68,18 @@ public class AccountManagementTest extends BaseWebTest{
     }
 
     @Test
+    public void testLogout() {
+        createAccount();
+//        Logout from registered account
+        driver.findElement(By.linkText("Logout")).click();
+
+//        Verify that the welcome page cannot be accessed when logged out
+        driver.get("http://localhost:8080/IoTBay_war_exploded/welcome");
+        String pageTitle = driver.getTitle();
+        Assertions.assertTrue(pageTitle.contains("404"));
+    }
+
+    @Test
     public void testUpdateDetails() {
         createAccount();
 
