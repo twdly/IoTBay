@@ -53,6 +53,9 @@ public class Product implements Serializable {
 		this.price = price;
 	}
 
+	// Tai worked out how to correctly retrieve the image path
+	// this function retrieves the path to the images folder and then uses the id of the image to find
+	// the corresponding image file in the folder (which have been named based on product id number)
 	public String getImageUrl() {
 		String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 

@@ -16,8 +16,12 @@ import java.util.List;
 @WebServlet( name="productCatalogueController", value = "/productCatalogue")
 public class ProductCatalogueController extends BaseServlet {
 
+    // all functions in this controller were written by Ria
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // the user is authenticated to check if there is a user logged in
         User user = (User) request.getSession().getAttribute("user");
 
         if (null == user) {
@@ -25,11 +29,13 @@ public class ProductCatalogueController extends BaseServlet {
             return;
         }
 
+        // and if there is a user, it checks if the user is a staff member
         if (!user.getRole().equals(User.Role.Staff)) {
             redirectToUrl(request, response, "/");
             return;
         }
 
+        // retrieves all the products for use on the update product catalogue page
         ProductDao dao = new ProductDao();
         List<Product> products;
         products = dao.getAllProducts();
@@ -39,21 +45,29 @@ public class ProductCatalogueController extends BaseServlet {
         serveJSP(request, response, "productCatalogue.jsp");
     }
 
+    // this doPost function handles the request to add a new product via the form on the update product catalogue page
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         ProductDao productDao = new ProductDao();
 
         HttpSession session = request.getSession();
 
+        // retrieves the form values for adding a new product
         String productName = request.getParameter("product-name");
         String productCategory = request.getParameter("product-category");
         String productDescription = request.getParameter("product-description");
         String productPriceStr = request.getParameter("product-price");
         String productStockStr = request.getParameter("product-stock");
 
+        // checks if the form values are correct with validateNewProduct
         if (validateNewProduct(session, productName, productCategory, productDescription, productPriceStr, productStockStr)) {
+
+            // parses the string values into a double and int respectively
             double productPrice = Double.parseDouble(productPriceStr);
             int productStock = Integer.parseInt(productStockStr);
+
+            // adds the new product to the database
             Product product = new Product(productName, productCategory, productDescription, productPrice, productStock);
             productDao.addProduct(product);
         }
@@ -62,6 +76,7 @@ public class ProductCatalogueController extends BaseServlet {
         serveJSP(request, response, "productCatalogue.jsp");
     }
 
+    // the validateNewProduct function checks all the values using regex matches to ensure they conform to expected standards
     private boolean validateNewProduct(HttpSession session, String productName, String productCategory, String productDescription, String productPrice, String productStock) {
         boolean isValid = true;
         List<String> errors = new ArrayList<>();
@@ -74,15 +89,15 @@ public class ProductCatalogueController extends BaseServlet {
             isValid = false;
         }
         if (!productDescription.matches("^[a-zA-Z0-9,.\\s'-]{1,200}$")) {
-            errors.add("Product description can only include letters numbers , and . and must be under 200 characters");
+            errors.add("Product description can only include letters numbers and symbols , . ' - and must be under 200 characters in length");
             isValid = false;
         }
         if (!productPrice.matches("^[0-9]{1,5}(?:\\.[0-9]{2})?$")) {
-            errors.add("Product price can only contain 1-5 numbers before the decimal - 00000.00");
+            errors.add("Product price can only contain 1-5 numbers before the decimal e.g. 00000.00");
             isValid = false;
         }
         if (!productStock.matches("^[0-9]+$")) {
-            errors.add("Stock must be a number");
+            errors.add("Stock value must be a number");
             isValid = false;
         }
 

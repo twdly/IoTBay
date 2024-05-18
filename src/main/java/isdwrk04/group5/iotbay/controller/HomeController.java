@@ -18,15 +18,25 @@ public class HomeController extends BaseServlet {
     public void init() {
     }
 
+    // the doGet for this controller was written by Ria and Tai
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // if there is a search query or a category has been selected the value is retrieved
         String query = request.getParameter("search");
         String category = request.getParameter("category");
 
+        // a new ProductDao is initialised, a list of Product objects is declared,
+        // and the product categories are retrieved from the ProductDao
         ProductDao dao = new ProductDao();
         List<Product> products;
         List<String> productCategories = dao.getProductCategories();
 
+        // checks if there is a search query or a category
+        // if there's a search query then runs the getSearchProducts function
+        // if there's a category then runs the getCategoryProducts function
+        // if there is neither then it retrieves all products
+        // in other words, this changes the products displayed depending on whether the
+        // user has searched, chosen a category, or just browsed to the home page
         if (query != null && !query.isEmpty()) {
             products = dao.getSearchProducts(query);
             request.setAttribute("searchQuery", query);
@@ -47,6 +57,7 @@ public class HomeController extends BaseServlet {
         serveJSP(request, response, "home.jsp");
     }
 
+    // the doPost for this controller was written by Tai
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         // This method is used to add items to the cart
@@ -67,6 +78,7 @@ public class HomeController extends BaseServlet {
         redirectToUrl(request, response, getRedirectUrl(request));
     }
 
+    // getRedirectUrl was written by Tai
     private static String getRedirectUrl(HttpServletRequest request) {
         String requestUrl = String.valueOf(request.getRequestURL());
         String contextPath = request.getContextPath();

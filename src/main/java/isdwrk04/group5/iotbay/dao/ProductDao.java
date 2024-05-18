@@ -15,6 +15,8 @@ public class ProductDao {
         connection = new DbConnector().getConnection();
     }
 
+    // Ria wrote this to add a new product to the database
+    // it uses the getNextProductId and buildInsertQuery functions below
     public void addProduct(Product product){
         try {
             int id = getNextProductId();
@@ -27,6 +29,8 @@ public class ProductDao {
         }
     }
 
+    // Ria wrote this function to retrieve the product categories from the database
+    // in order to populate the Product Categories dropdown menu on the home page
     public List<String> getProductCategories() {
         List<String> categories = new ArrayList<>();
         try {
@@ -55,6 +59,8 @@ public class ProductDao {
         return products;
     }
 
+    // Ria wrote this function to retrieve all of the products based on a search query
+    // it sanitises the search query to prevent SQL injection in the database
     public List<Product> getSearchProducts(String search) {
         List<Product> products = new ArrayList<>();
         try {
@@ -75,6 +81,7 @@ public class ProductDao {
         return products;
     }
 
+    // Ria wrote this function to retrieve all of the products in a category chosen in the menu
     public List<Product> getCategoryProducts(String category) {
         List<Product> products = new ArrayList<>();
         try {
@@ -143,6 +150,9 @@ public class ProductDao {
         }
     }
 
+    // Ria wrote this based on a similar function Tai wrote for the UserDao
+    // it retrieves the current maximum Product ID number and then increments it
+    // in order to set the next Product ID value when adding a new product in addProduct
     public int getNextProductId(){
         int foundId;
         try {
@@ -156,6 +166,8 @@ public class ProductDao {
         return foundId;
     }
 
+    // Ria wrote this based on a similar function Tai wrote for the UserDao
+    // it sets the value for the PreparedStatement for addProduct (see above)
     public void buildInsertQuery(Product product, PreparedStatement statement) throws SQLException {
         statement.setInt(1, getNextProductId());
         statement.setString(2, product.getName());
