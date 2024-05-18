@@ -47,7 +47,7 @@ public class AccessLogDaoTest {
 //    Test for getting logs by date
     @Test
     public void testGetLogsByDate() {
-        List<AccessLog> logs = dao.getLogsByDate(1001, "2000-05-16");
+        List<AccessLog> logs = dao.getLogsByDate(1001, "2000-05-15");
         assertTrue(logs.isEmpty());
 
         logs = dao.getLogsByDate(1001, "2024-05-16");
