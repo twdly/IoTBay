@@ -32,7 +32,7 @@ public class AccessLogDAO {
 
 //    Builds the SQL query for inserting an access log
     private void buildQuery(AccessLog log, PreparedStatement statement) throws SQLException {
-        statement.setInt(1, getNextLogId());
+        statement.setInt(1, log.getLogId());
         statement.setInt(2, log.getUserId());
         statement.setString(3, log.getEvent());
         statement.setTimestamp(4, log.getEventTime());
