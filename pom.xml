@@ -6,7 +6,7 @@
 
     <groupId>isdwrk04.group5</groupId>
     <artifactId>iotbay</artifactId>
-    <version>RELEASE-0</version>
+    <version>RELEASE-1</version>
     <name>IoTBay</name>
     <packaging>war</packaging>
 
