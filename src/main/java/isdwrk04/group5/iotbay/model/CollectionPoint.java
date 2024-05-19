@@ -22,4 +22,20 @@ public class CollectionPoint implements Serializable {
         this.address = "";
         this.cityId = 0;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
 }
